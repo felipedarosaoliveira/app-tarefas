@@ -1,4 +1,4 @@
---migra��es sql
+--migrações sql
 
 create database "transpoBrasil";
 
