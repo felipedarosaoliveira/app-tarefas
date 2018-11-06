@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.projeto;
+package br.com.cursojava.apptarefas.utils;
 
 import java.util.List;
 
