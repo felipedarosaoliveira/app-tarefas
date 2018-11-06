@@ -28,3 +28,6 @@ hs_err_pid*
 RemoteSystemsTempFiles
 bin
 Servers
+apptarefas/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml
+apptarefas/.settings/org.eclipse.wst.common.project.facet.core.xml
+apptarefas/.settings/org.eclipse.jpt.core.prefs
