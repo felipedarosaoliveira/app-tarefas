@@ -2,23 +2,42 @@ package br.com.cursojava.apptarefas.situacao;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 @Entity
 @Table
 public class Situacao {
-
+	
 	@Id
-	@GerenatedValue(strategy = GeneratedType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@column(nullable = false)
+	@Column(nullable = false)
 	private String nome;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private String tipo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date dataHoraCriacao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date dataHoraAtualizacao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
 	private Date dataHoraRemocao;
 	
 	@Column(nullable = false)
