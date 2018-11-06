@@ -12,7 +12,7 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	@Override
 	public boolean inserir(Situacao situacao) {
 		boolean resultado = false;
-		if (situacao != null){
+		if (situacao != null && situacao.getId() == null){
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			em.persist(situacao);
@@ -25,15 +25,35 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	}
 
 	@Override
-	public boolean atualizar(Situacao t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean atualizar(Situacao situacao) {
+		boolean resultado = false;
+		if (situacao != null && situacao.getId() != null){
+			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+			em.getTransaction().begin();
+			em.find(Situacao.class, situacao);
+			em.merge(situacao);
+			em.getTransaction().commit();
+			em.close();
+			JPAUtil.shutdown();
+			resultado = true;
+		}
+		return resultado;
 	}
 
 	@Override
-	public boolean remover(Situacao t) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean remover(Situacao situacao) {
+		boolean resultado = false;
+		if (situacao != null && situacao.getId() != null){
+			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+			em.getTransaction().begin();
+			em.find(Situacao.class, situacao);
+			em.remove(situacao);
+			em.getTransaction().commit();
+			em.close();
+			JPAUtil.shutdown();
+			resultado = true;
+		}
+		return resultado;
 	}
 
 	@Override
