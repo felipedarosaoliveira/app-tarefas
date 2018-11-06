@@ -2,35 +2,51 @@ package br.com.cursojava.apptarefas.situacao;
 
 import java.util.List;
 
-import br.com.cursojava.apptarefas.projeto.Projeto;
+import javax.persistence.EntityManager;
+
 import br.com.cursojava.apptarefas.utils.CrudRepository;
+import br.com.cursojava.apptarefas.utils.JPAUtil;
 
-public class SituacaoRepositorio implements CrudRepository<Projeto> {
+public class SituacaoRepositorio implements CrudRepository<Situacao> {
 
 	@Override
-	public boolean inserir(Class<Projeto> classe) {
+	public boolean inserir(Situacao situacao) {
+		boolean resultado = false;
+		if (situacao != null){
+			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+			em.getTransaction().begin();
+			em.persist(situacao);
+			em.getTransaction().commit();
+			em.close();
+			JPAUtil.shutdown();
+			resultado = true;
+		}
+		return resultado;
+	}
+
+	@Override
+	public boolean atualizar(Situacao t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean atualizar(Projeto t) {
+	public boolean remover(Situacao t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean remover(Projeto t) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<Projeto> buscarTodos() {
+	public List<Situacao> buscarTodos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public Situacao buscarPorId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public long contar() {
@@ -38,10 +54,6 @@ public class SituacaoRepositorio implements CrudRepository<Projeto> {
 		return 0;
 	}
 
-	@Override
-	public Projeto buscarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }
