@@ -1,6 +1,9 @@
-package br.com.cursojava.apptarefas.projeto;
+package br.com.cursojava.apptarefas.situacao;
 
 import java.util.List;
+
+import br.com.cursojava.apptarefas.projeto.CrudRepository;
+import br.com.cursojava.apptarefas.projeto.Projeto;
 
 public class SituacaoRepositorio implements CrudRepository<Projeto> {
 
