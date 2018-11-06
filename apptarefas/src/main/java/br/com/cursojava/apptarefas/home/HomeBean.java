@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 public class HomeBean {
 
 	private String mensagem = "Bem vindo ao JSF";
+	private String nome = "";
 
 
 	public String getMensagem() {
@@ -14,6 +15,14 @@ public class HomeBean {
 
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
