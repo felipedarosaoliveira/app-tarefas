@@ -2,24 +2,31 @@ package br.com.cursojava.apptarefas.projeto;
 
 import java.util.Date;
 
-//@Entity
-//@Table(name=”projetos”)
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="projetos")
 public class Projeto {
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-//	@Column
+	@Column
 	private String nome;
-//	@Column
+	@Column
 	private String descricao;
-//	@Column
+	@Column
 	private String status;
-//	@Column
+	@Column
 	private Date DataHoraCriacao;
-//	@Column
+	@Column
 	private Date DataHoraAtualizacao;
-//	@Column
+	@Column
 	private Date DataHoraFim;
 
 	public Projeto() {
