@@ -40,6 +40,7 @@ public class Situacao {
 	@Column
 	private Date dataHoraRemocao;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private String status;
 	
