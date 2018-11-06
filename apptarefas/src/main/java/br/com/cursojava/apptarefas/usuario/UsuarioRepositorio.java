@@ -44,11 +44,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario>{
 		return resultado;
 	}
 
-	@Override
-	public boolean remover(Usuario t) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public List<Usuario> buscarTodos() {
@@ -66,6 +62,12 @@ public class UsuarioRepositorio implements CrudRepository<Usuario>{
 	public long contar() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public boolean remover(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	
