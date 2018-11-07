@@ -29,11 +29,13 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 	@Override
 	public boolean atualizar(Usuario usuario) {
 		boolean resultado = false;
+
 		if (usuario != null && usuario.getId() != null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			try {
 				em.getTransaction().begin();
-				em.merge(usuario);
+				Usuario userAtualizar = buscarPorId(usuario.getId());
+				em.merge(userAtualizar);
 				em.getTransaction().commit();
 				em.close();
 				resultado = true;
