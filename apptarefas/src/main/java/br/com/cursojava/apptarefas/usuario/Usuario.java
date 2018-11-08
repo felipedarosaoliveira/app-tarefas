@@ -31,9 +31,11 @@ public class Usuario {
 	private String senha;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column (name="\"dataHoraCriacao\"")
 	private Date dataHoraCriacao;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"dataHoraAtualizacao\"")
 	private Date dataHoraAtualizacao;
 	
 	@Enumerated(EnumType.STRING)
