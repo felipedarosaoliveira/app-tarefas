@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+
+	<title>Projetos | Lista</title>
+</h:head>
+<h:body>
+	<title>Projetos</title>
+	<h3 style="text-align: center">Listagem de Projetos</h3>
+	<h:button value="Novo Projeto" outcome="cadastro.xhtml" />
+	<div style="width: 600px; margin: 10px auto; border: 1px solid #ddd">
+		<h:dataTable value="#{projetoBean.projetos}" var="atual"
+			style="width: 600px; margin: 10px auto; border:1px solid #ddd">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+	#{atual.id}	
+</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+	#{atual.nome}	
+</h:column>
+			<h:column>
+				<f:facet name="header">Descrição</f:facet>
+	#{atual.descricao}	
+</h:column>
+			<h:column>
+				<f:facet name="header">DataHoraCriação</f:facet>
+	#{atual.dataHoraCriacao}	
+</h:column>
+			<h:column>
+				<f:facet name="header">DataHoraAtualização</f:facet>
+	#{atual.DataHoraAtualizacao}	
+</h:column>
+			<h:column>
+				<f:facet name="header">DataHoraFim</f:facet>
+	#{atual.DataHoraFim}	
+</h:column>
+
+		</h:dataTable>
+	</div>
+</h:body>
+</html>
