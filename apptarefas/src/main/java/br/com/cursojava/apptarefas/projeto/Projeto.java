@@ -21,19 +21,19 @@ public class Projeto {
 	@Column
 	private String descricao;
 	@Column
-	private String status;
-	@Column(name="dataHoraCriacao")
+	private ProjetoStatus status;
+	@Column(name="\"dataHoraCriacao\"")
 	private Date DataHoraCriacao;
-	@Column(name="dataHoraAtualizacao")
+	@Column(name="\"dataHoraAtualizacao\"")
 	private Date DataHoraAtualizacao;
-	@Column(name="dataHoraFim")
+	@Column(name="\"dataHoraFim\"")
 	private Date DataHoraFim;
 
 	public Projeto() {
 		super();
 	}
 
-	public Projeto(Integer id, String nome, String descricao, String status, Date dataHoraCriacao,
+	public Projeto(Integer id, String nome, String descricao, ProjetoStatus status, Date dataHoraCriacao,
 			Date dataHoraAtualizacao, Date dataHoraFim) {
 		super();
 		this.id = id;
@@ -69,11 +69,11 @@ public class Projeto {
 		this.descricao = descricao;
 	}
 
-	public String getStatus() {
+	public ProjetoStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(ProjetoStatus status) {
 		this.status = status;
 	}
 

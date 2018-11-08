@@ -95,7 +95,7 @@ public class ProjetoBean {
 	
 	public void salvar() {
 		Projeto Projeto = new Projeto(nome, descricao, status, dataHoraCriacao,	dataHoraAtualizacao, dataHoraFim);
-		Projetos.add(Projeto);		
+		projetos.add(Projeto);		
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage mensagem = new FacesMessage("Projeto Adicionado com sucesso");
 		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
