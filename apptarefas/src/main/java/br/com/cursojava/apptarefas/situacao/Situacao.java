@@ -29,15 +29,15 @@ public class Situacao {
 	private String tipo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(name = "\"dataHoraCriacao\"", nullable = false)
 	private Date dataHoraCriacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(name = "\"dataHoraAtualizacao\"",nullable = false)
 	private Date dataHoraAtualizacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column
+	@Column(name = "\"dataHoraRemocao\"")
 	private Date dataHoraRemocao;
 	
 	@Enumerated(EnumType.STRING)
