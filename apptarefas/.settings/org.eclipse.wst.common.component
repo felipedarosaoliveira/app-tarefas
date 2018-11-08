@@ -1,41 +1,31 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="app-tarefas">
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <property name="context-root" value="app-tarefas"/>
-        <property name="java-output-path" value="/apptarefas/src/main/webapp/WEB-INF/classes"/>
-    </wb-module>
-</project-modules>
-=======
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-            
-    
-    <wb-module deploy-name="app-tarefas">
-                        
-        
-        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                        
-        
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                        
-        
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
                 
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+    
+    
+    <wb-module deploy-name="app-tarefas">
+                                
+        
+        
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                                
+        
+        
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
-                        
+                                
+        
         
         <property name="context-root" value="app-tarefas"/>
-                        
+                                
+        
         
         <property name="java-output-path" value="/apptarefas/src/main/webapp/WEB-INF/classes"/>
-                    
+                            
+    
     
     </wb-module>
-        
+            
+
 
 </project-modules>
->>>>>>> d87842d19107dc4b5d813f02668b4116708f9a43
