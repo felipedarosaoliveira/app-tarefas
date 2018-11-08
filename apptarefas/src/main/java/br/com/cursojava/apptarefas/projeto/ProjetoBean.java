@@ -19,7 +19,7 @@ public class ProjetoBean {
 
 	private String descricao;
 
-	private String status;
+	private ProjetoStatus status;
 
 	private Date dataHoraCriacao;
 
@@ -53,11 +53,11 @@ public class ProjetoBean {
 		this.descricao = descricao;
 	}
 
-	public String getStatus() {
+	public ProjetoStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(ProjetoStatus status) {
 		this.status = status;
 	}
 
@@ -94,7 +94,7 @@ public class ProjetoBean {
 	}
 	
 	public void salvar() {
-		Projeto Projeto = new Projeto(nome, descricao, status, dataHoraCriacao,	dataHoraAtualizacao, dataHoraFim);
+		Projeto Projeto = new Projeto(id, nome, descricao, status, dataHoraCriacao,	dataHoraAtualizacao, dataHoraFim);
 		projetos.add(Projeto);		
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage mensagem = new FacesMessage("Projeto Adicionado com sucesso");
