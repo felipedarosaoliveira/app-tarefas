@@ -22,11 +22,11 @@ public class Projeto {
 	private String descricao;
 	@Column
 	private String status;
-	@Column
+	@Column(name="dataHoraCriacao")
 	private Date DataHoraCriacao;
-	@Column
+	@Column(name="dataHoraAtualizacao")
 	private Date DataHoraAtualizacao;
-	@Column
+	@Column(name="dataHoraFim")
 	private Date DataHoraFim;
 
 	public Projeto() {
