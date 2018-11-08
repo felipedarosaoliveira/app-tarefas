@@ -66,7 +66,7 @@ public class ProjetoBean {
 	}
 
 	public void setDataHoraCriacao(Date dataHoraCriacao) {
-		dataHoraCriacao = dataHoraCriacao;
+		this.dataHoraCriacao = dataHoraCriacao;
 	}
 
 	public Date getDataHoraAtualizacao() {
@@ -74,7 +74,7 @@ public class ProjetoBean {
 	}
 
 	public void setDataHoraAtualizacao(Date dataHoraAtualizacao) {
-		dataHoraAtualizacao = dataHoraAtualizacao;
+		this.dataHoraAtualizacao = dataHoraAtualizacao;
 	}
 
 	public Date getDataHoraFim() {
@@ -82,7 +82,7 @@ public class ProjetoBean {
 	}
 
 	public void setDataHoraFim(Date dataHoraFim) {
-		dataHoraFim = dataHoraFim;
+		this.dataHoraFim = dataHoraFim;
 	}
 
 	public List<Projeto> getProjetos() {
@@ -95,8 +95,7 @@ public class ProjetoBean {
 	
 	public void salvar() {
 		Projeto Projeto = new Projeto(nome, descricao, status, dataHoraCriacao,	dataHoraAtualizacao, dataHoraFim);
-		projetos.add(Projeto);
-		limparCampos();
+		Projetos.add(Projeto);		
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage mensagem = new FacesMessage("Projeto Adicionado com sucesso");
 		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
@@ -105,12 +104,5 @@ public class ProjetoBean {
 
 	}
 
-	private void limparCampos() {
-		this.nome = "";
-		this.email = "";
-		this.telefone = "";
-	}
 	
-	
-
 }
