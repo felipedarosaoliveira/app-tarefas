@@ -1,14 +1,10 @@
-package br.com.apptarefas.usuario;
+package br.com.cursojava.apptarefas.usuario;
 
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import br.com.cursojava.apptarefas.usuario.StatusUsuario;
-import br.com.cursojava.apptarefas.usuario.Usuario;
-import br.com.cursojava.apptarefas.usuario.UsuarioRepositorio;
 
 public class UsuarioRepositorioTest {
 
