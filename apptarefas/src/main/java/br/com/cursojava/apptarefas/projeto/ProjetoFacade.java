@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ProjetoFacade {
 
-	private RepositorioProjeto repositorio = new RepositorioProjeto();
+	private ProjetoRepositorio repositorio = new ProjetoRepositorio();
 
 	public Projeto novoProjeto() {
 		return new Projeto();

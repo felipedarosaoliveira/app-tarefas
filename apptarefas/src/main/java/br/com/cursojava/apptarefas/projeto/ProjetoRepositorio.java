@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 import br.com.cursojava.apptarefas.utils.CrudRepository;
 import br.com.cursojava.apptarefas.utils.JPAUtil;
 
-public class RepositorioProjeto implements CrudRepository<Projeto> {
+public class ProjetoRepositorio implements CrudRepository<Projeto> {
 	
 	@Override
 	public boolean inserir(Projeto projeto) {
