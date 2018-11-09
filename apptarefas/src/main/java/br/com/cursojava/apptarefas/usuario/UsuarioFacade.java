@@ -1,23 +1,19 @@
 package br.com.cursojava.apptarefas.usuario;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsuarioFacade {
 
 	private UsuarioRepositorio ur = new UsuarioRepositorio();
 
-	//buscar todos
-	public List<Usuario> buscarTodos() {
-		return ur.buscarTodos();
+	private Usuario novoUsuario() {
+		return new Usuario();
 	}
-	
-	//buscar por id
-	public Usuario buscarPorId(Integer id) {
-		if(id != null && id > 0) {
-			return ur.buscarPorId(id);
-		}else {
-			return null;
-		}
+	//buscar todos
+	public List<Usuario> carregarUsuarios() {
+		return ur.buscarTodos();
 	}
 	
 	public boolean editar(Usuario usuario) {
@@ -28,17 +24,28 @@ public class UsuarioFacade {
 		return ur.inserir(usuario);
 	}
 	
+	public boolean remover(Integer id) {
+		return ur.remover(id);
+	}
+	
 	public boolean isNomeValido(String nome) {
 		//não pode ser igual a outro usuario
 		return nome != null && nome.length() <= 120;
 	}
 	
-	public boolean isEmailValido() {
-		//mínimo 6 caracteres
-		return false;
+	public boolean isEmailValido(String email) {
+		boolean isEmail = false;
+		String arroba = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+		Pattern pattern = Pattern.compile(arroba, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(email);
+		if(matcher.matches()) {
+			isEmail = true;
+		}
+		return email != null && email.length() <= 120 && !"".equals(email.trim()) && isEmail ;
 	}
 	
 	public boolean isSenhaValida(String senha) {
+		//mínimo 6 caracteres
 		return senha != null && senha.length() >= 6;
 	}
 }	
