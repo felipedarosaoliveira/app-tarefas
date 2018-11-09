@@ -34,8 +34,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			try {
 				em.getTransaction().begin();
-				Usuario userAtualizar = buscarPorId(usuario.getId());
-				em.merge(userAtualizar);
+				em.merge(usuario);
 				em.getTransaction().commit();
 				em.close();
 				resultado = true;
@@ -93,20 +92,18 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 	public boolean remover(int id) {
 		boolean resultado = false;
 		if (id >= 0) {
-			Usuario user = buscarPorId(id);
-			if (user != null) {
-				EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
-				try {
-					em.getTransaction().begin();
-					em.remove(user);
-					em.getTransaction().commit();
-					em.close();
-					resultado = true;
-				} catch (Exception e) {
-					if (em != null && em.isOpen()) {
-						em.getTransaction().rollback();
-					}
+			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+			try {
+				em.getTransaction().begin();
+				em.remove(em.find(Usuario.class, id));
+				em.getTransaction().commit();
+				em.close();
+				resultado = true;
+			} catch (Exception e) {
+				if (em != null && em.isOpen()) {
+					em.getTransaction().rollback();
 				}
+
 			}
 		}
 		return resultado;
