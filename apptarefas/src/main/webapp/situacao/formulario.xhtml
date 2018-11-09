@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Meus Contatos</title>
+	<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.main {
+	width: 1200px;
+	margin: 10px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	width: 100%;
+	height: 200px;
+	background-color: #eee;
+	padding: 20px;
+}
+
+.header h3 {
+	font-size: 36px;
+	color: #333;
+	margin-bottom: 40px;
+}
+
+.content {
+	width: 100%;
+	margin: 10px 0;
+	padding: 20px;
+}
+
+.form-vertical label, .form-vertical input, .form-vertical button {
+	display: block;
+	margin: 5px 0;
+}
+
+.form-vertical input, .form-vertical select, .form-vertical button {
+	height: 30px;
+	font-size: 20px;
+	min-width: 250px;
+}
+
+.form-vertical input[type="submit"] {
+	padding: 2.5px 20px;
+}
+</style>
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:viewParam name="oid" value="#{situacaoBean.oid}" />
+	</f:metadata>
+	<div class="main">
+		<div class="header">
+			<h3>Formulário Situação</h3>
+		</div>
+		<div class="content">
+			<h:messages></h:messages>
+			<h:form>
+				<div class="form-vertical">
+					<h:outputLabel>Id</h:outputLabel>
+					<h:inputText value="#{situacaoBean.id}" disabled="true"></h:inputText>
+					<h:outputLabel>Nome</h:outputLabel>
+					<h:inputText value="#{situacaoBean.nome}"
+						disabled="#{!situacaoBean.podeEditar}"></h:inputText>
+					<h:outputLabel>Tipo</h:outputLabel>
+					<h:selectOneMenu value="#{situacaoBean.tipo}"
+						disabled="#{!situacaoBean.podeEditar}">
+						<f:selectItems value="#{situacaoBean.opcoesTipo}"></f:selectItems>
+					</h:selectOneMenu>
+					<h:outputLabel>Status</h:outputLabel>
+					<h:selectOneMenu value="#{situacaoBean.status}"
+						disabled="#{!situacaoBean.podeEditar}">
+						<f:selectItems value="#{situacaoBean.opcoesStatus}"></f:selectItems>
+					</h:selectOneMenu>
+					<ui:include src="../button-bar.xhtml">
+						<ui:param name="bean" value="#{situacaoBean}"></ui:param>
+					</ui:include>
+
+				</div>
+
+			</h:form>
+		</div>
+	</div>
+
+
+
+</h:body>
+</html>

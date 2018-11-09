@@ -35,15 +35,14 @@ public class UsuarioFacade {
 	
 	public boolean isEmailValido(String email) {
 		boolean isEmail = false;
-		String arroba = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-		Pattern pattern = Pattern.compile(arroba, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(email);
-		if(matcher.matches()) {
-			isEmail = true;
-		}
+		isEmail = isArroba(email);
 		return email != null && email.length() <= 120 && !"".equals(email.trim()) && isEmail ;
 	}
 	
+	private boolean isArroba(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	public boolean isSenhaValida(String senha) {
 		//mínimo 6 caracteres
 		return senha != null && senha.length() >= 6;
