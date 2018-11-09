@@ -59,35 +59,35 @@
 </h:head>
 <h:body>
 	<f:metadata>
-		<f:viewParam name="oid" value="#{usuarioBean.oid}" />
+		<f:viewParam name="oid" value="#{situacaoBean.oid}" />
 	</f:metadata>
 	<div class="main">
 		<div class="header">
-			<h3>Cadastro Usuários</h3>
+			<h3>Formulário Situação</h3>
 		</div>
 		<div class="content">
 			<h:messages></h:messages>
 			<h:form>
 				<div class="form-vertical">
 					<h:outputLabel>Id</h:outputLabel>
-					<h:inputText value="#{usuarioBean.id}" disabled="true"></h:inputText>
+					<h:inputText value="#{situacaoBean.id}" disabled="true"></h:inputText>
 					<h:outputLabel>Nome</h:outputLabel>
-					<h:inputText value="#{usuarioBean.nome}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Email</h:outputLabel>
-					<h:inputText value="#{usuarioBean.email}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Senha</h:outputLabel>
-					<h:inputText value="#{usuarioBean.senha}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Status</h:outputLabel>
-					<h:selectOneMenu value="#{usuarioBean.status}"
-						disabled="#{!usuarioBean.podeEditar}">
-						<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
+					<h:inputText value="#{situacaoBean.nome}"
+						disabled="#{!situacaoBean.podeEditar}"></h:inputText>
+					<h:outputLabel>Tipo</h:outputLabel>
+					<h:selectOneMenu value="#{situacaoBean.tipo}"
+						disabled="#{!situacaoBean.podeEditar}">
+						<f:selectItems value="#{situacaoBean.opcoesTipo}"></f:selectItems>
 					</h:selectOneMenu>
-						<ui:include src="../button-bar.xhtml">
-						<ui:param name="bean" value="#{usuarioBean}"></ui:param>
+					<h:outputLabel>Status</h:outputLabel>
+					<h:selectOneMenu value="#{situacaoBean.status}"
+						disabled="#{!situacaoBean.podeEditar}">
+						<f:selectItems value="#{situacaoBean.opcoesStatus}"></f:selectItems>
+					</h:selectOneMenu>
+					<ui:include src="../button-bar.xhtml">
+						<ui:param name="bean" value="#{situacaoBean}"></ui:param>
 					</ui:include>
+
 				</div>
 
 			</h:form>
