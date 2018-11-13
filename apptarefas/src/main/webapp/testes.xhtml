@@ -12,8 +12,12 @@
 </ui:include>
 </h:head>
 <h:body>
+<ui:include src="navegacao.xhtml">
+<ui:param name="bean" value="#{testBean}"></ui:param>
+</ui:include>
 <ui:include src="./painel.xhtml">
 <ui:param name="title" value="titulo novo"></ui:param>
 </ui:include>
+
 </h:body>
 </html>
