@@ -1,31 +1,32 @@
 package br.com.cursojava.apptarefas.usuario;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UsuarioFacade {
 
 	private UsuarioRepositorio ur = new UsuarioRepositorio();
 
-	private Usuario novoUsuario() {
+	public Usuario novoUsuario() {
 		return new Usuario();
 	}
 	//buscar todos
+	public Usuario carregarUsuario(Integer id) {
+		return ur.buscarPorId(id);
+	}
+	
 	public List<Usuario> carregarUsuarios() {
 		return ur.buscarTodos();
 	}
-	
 	public boolean editar(Usuario usuario) {
 		return ur.atualizar(usuario);
 	}
 	
-	public boolean adicionar(Usuario usuario) {
+	public boolean salvar(Usuario usuario) {
 		return ur.inserir(usuario);
 	}
 	
-	public boolean remover(Integer id) {
-		return ur.remover(id);
+	public boolean removerContato(Usuario usuario) {
+		return ur.remover(usuario.getId());
 	}
 	
 	public boolean isNomeValido(String nome) {
@@ -34,17 +35,10 @@ public class UsuarioFacade {
 	}
 	
 	public boolean isEmailValido(String email) {
-		boolean isEmail = false;
-		isEmail = isArroba(email);
-		return email != null && email.length() <= 120 && !"".equals(email.trim()) && isEmail ;
+		return email != null && email.length() <= 120 && !"".equals(email.trim());
 	}
 	
-	private boolean isArroba(String email) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	public boolean isSenhaValida(String senha) {
-		//mínimo 6 caracteres
 		return senha != null && senha.length() >= 6;
 	}
 }	
