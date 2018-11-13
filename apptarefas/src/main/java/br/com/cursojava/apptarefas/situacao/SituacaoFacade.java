@@ -4,29 +4,35 @@ import java.util.List;
 
 public class SituacaoFacade {
 
+	private SituacaoRepositorio repositorio = new SituacaoRepositorio();
+
 	public Situacao novaSituacao() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Situacao();
 	}
 
 	public Situacao carregarSituacao(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean salvar(Situacao situacaoAtual) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean removerSituacao(Situacao situacaoAtual) {
-		// TODO Auto-generated method stub
-		return false;
+		return repositorio.buscarPorId(id);
 	}
 
 	public List<Situacao> carregarSituacoes() {
-		// TODO Auto-generated method stub
-		return null;
+		return repositorio.buscarTodos();
+	}
+
+	public boolean salvar(Situacao situacaoAtual) {
+		boolean resultado = false;
+		if( situacaoAtual.getId() == null) {
+			resultado = repositorio.inserir(situacaoAtual);
+			System.out.println("Inserindo situação no Banco: " + situacaoAtual.getNome());
+		}else {
+			resultado = repositorio.atualizar(situacaoAtual);
+			System.out.println("Atualizando situação no Banco: " + situacaoAtual.getNome());
+		}
+		return resultado;
+	}
+
+	public boolean removerSituacao(Situacao situacaoAtual) {
+		return repositorio.remover(situacaoAtual.getId());
+
 	}
 
 }

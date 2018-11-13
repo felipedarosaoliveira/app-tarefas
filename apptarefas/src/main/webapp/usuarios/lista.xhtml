@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta charset="utf-8" />
+<title>Lista de Usuário</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.main {
+	width: 1200px;
+	margin: 10px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	width: 100%;
+	height: 200px;
+	background-color: #eee;
+	padding: 20px;
+}
+
+.header h3 {
+	font-size: 36px;
+	color: #333;
+	margin-bottom: 40px;
+}
+
+.content {
+	width: 100%;
+	margin: 10px 0;
+	padding: 20px;
+}
+</style>
+</head>
+<body>
+	<div class="main">
+		<div class="header">
+			<h3>Usuários</h3>
+			<h:outputLink value="./formulario.jsf">
+			<f:param name="oid" value="novo"></f:param>
+			Novo
+		</h:outputLink>
+		</div>
+		<div class="content">
+			<h:dataTable value="#{homeBean.Usuario}" var="usuario">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					#{usuario.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					#{usuario.nome}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					#{usuario.email}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Status</f:facet>
+					#{usuario.status}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Opções</f:facet>
+					<h:outputLink value="./formulario.jsf">
+						<f:param name="id" value="#{usuario.id}"></f:param>
+				Editar
+				</h:outputLink>
+				</h:column>
+			</h:dataTable>
+		</div>
+	</div>
+</body>
+</html>

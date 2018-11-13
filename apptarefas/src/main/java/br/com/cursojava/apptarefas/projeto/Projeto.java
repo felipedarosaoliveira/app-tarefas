@@ -4,10 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="projetos")
@@ -20,20 +24,24 @@ public class Projeto {
 	private String nome;
 	@Column
 	private String descricao;
+	@Enumerated(EnumType.STRING)
 	@Column
-	private String status;
-	@Column
+	private ProjetoStatus status;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"dataHoraCriacao\"")
 	private Date DataHoraCriacao;
-	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"dataHoraAtualizacao\"")
 	private Date DataHoraAtualizacao;
-	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"dataHoraFim\"")
 	private Date DataHoraFim;
 
 	public Projeto() {
 		super();
 	}
 
-	public Projeto(Integer id, String nome, String descricao, String status, Date dataHoraCriacao,
+	public Projeto(Integer id, String nome, String descricao, ProjetoStatus status, Date dataHoraCriacao,
 			Date dataHoraAtualizacao, Date dataHoraFim) {
 		super();
 		this.id = id;
@@ -69,11 +77,11 @@ public class Projeto {
 		this.descricao = descricao;
 	}
 
-	public String getStatus() {
+	public ProjetoStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(ProjetoStatus status) {
 		this.status = status;
 	}
 
@@ -102,13 +110,6 @@ public class Projeto {
 	}
 
 	@Override
-	public String toString() {
-		return "Projeto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", status=" + status
-				+ ", DataHoraCriacao=" + DataHoraCriacao + ", DataHoraAtualizacao=" + DataHoraAtualizacao
-				+ ", DataHoraFim=" + DataHoraFim + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -131,6 +132,13 @@ public class Projeto {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return "Projeto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", status=" + status
+				+ ", DataHoraCriacao=" + DataHoraCriacao + ", DataHoraAtualizacao=" + DataHoraAtualizacao
+				+ ", DataHoraFim=" + DataHoraFim + "]";
 	}
 
 }

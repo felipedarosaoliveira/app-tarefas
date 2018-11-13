@@ -60,11 +60,11 @@ public class SituacaoBean {
 			 situacaoAtual.setNome(nome);
 		}
 	}
-	public String getTipo() {
-		return  situacaoAtual != null ?  situacaoAtual.getTipo() : "";
+	public TipoSituacao getTipo() {
+		return  situacaoAtual != null ?  situacaoAtual.getTipo() : null;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoSituacao tipo) {
 		if ( situacaoAtual!= null) {
 			 situacaoAtual.setTipo(tipo);
 		}
@@ -94,10 +94,10 @@ public class SituacaoBean {
 			 situacaoAtual.setDataHoraRemocao(dataHoraRemocao);
 		}
 	}
-	public String getStatus() {
-		return  situacaoAtual != null ?  situacaoAtual.getStatus() : "";
+	public StatusSituacao getStatus() {
+		return  situacaoAtual != null ?  situacaoAtual.getStatus() : null;
 	}
-	public void setStatus(String status) {
+	public void setStatus(StatusSituacao status) {
 		if ( situacaoAtual!= null) {
 			 situacaoAtual.setStatus(status);
 		}

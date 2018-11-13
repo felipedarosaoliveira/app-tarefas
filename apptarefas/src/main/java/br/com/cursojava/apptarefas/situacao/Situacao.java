@@ -26,30 +26,30 @@ public class Situacao {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private String tipo;
+	private TipoSituacao tipo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(name = "\"dataHoraCriacao\"", nullable = false)
 	private Date dataHoraCriacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(name = "\"dataHoraAtualizacao\"",nullable = false)
 	private Date dataHoraAtualizacao;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column
+	@Column(name = "\"dataHoraRemocao\"")
 	private Date dataHoraRemocao;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private String status;
+	private StatusSituacao status;
 	
 	public Situacao() {
 		super();
 	}
 	
-	public Situacao(Integer id, String nome, String tipo, Date dataHoraCriacao, Date dataHoraAtualizacao,
-			Date dataHoraRemocao, String status) {
+	public Situacao(Integer id, String nome, TipoSituacao tipo, Date dataHoraCriacao, Date dataHoraAtualizacao,
+			Date dataHoraRemocao, StatusSituacao status) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -71,10 +71,10 @@ public class Situacao {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTipo() {
+	public TipoSituacao getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(TipoSituacao tipo) {
 		this.tipo = tipo;
 	}
 	public Date getDataHoraCriacao() {
@@ -95,10 +95,10 @@ public class Situacao {
 	public void setDataHoraRemocao(Date dataHoraRemocao) {
 		this.dataHoraRemocao = dataHoraRemocao;
 	}
-	public String getStatus() {
+	public StatusSituacao getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(StatusSituacao status) {
 		this.status = status;
 	}
 
