@@ -6,26 +6,27 @@ public class UsuarioFacade {
 
 	private UsuarioRepositorio ur = new UsuarioRepositorio();
 
+	public Usuario novoUsuario() {
+		return new Usuario();
+	}
 	//buscar todos
-	public List<Usuario> buscarTodos() {
+	public Usuario carregarUsuario(Integer id) {
+		return ur.buscarPorId(id);
+	}
+	
+	public List<Usuario> carregarUsuarios() {
 		return ur.buscarTodos();
 	}
-	
-	//buscar por id
-	public Usuario buscarPorId(Integer id) {
-		if(id != null && id > 0) {
-			return ur.buscarPorId(id);
-		}else {
-			return null;
-		}
-	}
-	
 	public boolean editar(Usuario usuario) {
 		return ur.atualizar(usuario);
 	}
 	
-	public boolean adicionar(Usuario usuario) {
+	public boolean salvar(Usuario usuario) {
 		return ur.inserir(usuario);
+	}
+	
+	public boolean removerContato(Usuario usuario) {
+		return ur.remover(usuario.getId());
 	}
 	
 	public boolean isNomeValido(String nome) {
@@ -33,9 +34,8 @@ public class UsuarioFacade {
 		return nome != null && nome.length() <= 120;
 	}
 	
-	public boolean isEmailValido() {
-		//mínimo 6 caracteres
-		return false;
+	public boolean isEmailValido(String email) {
+		return email != null && email.length() <= 120 && !"".equals(email.trim());
 	}
 	
 	public boolean isSenhaValida(String senha) {

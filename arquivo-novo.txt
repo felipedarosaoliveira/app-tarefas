@@ -1,2 +1,6 @@
+<<<<<<< HEAD
+Meu branch, by Matheus Pasold
+=======
 exemplo de trabalho em um novo branch
+>>>>>>> 8b5505cc99376a15ae5eb9a09f48aa20cb5f9fb3
 
