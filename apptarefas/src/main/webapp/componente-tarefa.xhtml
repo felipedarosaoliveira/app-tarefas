@@ -11,16 +11,12 @@
 					<h2 align="center">#{tarefa.nome}</h2>
 					<h:outputText value="#{tarefa.usuario}" />
 					<p:separator></p:separator>
-					<h:panelGrid columns="1" style="width:100%" align="right">
-						<p:commandLink update="" >
-							<h:outputText styleClass="/resources/imagens/icon/edit.png" title="Editar"
-							style="margin-right:10px;"/>
-						</p:commandLink>
-
-						<p:commandLink update=""> 
-							<h:outputText styleClass="/resources/imagens/icon/anex.png" title="Anexar"
-							style="margin-right:10px;"/>
-						</p:commandLink>
+					<h:panelGrid columns="2" style="width:15%" >
+						<img id="edit" src="./resources/imagens/icon/edit.png"
+							title="Editar" style="margin-right: 0px;" />
+							<p:link id="edit" outcome="./situacao/formulario.xhtml" ></p:link>
+						<img id="anex" src="./resources/imagens/icon/anex.png"
+							title="Anexar" style="margin-right: 0px;"/>
 					</h:panelGrid>
 				</h:panelGrid>
 			</p:panel>
