@@ -30,8 +30,9 @@ public class SituacaoFacade {
 		return resultado;
 	}
 
-	public boolean removerContato(Situacao situacaoAtual) {
+	public boolean removerSituacao(Situacao situacaoAtual) {
 		return repositorio.remover(situacaoAtual.getId());
+
 	}
 
 }
