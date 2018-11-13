@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.cursojava.apptarefas.projeto.Projeto;
@@ -25,14 +27,17 @@ public class Tarefas {
 	@Column
 	private String descricao;
 
-	@Column
-	private Projeto projetos;
+	@ManyToOne
+	@JoinColumn(name="\"projetoId\"")
+	private Projeto projeto;
 
-	@Column
+	@ManyToOne
+	@JoinColumn(name="\"situacaoId\"")
 	private Situacao situacao;
 
-	@Column
-	private Usuario usuarios;
+	@ManyToOne
+	@JoinColumn(name="\"usuarioId\"")
+	private Usuario usuario;
 
 	public Tarefas() {
 		super();
@@ -44,9 +49,9 @@ public class Tarefas {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
-		this.projetos = projetos;
+		this.projeto = projetos;
 		this.situacao = situacao;
-		this.usuarios = usuarios;
+		this.usuario = usuarios;
 	}
 
 	public Integer getId() {
@@ -73,12 +78,12 @@ public class Tarefas {
 		this.descricao = descricao;
 	}
 
-	public Projeto getProjetos() {
-		return projetos;
+	public Projeto getProjeto() {
+		return projeto;
 	}
 
-	public void setProjetos(Projeto projetos) {
-		this.projetos = projetos;
+	public void setProjeto(Projeto projetos) {
+		this.projeto = projetos;
 	}
 
 	public Situacao getSituacao() {
@@ -89,18 +94,18 @@ public class Tarefas {
 		this.situacao = situacao;
 	}
 
-	public Usuario getUsuarios() {
-		return usuarios;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setUsuarios(Usuario usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuario(Usuario usuarios) {
+		this.usuario = usuarios;
 	}
 
 	@Override
 	public String toString() {
-		return "TarefasEntidade [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", projetos=" + projetos
-				+ ", situacao=" + situacao + ", usuarios=" + usuarios + "]";
+		return "TarefasEntidade [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", projetos=" + projeto
+				+ ", situacao=" + situacao + ", usuarios=" + usuario + "]";
 	}
 
 	@Override

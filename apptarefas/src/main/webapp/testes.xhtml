@@ -6,18 +6,25 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Página de testes</title>
-<ui:include src="./header.xhtml">
-<ui:param name="" value=""></ui:param>
-</ui:include>
+	<title>Página de testes</title>
+	<ui:include src="./header.xhtml">
+		<ui:param name="" value=""></ui:param>
+	</ui:include>
 </h:head>
 <h:body>
-<ui:include src="navegacao.xhtml">
-<ui:param name="bean" value="#{testBean}"></ui:param>
-</ui:include>
-<ui:include src="./painel.xhtml">
-<ui:param name="title" value="titulo novo"></ui:param>
-</ui:include>
-
+	<div>
+		<ui:include src="./painel.xhtml">
+			<ui:param name="title" value="Backlog"></ui:param>
+		</ui:include>
+		<ui:include src="./painel.xhtml">
+			<ui:param name="title" value="Priorizada"></ui:param>
+		</ui:include>
+		<ui:include src="./painel.xhtml">
+			<ui:param name="title" value="Em Andamento"></ui:param>
+		</ui:include>
+		<ui:include src="./painel.xhtml">
+			<ui:param name="title" value="Finalizada"></ui:param>
+		</ui:include>
+  </div>
 </h:body>
 </html>
