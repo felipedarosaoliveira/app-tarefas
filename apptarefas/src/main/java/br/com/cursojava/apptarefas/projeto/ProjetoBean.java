@@ -62,10 +62,7 @@ public class ProjetoBean {
 		}
 	}
 	
-	
-	
-	
-	
+		
 	public Integer getId() {
 		return id;
 	}
