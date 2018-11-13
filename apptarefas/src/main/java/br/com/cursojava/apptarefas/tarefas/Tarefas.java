@@ -12,8 +12,8 @@ import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 
 @Entity
-@Table(name = "tarefasEntidade")
-public class TarefasEntidade {
+@Table
+public class Tarefas {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +33,11 @@ public class TarefasEntidade {
 	@Column
 	private Usuario usuarios;
 
-	public TarefasEntidade() {
+	public Tarefas() {
 		super();
 	}
 
-	public TarefasEntidade(Integer id, String nome, String descricao, Projeto projetos, Situacao situacao,
+	public Tarefas(Integer id, String nome, String descricao, Projeto projetos, Situacao situacao,
 			Usuario usuarios) {
 		super();
 		this.id = id;
@@ -118,7 +118,7 @@ public class TarefasEntidade {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TarefasEntidade other = (TarefasEntidade) obj;
+		Tarefas other = (Tarefas) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
