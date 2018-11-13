@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.usuario;
 
+
 import java.util.List;
 
 public class UsuarioFacade {
@@ -42,3 +43,4 @@ public class UsuarioFacade {
 		return senha != null && senha.length() >= 6;
 	}
 }	
+

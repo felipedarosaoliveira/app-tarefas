@@ -20,7 +20,7 @@ public class UsuarioRepositorioTest {
 		dao.inserir(new Usuario(null, "Usuario03", "user03@teste.com", "senha000", new Date(), new Date(),
 				StatusUsuario.INATIVO));
 	}
-
+	
 	@Test
 	public void contarUsuarios() {
 	

@@ -24,10 +24,6 @@ create table usuarios(
 );
 
 
-
-
-
-
 create table situacao(
 	id serial not null primary key,
 	nome varchar(120) not null,
@@ -37,5 +33,19 @@ create table situacao(
 	"dataHoraRemocao" timestamp,
 	status varchar(100) not null
 );
+
+create table tarefas (
+    id serial not null primary key,
+    nome varchar(100) not null,
+    descricao varchar(1000) not null,
+    "dataHoraCriacao" timestamp not null,
+    "dataHoraAtualizacao" timestamp not null,
+    "projetoId" bigint,
+    "usuarioId" bigint,
+    "situacaoId" bigint,
+    foreign key ("projetoId") references projetos(id),
+    foreign key ("usuarioId") references usuarios(id),
+    foreign key ("situacaoId") references situacao(id)
+    );
 
 
