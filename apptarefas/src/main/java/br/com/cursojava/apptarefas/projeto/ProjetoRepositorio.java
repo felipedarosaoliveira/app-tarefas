@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.situacao;
+package br.com.cursojava.apptarefas.projeto;
 
 import java.util.List;
 
@@ -11,15 +11,15 @@ import javax.persistence.criteria.Root;
 import br.com.cursojava.apptarefas.utils.CrudRepository;
 import br.com.cursojava.apptarefas.utils.JPAUtil;
 
-public class SituacaoRepositorio implements CrudRepository<Situacao> {
-
+public class ProjetoRepositorio implements CrudRepository<Projeto> {
+	
 	@Override
-	public boolean inserir(Situacao situacao) {
+	public boolean inserir(Projeto projeto) {
 		boolean resultado = false;
-		if (situacao != null && situacao.getId() == null){
+		if (projeto != null && projeto.getId() == null){
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			em.persist(situacao);
+			em.persist(projeto);
 			em.getTransaction().commit();
 			em.close();
 			resultado = true;
@@ -28,13 +28,13 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	}
 
 	@Override
-	public boolean atualizar(Situacao situacao) {
+	public boolean atualizar(Projeto projeto) {
 		boolean resultado = false;
-		if (situacao != null && situacao.getId() != null){
+		if (projeto != null && projeto.getId() != null){
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			em.find(Situacao.class, situacao);
-			em.merge(situacao);
+			em.find(Projeto.class, projeto);
+			em.merge(projeto);
 			em.getTransaction().commit();
 			em.close();
 			resultado = true;
@@ -48,8 +48,8 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		if (id != 0){
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			Situacao situacao = em.find(Situacao.class, id);
-			em.remove(situacao);
+			Projeto projeto = em.find(Projeto.class, id);
+			em.remove(projeto);
 			em.getTransaction().commit();
 			em.close();
 			resultado = true;
@@ -58,29 +58,29 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	}
 
 	@Override
-	public List<Situacao> buscarTodos() {
+	public List<Projeto> buscarTodos() {
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Situacao> query = cb.createQuery(Situacao.class);
-		Root<Situacao> root = query.from(Situacao.class);
+		CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
+		Root<Projeto> root = query.from(Projeto.class);
 		query.select(root);
 		Query queryFinal = em.createQuery(query);
-		List<Situacao> resultado = queryFinal.getResultList();
+		List<Projeto> resultado = queryFinal.getResultList();
 		return resultado;
 	}
 
 	@Override
-	public Situacao buscarPorId(int id) {
+	public Projeto buscarPorId(int id) {
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Situacao> query = cb.createQuery(Situacao.class);
-		Root<Situacao> root = query.from(Situacao.class);
+		CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
+		Root<Projeto> root = query.from(Projeto.class);
 		query.select(root);
 		query.where(cb.equal(root.get("id"), id));
 		Query queryFinal = em.createQuery(query);
-		Situacao resultado = (Situacao)queryFinal.getSingleResult();
+		Projeto resultado = (Projeto)queryFinal.getSingleResult();
 		return resultado;
 	}
 
@@ -90,10 +90,11 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> queryCCount = cb.createQuery(Long.class);
-		queryCCount.select(cb.count(queryCCount.from(Situacao.class)));
+		queryCCount.select(cb.count(queryCCount.from(Projeto.class)));
 		Query queryCCountFinal = em.createQuery(queryCCount);
 		Long resultado = (Long) queryCCountFinal.getSingleResult();
 		return resultado;
 	}
+
 
 }
