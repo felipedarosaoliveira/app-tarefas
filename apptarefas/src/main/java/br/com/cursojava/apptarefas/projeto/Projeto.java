@@ -4,10 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="projetos")
@@ -20,12 +24,16 @@ public class Projeto {
 	private String nome;
 	@Column
 	private String descricao;
+	@Enumerated(EnumType.STRING)
 	@Column
 	private ProjetoStatus status;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="\"dataHoraCriacao\"")
 	private Date DataHoraCriacao;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="\"dataHoraAtualizacao\"")
 	private Date DataHoraAtualizacao;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="\"dataHoraFim\"")
 	private Date DataHoraFim;
 
