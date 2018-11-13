@@ -19,6 +19,7 @@ public class UsuarioBean {
 	private boolean podeEditar;
 	private UsuarioFacade facade = new UsuarioFacade();
 	private Usuario usuarioAtual = facade.novoUsuario();
+	Usuario usuarioSelecionado;
 
 	public String getOid() {
 		return oid;
@@ -182,4 +183,19 @@ public class UsuarioBean {
 		}
 	}
 
+	public Usuario getUsuarioSelecionado() {
+		return usuarioSelecionado;
+	}
+
+	public void setUsuarioSelecionado(Usuario UsuarioSelecionado) {
+		this.usuarioSelecionado = UsuarioSelecionado;
+	}
+
+	public void cancelar() {
+		System.out.println("Botão Cancelar Pressionado");
+	}
+
+	public void selecionar() {
+		System.out.println("Botão Selecionar Pressionado");
+	}
 }
