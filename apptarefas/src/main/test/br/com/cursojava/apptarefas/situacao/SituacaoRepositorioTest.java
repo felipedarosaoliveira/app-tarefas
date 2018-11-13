@@ -16,7 +16,6 @@ public class SituacaoRepositorioTest {
 		sitrepos = new SituacaoRepositorio();
 		sitrepos.inserir(new Situacao(null, "Priorizada", TipoSituacao.CLIENTE, new Date(), new Date(), new Date(), StatusSituacao.ATIVA));
 		sitrepos.inserir(new Situacao(null, "Finalizada", TipoSituacao.SISTEMA, new Date(), new Date(), new Date(), StatusSituacao.INATIVA));
-		long quantidadeAntes = sitrepos.contar();
 	}
 	
 	@After
@@ -29,39 +28,38 @@ public class SituacaoRepositorioTest {
 	public void testeAdicionar() {
 		boolean resultado = sitrepos.inserir(new Situacao(null, "EmAndamento", TipoSituacao.CLIENTE, new Date(), new Date(), new Date(), StatusSituacao.ATIVA));
 		Assert.assertEquals(true, resultado);
+		sitrepos.remover(3);
 	}
 	
 	@Test
 	public void testeAtualizar(){
-		sitrepos.inserir(new Situacao(null, "Priorizada", TipoSituacao.CLIENTE, new Date(), new Date(), new Date(), StatusSituacao.ATIVA));
 		Situacao situacao = sitrepos.buscarPorId(1);
-		situacao.setNome("Finalizada");
+		situacao.setNome("EmAndamento");
 		sitrepos.atualizar(situacao);
 		Assert.assertEquals(sitrepos.buscarPorId(1).getNome(), "Finalizada");
 	}
 	
 	@Test
 	public void testeRemover(){
-		sitrepos.inserir(new Situacao(null, "Priorizada", TipoSituacao.CLIENTE, new Date(), new Date(), new Date(), StatusSituacao.ATIVA));
-		sitrepos.inserir(new Situacao(null, "Finalizada", TipoSituacao.SISTEMA, new Date(), new Date(), new Date(), StatusSituacao.INATIVA));
 		sitrepos.remover(1);
 		Assert.assertEquals(sitrepos.buscarTodos().size(), 1);
 	}
 	
 	@Test
 	public void testeContarTodos(){
-		sitrepos.inserir(new Situacao(null, "Priorizada", TipoSituacao.CLIENTE, new Date(), new Date(), new Date(), StatusSituacao.ATIVA));
-		sitrepos.inserir(new Situacao(null, "Finalizada", TipoSituacao.SISTEMA, new Date(), new Date(), new Date(), StatusSituacao.INATIVA));
-		Assert.assertEquals(sitrepos.contar(), 2);
+		long quantidadeAntes = sitrepos.contar();
+		Assert.assertEquals(quantidadeAntes, 2);
 	}
 	
 	@Test
-	public void testeBuscar(){
-		sitrepos.inserir(new Situacao(null, "Priorizada", TipoSituacao.CLIENTE, new Date(), new Date(), new Date(), StatusSituacao.ATIVA));
-		sitrepos.inserir(new Situacao(null, "Finalizada", TipoSituacao.SISTEMA, new Date(), new Date(), new Date(), StatusSituacao.INATIVA));
+	public void testeBuscarPorId(){
 		Assert.assertEquals(sitrepos.buscarPorId(1).getNome(), "Priorizada");
 	}
 	
+	@Test
+	public void testeBuscarTodos(){
+		Assert.assertEquals(sitrepos.buscarTodos().size(), 2);
+	}
 
 	
 	
