@@ -2,20 +2,19 @@ package br.com.cursojava.apptarefas.tarefas;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import br.com.cursojava.apptarefas.utils.CrudRepository;
 import br.com.cursojava.apptarefas.utils.JPAUtil;
 
-public class TarefasRepositorio {
+public class TarefasRepositorio implements CrudRepository<Tarefas> {
 
 	@Override
-	public boolean salvar(Tarefas tarefas) {
+	public boolean inserir(Tarefas tarefas) {
 		boolean resultado = false;
 		if (tarefas != null && tarefas.getId() == null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
@@ -29,7 +28,7 @@ public class TarefasRepositorio {
 	}
 
 	@Override
-	public boolean editar(Tarefas tarefas) {
+	public boolean atualizar(Tarefas tarefas) {
 		boolean resultado = false;
 		if (tarefas != null && tarefas.getId() != null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
@@ -88,7 +87,7 @@ public class TarefasRepositorio {
 
 	}
 
-	@Override
+	
 	public List<Tarefas> buscarPorSituacao(String situacao) {
 		EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 		ent.getTransaction().begin();
@@ -101,5 +100,13 @@ public class TarefasRepositorio {
 		List<Tarefas> resultado = queryFinal.getResultList();
 
 		return resultado;
+	}
+
+
+
+	@Override
+	public long contar() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
