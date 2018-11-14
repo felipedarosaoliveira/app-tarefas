@@ -2,7 +2,6 @@ package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -97,7 +96,7 @@ public class TarefaRepositorio {
 		Root<Tarefa> root = query.from(Tarefa.class);
 		query.select(root);
 		query.where(cb.equal(root.get("situacao"), situacao));
-		 TypedQuery<Tarefa> queryFinal = ent.createQuery(query);
+		TypedQuery<Tarefa> queryFinal = ent.createQuery(query);
 		List<Tarefa> resultado = queryFinal.getResultList();
 
 		return resultado;
