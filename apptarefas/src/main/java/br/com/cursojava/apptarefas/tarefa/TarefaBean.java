@@ -1,6 +1,5 @@
-package br.com.cursojava.apptarefas.tarefas;
+package br.com.cursojava.apptarefas.tarefa;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,7 +19,7 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 
 @ManagedBean
 @SessionScoped
-public class TarefasBean {
+public class TarefaBean {
 
 	private Integer id;
 	private String nome;
@@ -31,12 +30,12 @@ public class TarefasBean {
 		
 	// listas para selecionar na view
 	private List<Projeto> projetos;
-	private List<Tarefas> tarefas;
+	private List<Tarefa> tarefas;
 	private List<Usuario> usuarios;
 	private List<Situacao> situacoes;
 
-	private TarefasFacade facade = new TarefasFacade();
-	private Tarefas tarefaAtual = facade.novaTarefa();
+	private TarefaFacade facade = new TarefaFacade();
+	private Tarefa tarefaAtual = facade.novaTarefa();
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
@@ -47,24 +46,24 @@ public class TarefasBean {
 		
 		Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 		List<Situacao> listaSituacoes = getSituacoes();		
-		Stream<Tarefas> streamTarefas = getTarefas().stream();
+		Stream<Tarefa> streamTarefa = getTarefa().stream();
 				
-		List<Tarefas> listaBacklog = streamTarefas								
+		List<Tarefa> listaBacklog = streamTarefa								
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
 				.collect(Collectors.toList());
 		int contaBacklog = listaBacklog.size();
 		
-		List<Tarefas> listaPriorizada = streamTarefas
+		List<Tarefa> listaPriorizada = streamTarefa
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada")))
 				.collect(Collectors.toList());
 		int contaPriorizada = listaPriorizada.size();
 		
-		List<Tarefas> listaEmDesenvolvimento = streamTarefas
+		List<Tarefa> listaEmDesenvolvimento = streamTarefa
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
 				.collect(Collectors.toList());
 		int contaEmDesenvolvimento = listaEmDesenvolvimento.size();
 		
-		List<Tarefas> listaFinalizada = streamTarefas
+		List<Tarefa> listaFinalizada = streamTarefa
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada")))
 				.collect(Collectors.toList());			
 		int contaFinalizada = listaFinalizada.size();
@@ -118,7 +117,7 @@ public class TarefasBean {
 	}
 
 	public Projeto getProjeto() {
-		return tarefaAtual != null ? tarefaAtual.getProjetos() : null;
+		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
 	}
 
 	public void setProjeto(Projeto projeto) {
@@ -134,7 +133,7 @@ public class TarefasBean {
 	}
 
 	public Usuario getResponsavel() {
-		return tarefaAtual != null ? tarefaAtual.getUsuarios() : null;
+		return tarefaAtual != null ? tarefaAtual.getUsuario() : null;
 	}
 
 	public void setResponsavel(Usuario responsavel) {
@@ -152,14 +151,14 @@ public class TarefasBean {
 		this.projetos = projetos;
 	}
 
-	public List<Tarefas> getTarefas() {
+	public List<Tarefa> getTarefa() {
 		if (tarefas == null || tarefas.isEmpty()) {
-			tarefas = facade.carregarTarefas();				
+			tarefas = facade.carregarTarefa();				
 		}
 		return tarefas;
 	}
 
-	public void setTarefas(List<Tarefas> tarefas) {
+	public void setTarefa(List<Tarefa> tarefas) {
 		this.tarefas = tarefas;
 	}
 
