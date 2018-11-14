@@ -1,10 +1,10 @@
-package br.com.cursojava.apptarefas.tarefas;
+package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 
-public class TerefasFacade {
+public class TarefaFacade {
 	
-	private TarefasRepositorio repositorio = new TarefasRepositorio();
+	private TarefaRepositorio repositorio = new TarefaRepositorio();
 	
 	
 	public Tarefa novaTarefa() {
@@ -19,7 +19,7 @@ public class TerefasFacade {
 		return repositorio.buscarTodos();
 	}
 	
-	public Tarefa salvarTarefa(Tarefa tarefaAtual) {
+	public boolean salvarTarefa(Tarefa tarefaAtual) {
 		return repositorio.salvar(tarefaAtual);
 		
 	}
@@ -28,12 +28,12 @@ public class TerefasFacade {
 
 	}
 	
-	public Tarefa editarTarefa(Tarefa tarefaAtual) {
+	public boolean editarTarefa(Tarefa tarefaAtual) {
 		return repositorio.editar(tarefaAtual);
 	}
 	
-	public Tarefa buscarSituacaoTarefa(Tarefa situacaoAtual) {
-		return repositorio.buscarPorSituacao();
+	public List<Tarefa> buscarSituacaoTarefa(String situacao) {
+		return repositorio.buscarPorSituacao(situacao);
 	}
 }
 
