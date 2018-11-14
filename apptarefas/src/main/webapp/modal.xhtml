@@ -14,20 +14,19 @@
 	<p:panel header="USUÁRIOS" style="text-align:center">
 		<h:form id="formModal">
 
-			<p:selectOneListbox id="search" value="#{usuarioBean.usuarios}"
-				filter="true" var="atual" filterMatchMode="contains"
-				style="height: 100%;width:100%">
-
+			<p:selectOneListbox value="#{usuarioBean.usuarioSelecionado}"  id="listbox"
+			 converter="usuarioConverter"
+				filter="true" var="u" filterMatchMode="contains" style="height: 100%;width:100%">
 				<f:selectItems value="#{usuarioBean.usuarios}" var="usuario"
-					itemLabel="#{usuarioSelecionado.nome}"
-					itemValue="#{usuarioSelecionado}" />
+						itemLabel="#{usuario.nome}" 
+						itemValue="#{usuario}" />
 
 				<p:column headerText="ID" sortBy="#{atual.id}">
-					<h:outputText value="#{atual.id}" />
+					<h:outputText value="#{u.id}" />
 				</p:column>
 				<p:column headerText="NOME" sortBy="#{atual.nome}">
 					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{atual.nome}" />
+					<h:outputText value="#{u.nome}" />
 				</p:column>
 
 			</p:selectOneListbox>
@@ -37,7 +36,7 @@
 					icon="ui-icon-circle-close"  process="@this" />
 
 				<p:commandButton id="botaoSelecionar" value="Selecionar"
-					action="#{usuarioBean.selecionar()}"  process="@this" icon="ui-icon-check"/>
+					action="#{usuarioBean.selecionar()}"  process="@all" icon="ui-icon-check"/>
 
 
 
