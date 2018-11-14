@@ -70,21 +70,21 @@
 			<h:messages></h:messages>
 			<h:form>
 				<div class="form-vertical">
-					<h:outputLabel>Id</h:outputLabel>
-					<h:inputText value="#{situacaoBean.id}" disabled="true"></h:inputText>
-					<h:outputLabel>Nome</h:outputLabel>
-					<h:inputText value="#{situacaoBean.nome}"
-						disabled="#{!situacaoBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Tipo</h:outputLabel>
-					<h:selectOneMenu value="#{situacaoBean.tipo}"
+					<p:outputLabel>Id</p:outputLabel>
+					<p:inputText value="#{situacaoBean.id}" disabled="true"></p:inputText>
+					<p:outputLabel>Nome</p:outputLabel>
+					<p:inputText value="#{situacaoBean.nome}"
+						disabled="#{!situacaoBean.podeEditar}"></p:inputText>
+					<p:outputLabel>Tipo</p:outputLabel>
+					<p:selectOneMenu id="tipo" value="#{situacaoBean.tipo}"
 						disabled="#{!situacaoBean.podeEditar}">
-						<f:selectItems value="#{situacaoBean.opcoesTipo}"></f:selectItems>
-					</h:selectOneMenu>
-					<h:outputLabel>Status</h:outputLabel>
-					<h:selectOneMenu value="#{situacaoBean.status}"
+						<f:selectItems value="#{situacaoBean.tipo}"></f:selectItems>
+					</p:selectOneMenu>
+					<p:outputLabel>Status</p:outputLabel>
+					<p:selectOneMenu id="status" value="#{situacaoBean.status}"
 						disabled="#{!situacaoBean.podeEditar}">
-						<f:selectItems value="#{situacaoBean.opcoesStatus}"></f:selectItems>
-					</h:selectOneMenu>
+						<f:selectItems value="#{situacaoBean.status}"></f:selectItems>
+					</p:selectOneMenu>
 					<ui:include src="../button-bar.xhtml">
 						<ui:param name="bean" value="#{situacaoBean}"></ui:param>
 					</ui:include>

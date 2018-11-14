@@ -53,37 +53,29 @@
 		</h:outputLink>
 		</div>
 		<div class="content">
-			<h:dataTable value="#{situacaoBean.situacoes}" var="atual">
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					#{atual.id}
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Nome</f:facet>
-					#{atual.nome}	
-				</h:column>
-				<h:column>
-					<f:facet name="header">Tipo</f:facet>
-					#{atual.tipo}	
-				</h:column>
-				<h:column>
-					<f:facet name="header">DataHoraCriação</f:facet>
-					#{atual.dataHoraCriacao}	
-				</h:column>
-				<h:column>
-					<f:facet name="header">DataHoraAtualização</f:facet>
-					#{atual.dataHoraAtualizacao}	
-				</h:column>
-				<h:column>
-					<f:facet name="header">DataHoraRemocao</f:facet>
-					#{atual.dataHoraRemocao}	
-				</h:column>
-				<h:column>
-					<f:facet name="header">Status</f:facet>
-					#{atual.status}	
-				</h:column>
-			</h:dataTable>
+			<p:dataTable value="#{situacaoBean.situacoes}" var="atual">
+				<p:column headerText="Id">
+					<h:outputText value="#{atual.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{atual.nome}" />	
+				</p:column>
+				<p:column headerText="Tipo">
+					<h:outputText value="#{atual.tipo}" />
+				</p:column>
+				<p:column headerText="DataHoraCriação">
+					<h:outputText value="#{atual.dataHoraCriacao}" />	
+				</p:column>
+				<p:column headerText="DataHoraAtualização">
+					<h:outputText value="#{atual.dataHoraAtualizacao}" />	
+				</p:column>
+				<p:column headerText="DataHoraRemocao">
+					<h:outputText value="#{atual.dataHoraRemocao}" />
+				</p:column>
+				<p:column headerText="Status">
+					<h:outputText value="#{atual.status}" />
+				</p:column>
+			</p:dataTable>
 		</div>
 	</div>
 
