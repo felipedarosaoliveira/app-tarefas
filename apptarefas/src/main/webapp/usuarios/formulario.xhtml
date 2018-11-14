@@ -63,36 +63,54 @@
 		<f:viewParam name="oid" value="#{usuarioBean.oid}" />
 	</f:metadata>
 	<div class="main">
-		<div class="header">
-			<h3>Cadastro Usuários</h3>
-		</div>
-		<div class="content">
-			<h:messages></h:messages>
-			<h:form>
-				<div class="form-vertical">
-					<h:outputLabel>Id</h:outputLabel>
-					<h:inputText value="#{usuarioBean.id}" disabled="true"></h:inputText>
-					<h:outputLabel>Nome</h:outputLabel>
-					<h:inputText value="#{usuarioBean.nome}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Email</h:outputLabel>
-					<h:inputText value="#{usuarioBean.email}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Senha</h:outputLabel>
-					<h:inputText value="#{usuarioBean.senha}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
-					<h:outputLabel>Status</h:outputLabel>
-					<h:selectOneMenu value="#{usuarioBean.status}"
-						disabled="#{!usuarioBean.podeEditar}">
-						<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
-					</h:selectOneMenu>
-						<ui:include src="../button-bar.xhtml">
-						<ui:param name="bean" value="#{usuarioBean}"></ui:param>
-					</ui:include>
-				</div>
+		<p:panel header="Cadastro de Usuários" style="text-align:center">
+			<div class="content">
+				<h:messages></h:messages>
+				<h:form>
+					<div class="form-vertical">
+						<p:outputLabel>Id</p:outputLabel>
+						<p:inputText value="#{usuarioBean.id}" disabled="true"></p:inputText>
+						<p:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{usuarioBean.nome}">
+							<f:validateLength minimum="3" />
+							<f:ajax event="blur" render="messageNome" />
+						</p:inputText>
+						<p:message for="nome" id="messageNome" />
+						<p:outputLabel value="Email:" for="email" />
+						<p:inputText id="email" value="#{usuarioBean.email}"
+							disabled="#{!usuarioBean.podeEditar}"
+							validatorMessage="Email inválido (nome@provedor.com)">
+							<f:attribute name="type" value="email" />
+							<f:passThroughAttribute name="placeholder"
+								value="Digite o E-mail"></f:passThroughAttribute>
+							<f:validateRegex pattern=".+@.+"></f:validateRegex>
+							<f:ajax event="blur" render="messageEmail" />
+						</p:inputText>
+						<p:message for="email" id="messageEmail" />
 
-			</h:form>
-		</div>
+						<h:outputLabel for="pwd1" value="Digite sua Senha" />
+						<p:password id="pwd1" value="#{usuarioBean.senha}"
+							disabled="#{!usuarioBean.podeEditar}" match="pwd2"
+							label="Password 1" feedback="true" />
+
+						<h:outputLabel for="pwd2" value="Confirme sua Senha" />
+						<p:password id="pwd2" value="#{usuarioBean.senha}"
+							disabled="#{!usuarioBean.podeEditar}" label="Password 2"
+							 />
+
+						<p:outputLabel>Status</p:outputLabel>
+						<p:selectOneMenu value="#{usuarioBean.status}"
+							disabled="#{!usuarioBean.podeEditar}">
+							<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
+						</p:selectOneMenu>
+						<ui:include src="../button-bar.xhtml">
+							<ui:param name="bean" value="#{usuarioBean}"></ui:param>
+						</ui:include>
+					</div>
+
+				</h:form>
+			</div>
+		</p:panel>
 	</div>
 
 
