@@ -48,6 +48,12 @@ public class Situacao {
 		super();
 	}
 	
+	public Situacao(Integer id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+	
 	public Situacao(Integer id, String nome, TipoSituacao tipo, Date dataHoraCriacao, Date dataHoraAtualizacao,
 			Date dataHoraRemocao, StatusSituacao status) {
 		super();
