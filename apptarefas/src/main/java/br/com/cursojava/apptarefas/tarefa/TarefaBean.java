@@ -208,7 +208,7 @@ public class TarefaBean {
 	public void salvar() {
 		boolean ok = false;
 		if (tarefaAtual != null) {
-			ok = facade.salvar(tarefaAtual);
+			ok = facade.salvarTarefa(tarefaAtual);
 		}
 		if (ok) {
 			addMensagem("Tarefa salva com sucesso", FacesMessage.SEVERITY_INFO);

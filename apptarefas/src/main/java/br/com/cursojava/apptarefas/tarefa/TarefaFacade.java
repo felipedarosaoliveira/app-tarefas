@@ -2,6 +2,10 @@ package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 
+import br.com.cursojava.apptarefas.projeto.Projeto;
+import br.com.cursojava.apptarefas.situacao.Situacao;
+import br.com.cursojava.apptarefas.usuario.Usuario;
+
 public class TarefaFacade {
 	
 	private TarefaRepositorio repositorio = new TarefaRepositorio();
@@ -34,6 +38,21 @@ public class TarefaFacade {
 	
 	public List<Tarefa> buscarSituacaoTarefa(String situacao) {
 		return repositorio.buscarPorSituacao(situacao);
+	}
+
+	public List<Projeto> carregarProjetos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Usuario> carregarUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Situacao> carregarSituacao() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

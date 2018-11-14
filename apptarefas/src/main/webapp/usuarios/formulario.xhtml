@@ -71,16 +71,16 @@
 			<h:form>
 				<div class="form-vertical">
 					<h:outputLabel>Id</h:outputLabel>
-					<h:inputText value="#{usuarioBean.id}" disabled="true"></h:inputText>
+					<p:inputText value="#{usuarioBean.id}" disabled="true"></p:inputText>
 					<h:outputLabel>Nome</h:outputLabel>
-					<h:inputText value="#{usuarioBean.nome}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
+					<p:inputText value="#{usuarioBean.nome}"
+						disabled="#{!usuarioBean.podeEditar}"></p:inputText>
 					<h:outputLabel>Email</h:outputLabel>
-					<h:inputText value="#{usuarioBean.email}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
+					<p:inputText value="#{usuarioBean.email}"
+						disabled="#{!usuarioBean.podeEditar}"></p:inputText>
 					<h:outputLabel>Senha</h:outputLabel>
-					<h:inputText value="#{usuarioBean.senha}"
-						disabled="#{!usuarioBean.podeEditar}"></h:inputText>
+					<p:inputText value="#{usuarioBean.senha}"
+						disabled="#{!usuarioBean.podeEditar}"></p:inputText>
 					<h:outputLabel>Status</h:outputLabel>
 					<h:selectOneMenu value="#{usuarioBean.status}"
 						disabled="#{!usuarioBean.podeEditar}">
