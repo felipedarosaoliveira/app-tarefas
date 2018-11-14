@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 @ManagedBean
 @ViewScoped
@@ -19,7 +20,7 @@ public class UsuarioBean {
 	private boolean podeEditar;
 	private UsuarioFacade facade = new UsuarioFacade();
 	private Usuario usuarioAtual = facade.novoUsuario();
-	Usuario usuarioSelecionado = facade.novoUsuario();
+	Usuario usuarioSelecionado =  facade.novoUsuario();
 
 	public String getOid() {
 		return oid;
@@ -192,13 +193,19 @@ public class UsuarioBean {
 	}
 
 	public String cancelar() {
+		usuarioSelecionado = usuarioAtual;
 		System.out.println("Botão Cancelar Pressionado " + usuarioAtual.getId());
 		return null;
 	}
 
 	public String selecionar() {
-		System.out.println("Botão Selecionar Pressionado " + usuarioSelecionado.getId());
+	
+		System.out.println("Botão Selecionar Pressionado " + usuarioSelecionado);
 		return null;
 
+	}
+	
+	public void selecionarUsuario(ValueChangeEvent e) {
+		System.out.println(e);
 	}
 }
