@@ -153,7 +153,7 @@ public class TarefaBean {
 
 	public List<Tarefa> getTarefa() {
 		if (tarefas == null || tarefas.isEmpty()) {
-			tarefas = facade.carregarTarefa();				
+			tarefas = facade.carregarTarefas();				
 		}
 		return tarefas;
 	}
