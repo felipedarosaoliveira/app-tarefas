@@ -1,6 +1,10 @@
 package br.com.cursojava.apptarefas.tarefas;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -12,6 +16,7 @@ import javax.faces.context.FacesContext;
 import br.com.cursojava.apptarefas.projeto.Projeto;
 import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
+import br.com.cursojava.apptarefas.utils.Sistema;
 
 @ManagedBean
 @SessionScoped
@@ -23,11 +28,12 @@ public class TarefasBean {
 	private Projeto projeto;
 	private Situacao situacao;
 	private Usuario responsavel;
+		
 	// listas para selecionar na view
 	private List<Projeto> projetos;
 	private List<Tarefas> tarefas;
 	private List<Usuario> usuarios;
-	private List<Situacao> situacaoLista;
+	private List<Situacao> situacoes;
 
 	private TarefasFacade facade = new TarefasFacade();
 	private Tarefas tarefaAtual = facade.novaTarefa();
@@ -36,10 +42,33 @@ public class TarefasBean {
 	private boolean podeEditar = true;
 
 	@PostConstruct
-	public void ini() {
+	public void init() {
 		//lógica para ler os dados e imprimir na tela após carregamento da xhtml 
-		getTarefas();
-		contador(0);
+		
+		Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
+		List<Situacao> listaSituacoes = getSituacoes();		
+		Stream<Tarefas> streamTarefas = getTarefas().stream();
+				
+		List<Tarefas> listaBacklog = streamTarefas								
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
+				.collect(Collectors.toList());
+		int contaBacklog = listaBacklog.size();
+		
+		List<Tarefas> listaPriorizada = streamTarefas
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada")))
+				.collect(Collectors.toList());
+		int contaPriorizada = listaPriorizada.size();
+		
+		List<Tarefas> listaEmDesenvolvimento = streamTarefas
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
+				.collect(Collectors.toList());
+		int contaEmDesenvolvimento = listaEmDesenvolvimento.size();
+		
+		List<Tarefas> listaFinalizada = streamTarefas
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada")))
+				.collect(Collectors.toList());			
+		int contaFinalizada = listaFinalizada.size();
+					
 	}
 	
 	public String getOid() {
@@ -65,7 +94,7 @@ public class TarefasBean {
 	}
 
 	public Integer getId() {
-		return id;
+		return tarefaAtual != null ? tarefaAtual.getId() : null;
 	}
 
 	public void setId(Integer id) {
@@ -73,7 +102,7 @@ public class TarefasBean {
 	}
 
 	public String getNome() {
-		return nome;
+		return tarefaAtual != null ? tarefaAtual.getNome() : null;
 	}
 
 	public void setNome(String nome) {
@@ -81,7 +110,7 @@ public class TarefasBean {
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return tarefaAtual != null ? tarefaAtual.getDescricao() : null;
 	}
 
 	public void setDescricao(String descricao) {
@@ -89,7 +118,7 @@ public class TarefasBean {
 	}
 
 	public Projeto getProjeto() {
-		return projeto;
+		return tarefaAtual != null ? tarefaAtual.getProjetos() : null;
 	}
 
 	public void setProjeto(Projeto projeto) {
@@ -97,7 +126,7 @@ public class TarefasBean {
 	}
 
 	public Situacao getSituacao() {
-		return situacao;
+		return tarefaAtual != null ? tarefaAtual.getSituacao() : null;
 	}
 
 	public void setSituacao(Situacao situacao) {
@@ -105,7 +134,7 @@ public class TarefasBean {
 	}
 
 	public Usuario getResponsavel() {
-		return responsavel;
+		return tarefaAtual != null ? tarefaAtual.getUsuarios() : null;
 	}
 
 	public void setResponsavel(Usuario responsavel) {
@@ -125,7 +154,7 @@ public class TarefasBean {
 
 	public List<Tarefas> getTarefas() {
 		if (tarefas == null || tarefas.isEmpty()) {
-			tarefas = facade.carregarTarefas();
+			tarefas = facade.carregarTarefas();				
 		}
 		return tarefas;
 	}
@@ -149,15 +178,15 @@ public class TarefasBean {
 		this.usuarios = usuarios;
 	}
 
-	public List<Situacao> getSituacaoLista() {
-		if(situacaoLista == null || situacaoLista.isEmpty()) {
-			situacaoLista = facade.carregarSituacao();
+	public List<Situacao> getSituacoes() {
+		if(situacoes == null || situacoes.isEmpty()) {
+			situacoes = facade.carregarSituacao();
 		}
-		return situacaoLista;
+		return situacoes;
 	}
 
-	public void setSituacaoLista(List<Situacao> situacaoLista) {
-		this.situacaoLista = situacaoLista;
+	public void setSituacoes(List<Situacao> situacoes) {
+		this.situacoes = situacoes;
 	}
 
 	public void setNovo(boolean novo) {
@@ -213,13 +242,15 @@ public class TarefasBean {
 		novo = true;
 		editar();
 	}
-	
-	//verifica quantas tarefas têm em cada situação
-	public int contador(Situacao backlog, Situacao priorizada, Situacao emAndamento, Situacao finalizada) {
-		return = facade.contador(backlog, priorizada, emAndamento,  finalizada);
+		
+	public void limparCampos() {
+		this.id = null;
+		this.nome = "";
+		this.descricao = "";
+		this.projeto = null;
+		this.situacao = null;
+		this.responsavel = null;
 	}
-	
-	
 	
 	
 	private void addMensagem(String mensagem, Severity severidade) {
