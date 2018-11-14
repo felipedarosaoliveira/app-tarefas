@@ -5,36 +5,44 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
 <h:head>
 </h:head>
 <h:body>
-	<form>
-		<p:panel header="USUÁRIOS"
-			style="text-align:center;width:800px;heigh:300px">
-			<p:dataTable id="idListaUser" var="usuario"
-				value="#{usuarioBean.usuarios}"
-				selection="#{usuarioBean.usuarioSelecionado}" rowKey="#{usuario.id}">
-				<p:column selectionMode="single"
-					style="width:16px;text-align:center" />
-				<p:column style="width:40px">
-					<f:facet name="header">Id</f:facet>
-					#{usuario.id}
+
+	<p:panel header="USUÁRIOS" style="text-align:center">
+		<h:form id="formModal">
+
+			<p:selectOneListbox id="search" value="#{usuarioBean.usuarios}"
+				filter="true" var="atual" filterMatchMode="contains"
+				style="height: 100%;width:100%">
+
+				<f:selectItems value="#{usuarioBean.usuarios}" var="usuario"
+					itemLabel="#{usuarioSelecionado.nome}"
+					itemValue="#{usuarioSelecionado}" />
+
+				<p:column headerText="ID" sortBy="#{atual.id}">
+					<h:outputText value="#{atual.id}" />
 				</p:column>
-				<p:column style="width:460px">
+				<p:column headerText="NOME" sortBy="#{atual.nome}">
 					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{atual.nome}" />
+				</p:column>
 
-				#{usuario.nome}
-			</p:column>
-			</p:dataTable>
+			</p:selectOneListbox>
+			<p></p>
+			
+				<p:commandButton value="Cancelar" action="#{usuarioBean.cancelar}"
+					icon="ui-icon-circle-close"  process="@this" />
 
-			<div align="right">
-				<p:commandButton value="Cancelar" action="#{usuarioBean.cancelar()}" icon="ui-icon-circle-close" />
-					
-				<p:commandButton value="Selecionar" action="#{usuarioBean.selecionar()}" icon="ui-icon-circle-check" />
-			</div>
+				<p:commandButton id="botaoSelecionar" value="Selecionar"
+					action="#{usuarioBean.selecionar()}"  process="@this" icon="ui-icon-check"/>
 
-		</p:panel>
-	</form>
+
+
+		</h:form>
+	</p:panel>
 
 </h:body>
 </html>
