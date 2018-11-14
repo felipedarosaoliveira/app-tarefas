@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.tarefas;
+package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import javax.persistence.criteria.Root;
 
 import br.com.cursojava.apptarefas.utils.JPAUtil;
 
-public class TarefasRepositorio {
+public class TarefaRepositorio {
 
 	@Override
-	public boolean salvar(Tarefas tarefas) {
+	public boolean salvar(Tarefa tarefas) {
 		boolean resultado = false;
 		if (tarefas != null && tarefas.getId() == null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
@@ -29,12 +29,12 @@ public class TarefasRepositorio {
 	}
 
 	@Override
-	public boolean editar(Tarefas tarefas) {
+	public boolean editar(Tarefa tarefas) {
 		boolean resultado = false;
 		if (tarefas != null && tarefas.getId() != null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 			ent.getTransaction().begin();
-			ent.find(TarefasRepositorio.class, tarefas);
+			ent.find(Tarefa.class, tarefas);
 			ent.merge(tarefas);
 			ent.getTransaction().commit();
 			ent.close();
@@ -50,7 +50,7 @@ public class TarefasRepositorio {
 		if (id != 0) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 			ent.getTransaction().begin();
-			Tarefas tarefas = ent.find(Tarefas.class, id);
+			Tarefa tarefas = ent.find(Tarefa.class, id);
 			ent.remove(tarefas);
 			ent.getTransaction().commit();
 			ent.close();
@@ -60,45 +60,45 @@ public class TarefasRepositorio {
 	}
 
 	@Override
-	public List<Tarefas> buscarTodos() {
+	public List<Tarefa> buscarTodos() {
 		EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 		ent.getTransaction().begin();
 		CriteriaBuilder cri = ent.getCriteriaBuilder();
-		CriteriaQuery<Tarefas> query = cri.createQuery(Tarefas.class);
-		Root<Tarefas> root = query.from(Tarefas.class);
+		CriteriaQuery<Tarefa> query = cri.createQuery(Tarefa.class);
+		Root<Tarefa> root = query.from(Tarefa.class);
 		query.select(root);
-		Query queryFinal = ent.createQuery(query);
-		List<Tarefas> resultado = queryFinal.getResultList();
+		TypedQuery<Tarefa> queryFinal = ent.createQuery(query);
+		List<Tarefa> resultado = queryFinal.getResultList();
 		return resultado;
 
 	}
 
 	@Override
-	public Tarefas buscarPorId(int id) {
+	public Tarefa buscarPorId(int id) {
 		EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 		ent.getTransaction().begin();
 		CriteriaBuilder cb = ent.getCriteriaBuilder();
-		CriteriaQuery<Tarefas> query = cb.createQuery(Tarefas.class);
-		Root<Tarefas> root = query.from(Tarefas.class);
+		CriteriaQuery<Tarefa> query = cb.createQuery(Tarefa.class);
+		Root<Tarefa> root = query.from(Tarefa.class);
 		query.select(root);
 		query.where(cb.equal(root.get("id"), id));
 		Query queryFinal = ent.createQuery(query);
-		Tarefas resultado = (Tarefas) queryFinal.getSingleResult();
+		Tarefa resultado = (Tarefa) queryFinal.getSingleResult();
 		return resultado;
 
 	}
 
 	@Override
-	public List<Tarefas> buscarPorSituacao(String situacao) {
+	public List<Tarefa> buscarPorSituacao(String situacao) {
 		EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 		ent.getTransaction().begin();
 		CriteriaBuilder cb = ent.getCriteriaBuilder();
-		CriteriaQuery<Tarefas> query = cb.createQuery(Tarefas.class);
-		Root<Tarefas> root = query.from(Tarefas.class);
+		CriteriaQuery<Tarefa> query = cb.createQuery(Tarefa.class);
+		Root<Tarefa> root = query.from(Tarefa.class);
 		query.select(root);
 		query.where(cb.equal(root.get("situacao"), situacao));
-		Query queryFinal = ent.createQuery(query);
-		List<Tarefas> resultado = queryFinal.getResultList();
+		 TypedQuery<Tarefa> queryFinal = ent.createQuery(query);
+		List<Tarefa> resultado = queryFinal.getResultList();
 
 		return resultado;
 	}

@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.tarefas;
+package br.com.cursojava.apptarefas.tarefa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import br.com.cursojava.apptarefas.usuario.Usuario;
 
 @Entity
 @Table
-public class Tarefas {
+public class Tarefa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,11 +39,11 @@ public class Tarefas {
 	@JoinColumn(name="\"usuarioId\"")
 	private Usuario usuario;
 
-	public Tarefas() {
+	public Tarefa() {
 		super();
 	}
 
-	public Tarefas(Integer id, String nome, String descricao, Projeto projetos, Situacao situacao,
+	public Tarefa(Integer id, String nome, String descricao, Projeto projetos, Situacao situacao,
 			Usuario usuarios) {
 		super();
 		this.id = id;
@@ -124,7 +124,7 @@ public class Tarefas {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tarefas other = (Tarefas) obj;
+		Tarefa other = (Tarefa) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
