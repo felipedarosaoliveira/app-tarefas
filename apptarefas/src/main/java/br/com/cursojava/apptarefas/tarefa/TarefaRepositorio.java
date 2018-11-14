@@ -9,12 +9,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import br.com.cursojava.apptarefas.utils.CrudRepository;
 import br.com.cursojava.apptarefas.utils.JPAUtil;
 
-public class TarefaRepositorio {
+public class TarefaRepositorio implements CrudRepository<Tarefa>  {
 
 	@Override
-	public boolean salvar(Tarefa tarefas) {
+	public boolean inserir(Tarefa tarefas) {
 		boolean resultado = false;
 		if (tarefas != null && tarefas.getId() == null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
@@ -28,7 +29,7 @@ public class TarefaRepositorio {
 	}
 
 	@Override
-	public boolean editar(Tarefa tarefas) {
+	public boolean atualizar(Tarefa tarefas) {
 		boolean resultado = false;
 		if (tarefas != null && tarefas.getId() != null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
@@ -87,7 +88,7 @@ public class TarefaRepositorio {
 
 	}
 
-	@Override
+	
 	public List<Tarefa> buscarPorSituacao(String situacao) {
 		EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 		ent.getTransaction().begin();
@@ -100,5 +101,12 @@ public class TarefaRepositorio {
 		List<Tarefa> resultado = queryFinal.getResultList();
 
 		return resultado;
+	}
+
+
+	@Override
+	public long contar() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
