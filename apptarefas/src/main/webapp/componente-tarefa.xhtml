@@ -8,19 +8,23 @@
 		<h:form>
 			<p:panel header="Tarefa" style="text-align:center">
 				<h:panelGrid columns="1" style="width:100%">
-					<h2 align="center">#{tarefa.nome}</h2>
+					<h:outputText value="#{tarefa.nome}" />
 					<h:outputText value="#{tarefa.usuario}" />
 					<p:separator></p:separator>
-					<h:panelGrid columns="2" style="width:15%" >
-						<img id="edit" src="./resources/imagens/icon/edit.png"
-							title="Editar" style="margin-right: 0px;" />
-							<p:link id="edit" outcome="./situacao/formulario.xhtml" ></p:link>
-						<img id="anex" src="./resources/imagens/icon/anex.png"
-							title="Anexar" style="margin-right: 0px;"/>
+					<h:panelGrid columns="2" style="width:10%">
+						<h:form>
+							<ui:include src="/icones/iconeEditar.xhtml">
+								<ui:param name="id" value="#{tarefaBean.id}"></ui:param>
+							</ui:include>
+						</h:form>
+						<h:form>
+							<ui:include src="/icones/iconeAnexar.xhtml">
+							<ui:param name="id" value="#{tarefaBean.id}"></ui:param>
+							</ui:include>
+						</h:form>
 					</h:panelGrid>
 				</h:panelGrid>
 			</p:panel>
 		</h:form>
 	</div>
-
 </ui:composition>

@@ -124,7 +124,7 @@ public class ProjetoBean extends AbstractBean{
 			novo = false;
 			podeEditar = false;
 		} else {
-			addMensagem("Nï¿½o foi possï¿½vel salvar o contato", FacesMessage.SEVERITY_ERROR);
+			addMensagem("Não foi possível salvar o contato", FacesMessage.SEVERITY_ERROR);
 		}
 	}
 
