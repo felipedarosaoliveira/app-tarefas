@@ -39,6 +39,8 @@ public class TarefaBean extends AbstractBean {
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
+	private Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
+	private Stream<Tarefa> streamTarefa = getTarefa().stream();
 
 	public String getOid() {
 		return oid;
@@ -205,7 +207,7 @@ public class TarefaBean extends AbstractBean {
 	public void editar() {
 		this.podeEditar = true;
 	}
-
+	
 	public void novo() {
 		this.tarefaAtual = facade.novaTarefa();
 		novo = true;
@@ -228,9 +230,13 @@ public class TarefaBean extends AbstractBean {
 		context.addMessage(null, message);
 	}
 
-	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
-	List<Situacao> listaSituacoes = getSituacoes();
-	Stream<Tarefa> streamTarefa = getTarefa().stream();
+
+	public String editarTarefa(String id){
+		return "./tarefas/formulario.jsf?faces-redirect=trueoid=" + id;
+	}
+
+
+	
 
 	public List<Tarefa> getBacklog() {
 		List<Tarefa> listaBacklog = streamTarefa.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
