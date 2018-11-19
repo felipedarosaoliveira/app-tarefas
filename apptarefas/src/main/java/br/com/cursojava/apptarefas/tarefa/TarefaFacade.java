@@ -56,6 +56,9 @@ private TarefaRepositorio repositorio = new TarefaRepositorio();
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public long contarTarefa() {
+		return repositorio.contar();
+	}
 
 }
 

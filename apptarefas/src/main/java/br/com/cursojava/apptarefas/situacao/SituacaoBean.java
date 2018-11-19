@@ -7,9 +7,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import br.com.cursojava.apptarefas.utils.AbstractBean;
+
 @ManagedBean
 @ViewScoped
-public class SituacaoBean {
+public class SituacaoBean extends AbstractBean {
 	
 	private SituacaoFacade facade = new SituacaoFacade();
 	private Situacao situacaoAtual = facade.novaSituacao();

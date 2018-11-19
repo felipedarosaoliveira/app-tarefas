@@ -10,6 +10,7 @@
 <ui:composition template="template.xhtml">
 
 	<ui:param name="headerTitle" value="Titulo Index"></ui:param>
+	<ui:param name="breadcrumb" value="#{homeBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 	   <f:metadata>
 		<f:viewParam name="nome" value="#{homeBean.nome}" />

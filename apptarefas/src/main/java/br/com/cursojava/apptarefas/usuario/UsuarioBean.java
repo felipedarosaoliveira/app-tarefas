@@ -10,9 +10,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import br.com.cursojava.apptarefas.utils.AbstractBean;
+
 @ManagedBean
 @ViewScoped
-public class UsuarioBean {
+public class UsuarioBean extends AbstractBean{
 
 	private String oid;
 	private List<Usuario> usuarios;
