@@ -232,6 +232,7 @@ public class TarefaBean extends AbstractBean {
 	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 	List<Situacao> listaSituacoes = getSituacoes();
 
+
 	public List<Tarefa> getBacklog() {
 		List<Tarefa> listaBacklog = getTarefa().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
 				.collect(Collectors.toList());
