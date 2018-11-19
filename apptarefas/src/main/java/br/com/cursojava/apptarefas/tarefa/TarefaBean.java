@@ -235,7 +235,7 @@ public class TarefaBean {
 	public void editar() {
 		this.podeEditar = true;
 	}
-
+	
 	public void novo() {
 		this.tarefaAtual = facade.novaTarefa();
 		novo = true;
@@ -259,7 +259,11 @@ public class TarefaBean {
 		context.addMessage(null, message);
 	}
 	
-	
+
+	public String editarTarefa(String id){
+		return "./tarefas/formulario.jsf?faces-redirect=trueoid=" + id;
+	}
+
 	
 
 }
