@@ -42,7 +42,7 @@ public class TarefaBean {
 
 	@PostConstruct
 	public void init() {
-		//lógica para ler os dados e imprimir na tela após carregamento da xhtml 
+		//lï¿½gica para ler os dados e imprimir na tela apï¿½s carregamento da xhtml 
 		
 		Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 		List<Situacao> listaSituacoes = getSituacoes();		
@@ -85,7 +85,7 @@ public class TarefaBean {
 				novo = false;
 			} catch (NumberFormatException ex) {
 				FacesContext context = FacesContext.getCurrentInstance();
-				FacesMessage message = new FacesMessage("Id inválido");
+				FacesMessage message = new FacesMessage("Id invï¿½lido");
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
 				context.addMessage(null, message);
 			}
@@ -208,14 +208,14 @@ public class TarefaBean {
 	public void salvar() {
 		boolean ok = false;
 		if (tarefaAtual != null) {
-			ok = facade.salvarTarefa(tarefaAtual);
+			ok = facade.salvar(tarefaAtual);
 		}
 		if (ok) {
 			addMensagem("Tarefa salva com sucesso", FacesMessage.SEVERITY_INFO);
 			novo = false;
 			podeEditar = false;
 		} else {
-			addMensagem("Não foi possível salvar a tarefa", FacesMessage.SEVERITY_ERROR);
+			addMensagem("NÃ£o foi possÃ­vel salvar a tarefa", FacesMessage.SEVERITY_ERROR);
 		}
 	}
 
@@ -227,7 +227,7 @@ public class TarefaBean {
 				addMensagem("Tarefa Removida com Sucesso", FacesMessage.SEVERITY_INFO);
 				novo();
 			} else {
-				addMensagem("Não foi possível remover a tarefa", FacesMessage.SEVERITY_ERROR);
+				addMensagem("NÃ£o foi possÅ›vel remover a tarefa", FacesMessage.SEVERITY_ERROR);
 			}
 		}
 	}
