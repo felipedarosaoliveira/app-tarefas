@@ -9,7 +9,7 @@
 
 <ui:composition template="../template.xhtml">
 	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
-	<ui:param name="bean" value="#{projetoBean}"></ui:param>
+	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
 		<h:form>
