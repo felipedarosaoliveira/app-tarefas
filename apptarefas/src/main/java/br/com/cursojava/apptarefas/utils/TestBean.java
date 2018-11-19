@@ -12,7 +12,7 @@ import org.primefaces.model.menu.MenuModel;
 @ManagedBean
 public class TestBean {
 	
-	private List<BreadCrumbItem> listaNavegacao = Arrays.asList(new BreadCrumbItem("Home", "./index.xhtml"),new BreadCrumbItem("Testes", "#"));
+	private List<BreadCrumbItem> listaNavegacao = Arrays.asList(new BreadCrumbItem("1","Home", "./index.xhtml"),new BreadCrumbItem("2","Testes", "#"));
 	private MenuModel breadCrumb = new DefaultMenuModel();
 	
 	
