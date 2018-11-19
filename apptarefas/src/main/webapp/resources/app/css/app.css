@@ -1,0 +1,60 @@
+body, *[class|="app"] {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.app-main {
+	display: flex;
+	flex-direction: column;
+	max-width: 1200px;
+	min-height: 100vh;
+	margin: 0 auto;
+	justify-content: space-around;
+}
+
+.app-footer,
+.app-header {
+	padding-top:10px;
+	height:70px;
+	text-align: center;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.app-content {
+	flex: 1 0 auto;
+	padding: 20px;
+}
+.app-header {
+	height: 100px;
+}
+
+.app-footer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.app-form-group{
+	display: flex;
+	flex-direction: column;
+	width:100%;
+}
+.app-form-group .app-form-control{
+	width:100%;
+}
+
+input,select{
+	height: 30px;
+	margin-bottom:10px;
+	font-size: 18px;
+	padding: 0 10px;
+	border-radius: 2.5px;
+}
+
+.app-button-bar{
+	display: flex;
+	justify-content: center;
+}
+

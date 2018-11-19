@@ -63,6 +63,7 @@
 		<f:viewParam name="oid" value="#{usuarioBean.oid}" />
 	</f:metadata>
 	<div class="main">
+
 		<p:panel header="Cadastro de Usuários" style="text-align:center">
 			<div class="content">
 				<h:messages></h:messages>
@@ -103,6 +104,7 @@
 							disabled="#{!usuarioBean.podeEditar}">
 							<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
 						</p:selectOneMenu>
+
 						<ui:include src="../button-bar.xhtml">
 							<ui:param name="bean" value="#{usuarioBean}"></ui:param>
 						</ui:include>

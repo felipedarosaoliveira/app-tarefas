@@ -4,18 +4,12 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<div>
-		<h:form>
-			<p:commandButton action="#{bean.novo()}" value="Novo" process="@all"  update="@all"
-				style="margin-right:10px;" />
-			<p:commandButton action="#{bean.salvar()}" value="Salvar"
-				process="@all" update="@all" style="margin-right:10px;" />
-			<p:commandButton action="#{bean.editar()}" value="Editar"
-				process="@all"  update="@all" style="margin-right:10px;" />
-			<p:commandButton action="#{bean.listar()}" value="Listar"
-				process="@all"  update="@all" style="margin-right:10px;" />
-			<p:commandButton action="#{bean.remover()}" value="Remover"
-				process="@all"  update="@all" style="margin-right:10px;" />
-		</h:form>
+
+	<div class="app-button-bar">
+		<p:commandButton action="#{bean.novo()}" value="Novo" style="margin-right:10px;"/>
+		<p:commandButton action="#{bean.salvar()}" value="Salvar" style="margin-right:10px;"/>
+		<p:commandButton action="#{bean.editar()}" value="Editar" style="margin-right:10px;"/>
+		<p:commandButton action="#{bean.listar()}" value="Listar" style="margin-right:10px;"/>
+		<p:commandButton action="#{bean.remover()}" value="Remover" style="margin-right:10px;"/>
 	</div>
 </ui:composition>
