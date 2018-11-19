@@ -108,6 +108,10 @@ public class SituacaoBean extends AbstractBean {
 		return TipoSituacao.values();
 	}
 
+	public StatusSituacao[] getSituacao(){
+		return StatusSituacao.values();
+	}
+	
 	public void salvar(){
 		boolean ok = false;
 		if (situacaoAtual != null) {
@@ -146,12 +150,13 @@ public class SituacaoBean extends AbstractBean {
 	}
 	public String listar() {
 		novo();
-		return "./lista.jsf";
+		return "lista.jsf?faces-redirect=true";
 	}
-	public void novo() {
+	public String novo() {
 		this.situacaoAtual = facade.novaSituacao();
 		novo = true;
 		editar();
+		return "";
 	}
 	
 	public List<Situacao> getSituacoes(){
