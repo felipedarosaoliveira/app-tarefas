@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.projeto;
 
+import java.util.Date;
 import java.util.List;
 
 public class ProjetoFacade {
@@ -19,11 +20,25 @@ public class ProjetoFacade {
 	}
 
 	public boolean salvar(Projeto projetoAtual) {
-		return repositorio.inserir(projetoAtual);
+		boolean ok = false;
+		projetoAtual.setDataHoraAtualizacao(new Date());
+		if (projetoAtual.getId() == null) {
+			projetoAtual.setDataHoraCriacao(new Date());
+			ok = repositorio.inserir(projetoAtual);
+		} else {
+			ok = repositorio.atualizar(projetoAtual);
+		}
+		return ok;
 	}
 
 	public boolean removerProjeto(Projeto projetoAtual) {
-		return repositorio.remover(projetoAtual.getId());
+		boolean ok = false;
+		projetoAtual.setStatus(ProjetoStatus.INATIVO);
+		projetoAtual.setDataHoraAtualizacao(new Date());
+		projetoAtual.setDataHoraFim(new Date());
+		repositorio.atualizar(projetoAtual);
+		ok = repositorio.buscarPorId(projetoAtual.getId()).getStatus().equals(ProjetoStatus.INATIVO);
+		return ok;
 	}
 
 }
