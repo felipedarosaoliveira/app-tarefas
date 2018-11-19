@@ -16,13 +16,14 @@ public class ProjetoBean extends AbstractBean{
 
 	
 	
-		
+	
 	private ProjetoFacade facade = new ProjetoFacade();
 	private List<Projeto> projetos;
 	private Projeto projetoAtual = facade.novoProjeto();
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
+	private String teste = "testando123";
 	
 	public boolean isPodeEditar() {
 		return podeEditar;
@@ -157,6 +158,16 @@ public class ProjetoBean extends AbstractBean{
 		FacesMessage message = new FacesMessage(mensagem);
 		message.setSeverity(severidade);
 		context.addMessage(null, message);
+	}
+
+
+	public String getTeste() {
+		return teste;
+	}
+
+
+	public void setTeste(String teste) {
+		this.teste = teste;
 	}
 	
 }

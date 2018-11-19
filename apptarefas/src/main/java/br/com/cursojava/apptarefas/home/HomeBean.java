@@ -2,8 +2,10 @@ package br.com.cursojava.apptarefas.home;
 
 import javax.faces.bean.ManagedBean;
 
+import br.com.cursojava.apptarefas.utils.AbstractBean;
+
 @ManagedBean
-public class HomeBean {
+public class HomeBean extends AbstractBean{
 
 	private String mensagem = "Bem vindo ao JSF";
 	private String nome = "";
