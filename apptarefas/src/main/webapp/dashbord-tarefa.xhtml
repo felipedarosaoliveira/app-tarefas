@@ -56,9 +56,10 @@
 	
 	<h3>Backlog</h3>
 	<div class="app-card-panel">
-	<ui:repeat var="backlog" value="#{tarefaBean.backlog}">
+	<ui:repeat var="atual" value="#{tarefaBean.backlog}">
 		<ui:include src="/componente-tarefa.xhtml">
-			<ui:param name="id" value="#{id}"></ui:param>
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
 		</ui:include>
 	</ui:repeat>
 	</div>
@@ -67,7 +68,8 @@
 	<div class="app-card-panel">
 	<ui:repeat var="priorizada" value="#{tarefaBean.priorizada}">
 		<ui:include src="/componente-tarefa.xhtml">
-			<ui:param name="id" value="#{id}"></ui:param>
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
 		</ui:include>
 	</ui:repeat>
 	</div>
@@ -76,7 +78,8 @@
 	<div class="app-card-panel">
 	<ui:repeat var="desenvolvimento" value="#{tarefaBean.desenvolvimento}">
 		<ui:include src="/componente-tarefa.xhtml">
-			<ui:param name="id" value="#{id}"></ui:param>
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
 		</ui:include>
 	</ui:repeat>
 	</div>
@@ -85,7 +88,8 @@
 	<div class="app-card-panel">
 	<ui:repeat var="finalizada" value="#{tarefaBean.finalizada}">
 		<ui:include src="/componente-tarefa.xhtml">
-			<ui:param name="id" value="#{id}"></ui:param>
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
 		</ui:include>
 	</ui:repeat>
 	</div>
