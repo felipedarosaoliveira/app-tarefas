@@ -5,46 +5,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template.xhtml">
 	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
-	<ui:param name="bean" value="#{projetoBean}"></ui:param>
+	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="oid" value="#{projetoBean.oid}" />
+		</f:metadata>
 		<h:messages></h:messages>
-		<h:form>
-			<div class="app-form-group">
-				<h:outputLabel value="Id"></h:outputLabel>
-				<h:inputText value="#{projetoBean.id}" id="id" disabled="true"></h:inputText>
-			</div>
+		<div align="center">
+			<p:panel header="Cadastro de Projetos"
+				style="text-align:center;width:600px;height:100%">
 
-			<div class="app-form-group">
-				<h:outputLabel value="Status"></h:outputLabel>
-				<h:selectOneMenu value="#{projetoBean.status}">
-					<f:selectItems value="#{projetoBean.statusList}"></f:selectItems>
-				</h:selectOneMenu>
-			</div>
+				<h:messages></h:messages>
 
-			<div class="app-form-group">
-				<h:outputLabel value="Descrição"></h:outputLabel>
-				<h:inputText value="#{projetoBean.descricao}"></h:inputText>
-			</div>
+				<h:form>
+					<p:panelGrid columns="1" layout="grid" style="text-align:left"
+						width="100%">
 
-			<div class="app-form-group">
-				<h:outputLabel value="Status"></h:outputLabel>
-				<h:inputText value="#{projetoBean.status}"></h:inputText>
-			</div>
+						<p:outputLabel value="Id: " />
+						<p:inputText value="#{projetoBean.id}" disabled="true"
+							style="width:95%"></p:inputText>
 
+						<p:outputLabel value="Nome: " for="nome" />
+
+						<p:inputText id="nome" value="#{projetoBean.nome}"
+							style="width:95%">
+							<f:validateLength minimum="3" />
+							<f:ajax event="blur" render="messageNome" />
+						</p:inputText>
+
+						<p:message for="nome" id="messageNome" />
+
+						<p:outputLabel value="Descrição: " for="descricao" />
+
+						<p:inputTextarea id="descricao" value="#{projetoBean.descricao}"
+							style="width:95%" disabled="#{!projetoBean.podeEditar}" rows="5"
+							cols="30" counter="display" maxlength="1000"
+							counterTemplate="{0} characters remaining." autoResize="false" />
+
+						<h:outputText id="display" />
+
+						<p:outputLabel>Status: </p:outputLabel>
+
+						<p:selectOneMenu value="#{projetoBean.status}" style="width:90%"
+							disabled="#{!projetoBean.podeEditar}">
+							<f:selectItems value="#{projetoBean.statusList}"></f:selectItems>
+						</p:selectOneMenu>
+
+				
+
+					</p:panelGrid>
+
+					<p></p>
+					
+					<ui:include src="/button-bar.xhtml">
+						<ui:param name="bean" value="#{projetoBean}"></ui:param>
+					</ui:include>
+				</h:form>
+			</p:panel>
+		</div>
 		
-
-			<div class="app-form-group">
-				<ui:include src="../button-bar.xhtml">
-					<ui:param name="bean" value="#{contatoBean}"></ui:param>
-				</ui:include>
-			</div>
-
-
-		</h:form>
 	</ui:define>
 
 </ui:composition>

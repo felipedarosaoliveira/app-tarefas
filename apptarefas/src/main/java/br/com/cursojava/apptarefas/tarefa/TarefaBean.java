@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
@@ -15,11 +14,12 @@ import javax.faces.context.FacesContext;
 import br.com.cursojava.apptarefas.projeto.Projeto;
 import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
+import br.com.cursojava.apptarefas.utils.AbstractBean;
 import br.com.cursojava.apptarefas.utils.Sistema;
 
 @ManagedBean
 @SessionScoped
-public class TarefaBean {
+public class TarefaBean extends AbstractBean {
 
 	private Integer id;
 	private String nome;
@@ -27,7 +27,7 @@ public class TarefaBean {
 	private Projeto projeto;
 	private Situacao situacao;
 	private Usuario responsavel;
-		
+
 	// listas para selecionar na view
 	private List<Projeto> projetos;
 	private List<Tarefa> tarefas;
@@ -39,37 +39,9 @@ public class TarefaBean {
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
+	private Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
+	private Stream<Tarefa> streamTarefa = getTarefa().stream();
 
-	@PostConstruct
-	public void init() {
-		//l�gica para ler os dados e imprimir na tela ap�s carregamento da xhtml 
-		
-		Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
-		List<Situacao> listaSituacoes = getSituacoes();		
-		Stream<Tarefa> streamTarefa = getTarefa().stream();
-				
-		List<Tarefa> listaBacklog = streamTarefa								
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
-				.collect(Collectors.toList());
-		int contaBacklog = listaBacklog.size();
-		
-		List<Tarefa> listaPriorizada = streamTarefa
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada")))
-				.collect(Collectors.toList());
-		int contaPriorizada = listaPriorizada.size();
-		
-		List<Tarefa> listaEmDesenvolvimento = streamTarefa
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
-				.collect(Collectors.toList());
-		int contaEmDesenvolvimento = listaEmDesenvolvimento.size();
-		
-		List<Tarefa> listaFinalizada = streamTarefa
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada")))
-				.collect(Collectors.toList());			
-		int contaFinalizada = listaFinalizada.size();
-					
-	}
-	
 	public String getOid() {
 		return oid;
 	}
@@ -153,7 +125,7 @@ public class TarefaBean {
 
 	public List<Tarefa> getTarefa() {
 		if (tarefas == null || tarefas.isEmpty()) {
-			tarefas = facade.carregarTarefas();				
+			tarefas = facade.carregarTarefas();
 		}
 		return tarefas;
 	}
@@ -165,20 +137,20 @@ public class TarefaBean {
 	public boolean isNovo() {
 		return novo;
 	}
-	
+
 	public List<Usuario> getUsuarios() {
-		if(usuarios == null || usuarios.isEmpty()) {
+		if (usuarios == null || usuarios.isEmpty()) {
 			usuarios = facade.carregarUsuarios();
 		}
 		return usuarios;
 	}
-	
+
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 
 	public List<Situacao> getSituacoes() {
-		if(situacoes == null || situacoes.isEmpty()) {
+		if (situacoes == null || situacoes.isEmpty()) {
 			situacoes = facade.carregarSituacao();
 		}
 		return situacoes;
@@ -241,7 +213,7 @@ public class TarefaBean {
 		novo = true;
 		editar();
 	}
-		
+
 	public void limparCampos() {
 		this.id = null;
 		this.nome = "";
@@ -250,20 +222,60 @@ public class TarefaBean {
 		this.situacao = null;
 		this.responsavel = null;
 	}
-	
-	
+
 	private void addMensagem(String mensagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage(mensagem);
 		message.setSeverity(severidade);
 		context.addMessage(null, message);
 	}
-	
+
 
 	public String editarTarefa(String id){
 		return "./tarefas/formulario.jsf?faces-redirect=trueoid=" + id;
 	}
 
+
 	
 
+	public List<Tarefa> getBacklog() {
+		List<Tarefa> listaBacklog = streamTarefa.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
+				.collect(Collectors.toList());
+		return listaBacklog;
+	}
+
+	public int getQtdBacklog() {
+		return getBacklog().size();
+	}
+
+	public List<Tarefa> getPriorizada() {
+		List<Tarefa> listaPriorizada = streamTarefa
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
+		return listaPriorizada;
+	}
+
+	public int getQtdPriorizada() {
+		return getPriorizada().size();
+	}
+
+	public List<Tarefa> getDesenvolvimento() {
+		List<Tarefa> listaEmDesenvolvimento = streamTarefa
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
+				.collect(Collectors.toList());
+		return listaEmDesenvolvimento;
+	}
+
+	public int getQtdDesenvolvimento() {
+		return getDesenvolvimento().size();
+	}
+
+	public List<Tarefa> getFinalizada() {
+		List<Tarefa> listaFinalizada = streamTarefa
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
+		return listaFinalizada;
+	}
+
+	public int getQtdFinalizada() {
+		return getFinalizada().size();
+	}
 }
