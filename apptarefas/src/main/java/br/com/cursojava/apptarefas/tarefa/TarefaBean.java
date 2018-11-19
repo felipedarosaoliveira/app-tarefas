@@ -1,3 +1,4 @@
+
 package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
@@ -39,8 +40,6 @@ public class TarefaBean extends AbstractBean {
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
-	private Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
-	private Stream<Tarefa> streamTarefa = getTarefa().stream();
 
 	public String getOid() {
 		return oid;
@@ -207,7 +206,7 @@ public class TarefaBean extends AbstractBean {
 	public void editar() {
 		this.podeEditar = true;
 	}
-	
+
 	public void novo() {
 		this.tarefaAtual = facade.novaTarefa();
 		novo = true;
@@ -230,16 +229,11 @@ public class TarefaBean extends AbstractBean {
 		context.addMessage(null, message);
 	}
 
-
-	public String editarTarefa(String id){
-		return "./tarefas/formulario.jsf?faces-redirect=trueoid=" + id;
-	}
-
-
-	
+	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
+	List<Situacao> listaSituacoes = getSituacoes();
 
 	public List<Tarefa> getBacklog() {
-		List<Tarefa> listaBacklog = streamTarefa.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
+		List<Tarefa> listaBacklog = getTarefa().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
 				.collect(Collectors.toList());
 		return listaBacklog;
 	}
@@ -249,7 +243,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getPriorizada() {
-		List<Tarefa> listaPriorizada = streamTarefa
+		List<Tarefa> listaPriorizada = getTarefa().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
 		return listaPriorizada;
 	}
@@ -259,7 +253,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getDesenvolvimento() {
-		List<Tarefa> listaEmDesenvolvimento = streamTarefa
+		List<Tarefa> listaEmDesenvolvimento = getTarefa().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
 				.collect(Collectors.toList());
 		return listaEmDesenvolvimento;
@@ -270,7 +264,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getFinalizada() {
-		List<Tarefa> listaFinalizada = streamTarefa
+		List<Tarefa> listaFinalizada = getTarefa().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
 		return listaFinalizada;
 	}
