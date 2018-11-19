@@ -230,10 +230,10 @@ public class TarefaBean extends AbstractBean {
 
 	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 	List<Situacao> listaSituacoes = getSituacoes();
-	Stream<Tarefa> streamTarefa = getTarefa().stream();
+	
 
 	public List<Tarefa> getBacklog() {
-		List<Tarefa> listaBacklog = streamTarefa.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
+		List<Tarefa> listaBacklog = getTarefa().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
 				.collect(Collectors.toList());
 		return listaBacklog;
 	}
@@ -243,7 +243,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getPriorizada() {
-		List<Tarefa> listaPriorizada = streamTarefa
+		List<Tarefa> listaPriorizada = getTarefa().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
 		return listaPriorizada;
 	}
@@ -253,7 +253,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getDesenvolvimento() {
-		List<Tarefa> listaEmDesenvolvimento = streamTarefa
+		List<Tarefa> listaEmDesenvolvimento = getTarefa().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
 				.collect(Collectors.toList());
 		return listaEmDesenvolvimento;
@@ -264,7 +264,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getFinalizada() {
-		List<Tarefa> listaFinalizada = streamTarefa
+		List<Tarefa> listaFinalizada = getTarefa().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
 		return listaFinalizada;
 	}
