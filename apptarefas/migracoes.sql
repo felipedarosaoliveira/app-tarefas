@@ -13,6 +13,8 @@ create table projetos (
     "dataHoraFim" timestamp not null
 );
 
+
+
 create table usuarios(
 	id serial not null primary key,
 	nome varchar(120) not null,
@@ -49,3 +51,4 @@ create table tarefas (
     );
 
 
+alter table projetos alter column "dataHoraFim" drop not null;;
