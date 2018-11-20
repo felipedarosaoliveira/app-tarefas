@@ -17,47 +17,61 @@
 			<f:viewParam name="oid" value="#{usuarioBean.oid}" />
 		</f:metadata>
 		<h:messages></h:messages>
-		<h:form>
-			<div class="form-vertical">
-				<p:outputLabel>Id</p:outputLabel>
-				<p:inputText value="#{usuarioBean.id}" disabled="true"></p:inputText>
-				<p:outputLabel value="Nome:" for="nome" />
-				<p:inputText id="nome" value="#{usuarioBean.nome}">
-					<f:validateLength minimum="3" />
-					<f:ajax event="blur" render="messageNome" />
-				</p:inputText>
-				<p:message for="nome" id="messageNome" />
-				<p:outputLabel value="Email:" for="email" />
-				<p:inputText id="email" value="#{usuarioBean.email}"
-					disabled="#{!usuarioBean.podeEditar}"
-					validatorMessage="Email inválido (nome@provedor.com)">
-					<f:attribute name="type" value="email" />
-					<f:passThroughAttribute name="placeholder" value="Digite o E-mail"></f:passThroughAttribute>
-					<f:validateRegex pattern=".+@.+"></f:validateRegex>
-					<f:ajax event="blur" render="messageEmail" />
-				</p:inputText>
-				<p:message for="email" id="messageEmail" />
+		<div align="center">
+			<p:panel header="Cadastro de Usuários"
+				style="text-align:center;width:650px;height:100%">
+				<h:form>
+					<p:panelGrid columns="1" layout="grid" style="text-align:left"
+						width="100%">
 
-				<h:outputLabel for="pwd1" value="Digite sua Senha" />
-				<p:password id="pwd1" value="#{usuarioBean.senha}"
-					disabled="#{!usuarioBean.podeEditar}" match="pwd2"
-					label="Password 1" feedback="true" />
+						<p:outputLabel>Id</p:outputLabel>
+						<p:inputText value="#{usuarioBean.id}" disabled="true"
+							style="width:95%"></p:inputText>
+						<p:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{usuarioBean.nome}"
+							style="width:95%">
+							<f:validateLength minimum="3" />
+							<f:ajax event="blur" render="messageNome" />
+						</p:inputText>
+						<p:message for="nome" id="messageNome" />
+						<p:outputLabel value="Email:" for="email" />
+						<p:inputText id="email" value="#{usuarioBean.email}"
+							style="width:95%" disabled="#{!usuarioBean.podeEditar}"
+							validatorMessage="Email inválido (nome@provedor.com)">
+							<f:attribute name="type" value="email" />
+							<f:passThroughAttribute name="placeholder"
+								value="Digite o E-mail"></f:passThroughAttribute>
+							<f:validateRegex pattern=".+@.+"></f:validateRegex>
+							<f:ajax event="blur" render="messageEmail" />
+						</p:inputText>
+						<p:message for="email" id="messageEmail" />
 
-				<h:outputLabel for="pwd2" value="Confirme sua Senha" />
-				<p:password id="pwd2" value="#{usuarioBean.senha}"
-					disabled="#{!usuarioBean.podeEditar}" label="Password 2" />
+						<h:outputLabel for="pwd1" value="Digite sua Senha" />
+						<p:password id="pwd1" value="#{usuarioBean.senha}"
+							disabled="#{!usuarioBean.podeEditar}" match="pwd2"
+							label="Password 1" feedback="true"  	style="width:95%"/>
 
-				<p:outputLabel>Status</p:outputLabel>
-				<p:selectOneMenu value="#{usuarioBean.status}"
-					disabled="#{!usuarioBean.podeEditar}">
-					<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
-				</p:selectOneMenu>
-				<ui:include src="../button-bar.xhtml">
-					<ui:param name="bean" value="#{usuarioBean}"></ui:param>
-				</ui:include>
-			</div>
+						<h:outputLabel for="pwd2" value="Confirme sua Senha" />
+						<p:password id="pwd2" value="#{usuarioBean.senha}"
+							disabled="#{!usuarioBean.podeEditar}" label="Password 2" 	style="width:95%"/>
 
-		</h:form>
+						<p:outputLabel>Status</p:outputLabel>
+						<p:selectOneMenu value="#{usuarioBean.status}"
+							disabled="#{!usuarioBean.podeEditar}" 	style="width:90%">
+							<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
+						</p:selectOneMenu>
+						<p></p>
+						<div align="center">
+						<ui:include src="../button-bar.xhtml">
+							<ui:param name="bean" value="#{usuarioBean}"></ui:param>
+						</ui:include></div>
+					</p:panelGrid>
+				</h:form>
+			</p:panel>
+		</div>
+
+
+
 	</ui:define>
 </ui:composition>
 </html>

@@ -13,11 +13,8 @@
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
-		<h3>Usuários</h3>
-		<h:outputLink value="./formulario.jsf">
-			<f:param name="oid" value="novo"></f:param>
-			Novo
-		</h:outputLink>
+
+		<p:button value="Novo Projeto" outcome="formulario.xhtml" />
 
 		<div class="content">
 			<p:panel header="USUÁRIOS" style="text-align:center">
