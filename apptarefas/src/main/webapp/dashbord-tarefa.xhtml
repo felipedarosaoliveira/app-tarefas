@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+</head>
+
+<div style="height: 500px">
+	<h:form>
+		
+		<p:panel header="Contadores" style="text-align:center">
+		<p:panelGrid columns="4" layout="grid">
+
+				<p:column style	="width:25%">
+					<ui:include src="componenteContador.xhtml">
+						<ui:param name="tituloContador" value="Backlog"></ui:param>
+						<ui:param name="quantidade"
+							value="#{tarefaBean.qtdBacklog}"></ui:param>
+					</ui:include>
+				</p:column>
+				<p:column style="width:25%">
+					<ui:include src="componenteContador.xhtml">
+						<ui:param name="tituloContador" value="Priorizada"></ui:param>
+						<ui:param name="quantidade"
+							value="#{tarefaBean.qtdPriorizada}"></ui:param>
+					</ui:include>
+				</p:column>
+				<p:column style="width:25%">
+					<ui:include src="componenteContador.xhtml">
+						<ui:param name="tituloContador" value="Em Desenvolvimento"></ui:param>
+						<ui:param name="quantidade"
+							value="#{tarefaBean.qtdDesenvolvimento}"></ui:param>
+					</ui:include>
+				</p:column>
+				<p:column style="width:25%">
+					<ui:include src="componenteContador.xhtml">
+						<ui:param name="tituloContador" value="Finalizada"></ui:param>
+						<ui:param name="quantidade"
+							value="#{tarefaBean.qtdFinalizada}"></ui:param>
+					</ui:include>
+					</p:column>
+				</p:panelGrid>
+				<f:facet name="actions">
+				<h:form>
+					<h:outputLink value="./tarefas/formulario.jsf">
+						<f:param name="oid" value="novo"></f:param>
+						Nova Tarefa
+					</h:outputLink>
+				</h:form>
+			</f:facet>
+		</p:panel>
+	<!-- nome tarefa, usuario tarefa,  -->´
+	
+	<h3>Backlog</h3>
+	<div class="app-card-panel">
+	<ui:repeat var="atual" value="#{tarefaBean.backlog}">
+		<ui:include src="/componente-tarefa.xhtml">
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
+		</ui:include>
+	</ui:repeat>
+	</div>
+	
+	<h3>Priorizadas</h3>
+	<div class="app-card-panel">
+	<ui:repeat var="priorizada" value="#{tarefaBean.priorizada}">
+		<ui:include src="/componente-tarefa.xhtml">
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
+		</ui:include>
+	</ui:repeat>
+	</div>
+	
+	<h3>Em Desenvolvimento</h3>
+	<div class="app-card-panel">
+	<ui:repeat var="desenvolvimento" value="#{tarefaBean.desenvolvimento}">
+		<ui:include src="/componente-tarefa.xhtml">
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
+		</ui:include>
+	</ui:repeat>
+	</div>
+	
+	<h3>Finalizadas</h3>
+	<div class="app-card-panel">
+	<ui:repeat var="finalizada" value="#{tarefaBean.finalizada}">
+		<ui:include src="/componente-tarefa.xhtml">
+			<ui:param name="tarefa" value="#{atual}"></ui:param>
+			<ui:param name="tarefaBean" value="#{tarefaBean}"></ui:param>
+		</ui:include>
+	</ui:repeat>
+	</div>
+	</h:form>
+</div>
+</html>

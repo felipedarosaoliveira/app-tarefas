@@ -19,6 +19,40 @@
 		 
 		<h:outputText value="#{homeBean.mensagem}" />
 	</h1>
+	
+	<h3>Nomes</h3>
+	<div class="app-main-panel">
+	<div class="app-card-panel">
+		<ui:repeat var="atual" value="#{homeBean.nomes}">
+			<ui:include src="./card.xhtml">
+				<ui:param name="nome" value="#{atual}"></ui:param>
+			</ui:include>
+		</ui:repeat>
+	</div>
+	<div class="app-card-panel">
+		<ui:repeat var="atual" value="#{homeBean.nomes}">
+			<ui:include src="./card.xhtml">
+				<ui:param name="nome" value="#{atual}"></ui:param>
+			</ui:include>
+		</ui:repeat>
+	</div>
+	<div class="app-card-panel">
+		<ui:repeat var="atual" value="#{homeBean.nomes}">
+			<ui:include src="./card.xhtml">
+				<ui:param name="nome" value="#{atual}"></ui:param>
+			</ui:include>
+		</ui:repeat>
+	</div>
+	<div class="app-card-panel">
+		<ui:repeat var="atual" value="#{homeBean.nomes}">
+			<ui:include src="./card.xhtml">
+				<ui:param name="nome" value="#{atual}"></ui:param>
+			</ui:include>
+		</ui:repeat>
+	</div>
+	
+	</div>
+	
 	</ui:define>
 	
 </ui:composition>
