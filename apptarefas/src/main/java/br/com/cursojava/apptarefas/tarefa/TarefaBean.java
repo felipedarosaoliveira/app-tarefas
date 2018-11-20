@@ -1,3 +1,4 @@
+
 package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
@@ -230,7 +231,11 @@ public class TarefaBean extends AbstractBean {
 
 	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 	List<Situacao> listaSituacoes = getSituacoes();
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> master
 
 	public List<Tarefa> getBacklog() {
 		List<Tarefa> listaBacklog = getTarefa().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))

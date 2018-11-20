@@ -58,3 +58,23 @@ input,select{
 	justify-content: center;
 }
 
+
+.app-main-panel{
+	display:flex;
+	justify-content:center
+}
+.app-card-panel{
+	display-flex;
+	flex-direction:column;
+}
+.app-card{
+	margin: 10px;
+	width: 200px;
+	height: 200px;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	font-size: 20px;
+	background-color: #ff6600;
+}
+
