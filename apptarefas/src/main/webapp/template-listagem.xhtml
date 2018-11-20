@@ -14,7 +14,7 @@
 	<ui:debug hotkey="x"
 		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
 	<div class="app-main">
-<!-- 		<div class="app-header2">
+		<!-- 		<div class="app-header2">
 			<ui:include src="appHeader.xhtml" />
  		</div>-->
 		<div class="app-header">
@@ -22,12 +22,14 @@
 		</div>
 		<ui:include src="navegacao.xhtml" />
 
-		<div class="app-button-bar">
+		<h:form>
+			<div class="app-button-bar">
 
-			<p:commandButton outcome="./formulario.jsf" value="Novo"
-				style="margin-right:10px" name="oid"/>
-
-		</div>
+				<p:button outcome="./formulario.jsf" value="Novo" style="margin-right:10px">
+					<f:param name="oid"></f:param>
+				</p:button>
+			</div>
+		</h:form>
 
 
 		<div class="app-content">
