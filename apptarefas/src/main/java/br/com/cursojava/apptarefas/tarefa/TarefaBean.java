@@ -228,19 +228,9 @@ public class TarefaBean extends AbstractBean {
 		message.setSeverity(severidade);
 		context.addMessage(null, message);
 	}
-
-	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
-	List<Situacao> listaSituacoes = getSituacoes();
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> master
-
 	public List<Tarefa> getBacklog() {
-		List<Tarefa> listaBacklog = getTarefa().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
-				.collect(Collectors.toList());
-		return listaBacklog;
+		return facade.listaBacklog();		
 	}
 
 	public int getQtdBacklog() {
@@ -248,9 +238,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getPriorizada() {
-		List<Tarefa> listaPriorizada = getTarefa().stream()
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
-		return listaPriorizada;
+		return facade.listaPriorizada();
 	}
 
 	public int getQtdPriorizada() {
@@ -258,10 +246,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getDesenvolvimento() {
-		List<Tarefa> listaEmDesenvolvimento = getTarefa().stream()
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
-				.collect(Collectors.toList());
-		return listaEmDesenvolvimento;
+		return facade.listaDesenvolvimento();
 	}
 
 	public int getQtdDesenvolvimento() {
@@ -269,9 +254,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getFinalizada() {
-		List<Tarefa> listaFinalizada = getTarefa().stream()
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
-		return listaFinalizada;
+		return facade.listaFinalizada();
 	}
 
 	public int getQtdFinalizada() {
