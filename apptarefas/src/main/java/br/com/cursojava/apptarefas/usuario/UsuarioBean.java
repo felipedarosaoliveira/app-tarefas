@@ -19,7 +19,7 @@ public class UsuarioBean extends AbstractBean{
 	private String oid;
 	private List<Usuario> usuarios;
 	private boolean novo = true;
-	private boolean podeEditar;
+	private boolean podeEditar = true;
 	private UsuarioFacade facade = new UsuarioFacade();
 	private Usuario usuarioAtual = facade.novoUsuario();
 	Usuario usuarioSelecionado =  facade.novoUsuario();
