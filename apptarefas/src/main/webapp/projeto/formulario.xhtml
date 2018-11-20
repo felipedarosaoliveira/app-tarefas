@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head></h:head>
+
 <ui:composition template="../template.xhtml">
 	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 
+
 		<f:metadata>
 			<f:viewParam name="oid" value="#{projetoBean.oid}" />
 		</f:metadata>
-		<h:messages></h:messages>
+
 		<div align="center">
 			<p:panel header="Cadastro de Projetos"
 				style="text-align:center;width:600px;height:100%">
 
-				<h:messages></h:messages>
-
 				<h:form>
+				<h:messages></h:messages>
+				<p:messages></p:messages>
 					<p:panelGrid columns="1" layout="grid" style="text-align:left"
 						width="100%">
 
@@ -57,19 +59,19 @@
 							<f:selectItems value="#{projetoBean.statusList}"></f:selectItems>
 						</p:selectOneMenu>
 
-				
+
 
 					</p:panelGrid>
 
 					<p></p>
-					
+
 					<ui:include src="/button-bar.xhtml">
 						<ui:param name="bean" value="#{projetoBean}"></ui:param>
 					</ui:include>
 				</h:form>
 			</p:panel>
 		</div>
-		
+
 	</ui:define>
 
 </ui:composition>
