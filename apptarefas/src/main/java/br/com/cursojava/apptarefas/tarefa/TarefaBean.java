@@ -228,7 +228,10 @@ public class TarefaBean extends AbstractBean {
 		message.setSeverity(severidade);
 		context.addMessage(null, message);
 	}
-	
+
+	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
+	List<Situacao> listaSituacoes = getSituacoes();
+
 	public List<Tarefa> getBacklog() {
 		return facade.listaBacklog();		
 	}
