@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div>
+		<h:form>
+			<p:link update="@this"  process="@this" action="#{tarefaBean.editarTarefa(id)}" title="Anexar">
+				<p:graphicImage id="anex" value="/resources/imagens/icon/anex.png" />
+			</p:link>
+		</h:form>
+	</div>
+</ui:composition>
