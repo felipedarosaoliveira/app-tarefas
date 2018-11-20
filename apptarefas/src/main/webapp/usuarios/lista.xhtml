@@ -9,12 +9,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template.xhtml">
-	<ui:param name="headerTitle" value="Projetos"></ui:param>
-	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
+	<ui:param name="headerTitle" value="Usuários"></ui:param>
+	<ui:param name="breadcrumb" value="#{usuarioBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
 
-		<p:button value="Novo Projeto" outcome="formulario.xhtml" />
+		<p:button value="Novo Usuário" outcome="formulario.xhtml" />
 
 		<div class="content">
 			<p:panel header="USUÁRIOS" style="text-align:center">
