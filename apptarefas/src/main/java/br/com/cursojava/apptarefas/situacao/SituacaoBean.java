@@ -112,7 +112,7 @@ public class SituacaoBean extends AbstractBean {
 		return StatusSituacao.values();
 	}
 	
-	public void salvar(){
+ 	public void salvar(){
 		boolean ok = false;
 		if (situacaoAtual != null) {
 			if(situacaoAtual.getDataHoraCriacao()==null) {
