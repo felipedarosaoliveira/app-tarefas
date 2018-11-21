@@ -1,6 +1,7 @@
 package br.com.cursojava.apptarefas.projeto;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -9,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 @ManagedBean(name = "projetoBean")
 @ViewScoped
@@ -110,16 +112,19 @@ public class ProjetoBean extends AbstractBean{
 	
 	
 	public void salvar() {
-		boolean ok = false;
+		ValidationResult result;
 		if (projetoAtual != null) {
-			ok = facade.salvar(projetoAtual);			
-		}
-		if (ok) {
-			addMessage("Projeto salvo com sucesso", FacesMessage.SEVERITY_INFO);
-			setNovo(false);
-			setPodeEditar(false);
-		} else {
-			addMessage("Não foi possível salvar o contato", FacesMessage.SEVERITY_ERROR);
+			result = facade.salvar(projetoAtual);			
+			if (result.isOk()) {
+				addMessage("Projeto salvo com sucesso", FacesMessage.SEVERITY_INFO);
+				setNovo(false);
+				setPodeEditar(false);
+			} else {
+				Map<String, String> messages = result.getMessages();
+				for (Map.Entry<String, String> message : messages.entrySet()) {
+					addMessage(message.getValue(), FacesMessage.SEVERITY_ERROR);
+				}
+			}
 		}
 	}
 
