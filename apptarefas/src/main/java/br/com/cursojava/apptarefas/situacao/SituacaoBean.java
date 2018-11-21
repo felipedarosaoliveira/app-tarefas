@@ -6,7 +6,6 @@ import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
 
@@ -28,12 +27,12 @@ public class SituacaoBean extends AbstractBean {
 	public void setOid(String oid) {
 		this.oid = oid;
 		if("novo".equals(oid)){
-			setSituacaoAtual(facade.novaSituacao());
+			situacaoAtual = facade.novaSituacao();
 			novo();
 		}else{
 			try{
 				Integer id = Integer.parseInt(oid);
-				setSituacaoAtual(facade.carregarSituacao(id));
+				situacaoAtual = facade.carregarSituacao(id);
 				novo = false;
 			}catch(NumberFormatException ex){
 				FacesContext context= FacesContext.getCurrentInstance();
@@ -45,78 +44,82 @@ public class SituacaoBean extends AbstractBean {
 	}
 	
 	public Integer getId() {
-		return  getSituacaoAtual() != null ? getSituacaoAtual().getId() : null;
+		return  situacaoAtual != null ? situacaoAtual.getId() : null;
 	}
 
 	public void setId(Integer id) {
-		if ( getSituacaoAtual() != null) {
-			 getSituacaoAtual().setId(id);
+		if ( situacaoAtual != null) {
+			 situacaoAtual.setId(id);
 		}
 	}
 	
 	public String getNome() {
-		return  getSituacaoAtual() != null ?  getSituacaoAtual().getNome() : "";
+		return  situacaoAtual != null ?  situacaoAtual.getNome() : "";
 	}
 
 	public void setNome(String nome) {
-		if ( getSituacaoAtual()!= null) {
-			 getSituacaoAtual().setNome(nome);
+		if ( situacaoAtual!= null) {
+			 situacaoAtual.setNome(nome);
 		}
 	}
 	public TipoSituacao getTipo() {
-		return  getSituacaoAtual() != null ?  getSituacaoAtual().getTipo() : null;
+		return  situacaoAtual != null ?  situacaoAtual.getTipo() : null;
 	}
 
 	public void setTipo(TipoSituacao tipo) {
-		if ( getSituacaoAtual()!= null) {
-			 getSituacaoAtual().setTipo(tipo);
+		if ( situacaoAtual!= null) {
+			 situacaoAtual.setTipo(tipo);
 		}
 	}
 	public Date getDataHoraCriacao() {
-		return  getSituacaoAtual() != null ?  getSituacaoAtual().getDataHoraCriacao() : null;
+		return  situacaoAtual != null ?  situacaoAtual.getDataHoraCriacao() : null;
 		
 	}
 	public void setDataHoraCriacao(Date dataHoraCriacao) {
-		if ( getSituacaoAtual()!= null) {
-			 getSituacaoAtual().setDataHoraCriacao(dataHoraCriacao);
+		if ( situacaoAtual!= null) {
+			 situacaoAtual.setDataHoraCriacao(dataHoraCriacao);
 		}
 	}
 	public Date getDataHoraAtualizacao() {
-		return  getSituacaoAtual() != null ?  getSituacaoAtual().getDataHoraAtualizacao() : null;
+		return  situacaoAtual != null ?  situacaoAtual.getDataHoraAtualizacao() : null;
 	}
 	public void setDataHoraAtualizacao(Date dataHoraAtualizacao) {
-		if ( getSituacaoAtual()!= null) {
-			 getSituacaoAtual().setDataHoraAtualizacao(dataHoraAtualizacao);
+		if ( situacaoAtual!= null) {
+			 situacaoAtual.setDataHoraAtualizacao(dataHoraAtualizacao);
 		}
 	}
 	public Date getDataHoraRemocao() {
-		return  getSituacaoAtual() != null ?  getSituacaoAtual().getDataHoraRemocao() : null;
+		return  situacaoAtual != null ?  situacaoAtual.getDataHoraRemocao() : null;
 	}
 	public void setDataHoraRemocao(Date dataHoraRemocao) {
-		if ( getSituacaoAtual()!= null) {
-			 getSituacaoAtual().setDataHoraRemocao(dataHoraRemocao);
+		if ( situacaoAtual!= null) {
+			 situacaoAtual.setDataHoraRemocao(dataHoraRemocao);
 		}
 	}
 	public StatusSituacao getStatus() {
-		return  getSituacaoAtual() != null ?  getSituacaoAtual().getStatus() : null;
+		return  situacaoAtual != null ?  situacaoAtual.getStatus() : null;
 	}
 	public void setStatus(StatusSituacao status) {
-		if ( getSituacaoAtual()!= null) {
-			 getSituacaoAtual().setStatus(status);
+		if ( situacaoAtual!= null) {
+			 situacaoAtual.setStatus(status);
 		}
 	}
 	public TipoSituacao[] getTipos(){
 		return TipoSituacao.values();
 	}
 
-	public void salvar(){
+	public StatusSituacao[] getSituacao(){
+		return StatusSituacao.values();
+	}
+	
+ 	public void salvar(){
 		boolean ok = false;
-		if (getSituacaoAtual() != null) {
-			if(getSituacaoAtual().getDataHoraCriacao()==null) {
-				getSituacaoAtual().setDataHoraCriacao(new Date());
+		if (situacaoAtual != null) {
+			if(situacaoAtual.getDataHoraCriacao()==null) {
+				situacaoAtual.setDataHoraCriacao(new Date());
 			}
-			getSituacaoAtual().setDataHoraAtualizacao(new Date());
-			ok = facade.salvar(getSituacaoAtual());
+			situacaoAtual.setDataHoraAtualizacao(new Date());
+			ok = facade.salvar(situacaoAtual);
 		}
 		if (ok) {
 			addMensagem("Situação salva com sucesso", FacesMessage.SEVERITY_INFO);
@@ -129,9 +132,9 @@ public class SituacaoBean extends AbstractBean {
 	
 	public void remover(){
 		boolean ok = false;
-		if(getSituacaoAtual() != null && !novo) {
-			getSituacaoAtual().setDataHoraRemocao(new Date());
-			ok = facade.removerSituacao(getSituacaoAtual());
+		if(situacaoAtual != null && !novo) {
+			situacaoAtual.setDataHoraRemocao(new Date());
+			ok = facade.removerSituacao(situacaoAtual);
 			if(ok) {
 				addMensagem("Contato removido com sucesso", FacesMessage.SEVERITY_INFO);
 				novo();
@@ -147,19 +150,15 @@ public class SituacaoBean extends AbstractBean {
 	}
 	public String listar() {
 		novo();
-		return "./lista.jsf";
+		return "lista.jsf?faces-redirect=true";
 	}
-	public void novo() {
-		this.setSituacaoAtual(facade.novaSituacao());
-		novo = true;
-		editar();
-	}
-	public void novoHandler(ActionEvent event){
+	public String novo() {
 		this.situacaoAtual = facade.novaSituacao();
 		novo = true;
 		editar();
+		return "";
 	}
-		
+	
 	public List<Situacao> getSituacoes(){
 		if(situacoes == null || situacoes.isEmpty()){
 			situacoes = facade.carregarSituacoes();
@@ -181,39 +180,6 @@ public class SituacaoBean extends AbstractBean {
 	public void setPodeEditar(boolean podeEditar) {
 		this.podeEditar = podeEditar;
 	}
-
-	public Situacao getSituacaoAtual() {
-		return situacaoAtual;
-	}
-
-	public void setSituacaoAtual(Situacao situacaoAtual) {
-		this.situacaoAtual = situacaoAtual;
-	}
-
-	
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

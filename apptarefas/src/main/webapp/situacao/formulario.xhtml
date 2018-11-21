@@ -18,7 +18,7 @@
 		</f:metadata>
 
 		<h:messages></h:messages>
-		<h:form>
+		<h:form id = "form">
 			<div class="form-vertical">
 				<p:outputLabel>Id</p:outputLabel>
 				<p:inputText value="#{situacaoBean.id}" disabled="true"></p:inputText>
@@ -29,12 +29,12 @@
 
 				<p:selectOneMenu id="tipo" value="#{situacaoBean.tipo}"
 					disabled="#{!situacaoBean.podeEditar}">
-					<f:selectItems value="#{situacaoBean.tipo}"></f:selectItems>
+					<f:selectItems value="#{situacaoBean.tipos}"></f:selectItems>
 				</p:selectOneMenu>
 				<p:outputLabel>Status</p:outputLabel>
 				<p:selectOneMenu id="status" value="#{situacaoBean.status}"
 					disabled="#{!situacaoBean.podeEditar}">
-					<f:selectItems value="#{situacaoBean.status}"></f:selectItems>
+					<f:selectItems value="#{situacaoBean.situacao}"></f:selectItems>
 
 				</p:selectOneMenu>
 				<ui:include src="../button-bar.xhtml">
