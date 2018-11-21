@@ -26,8 +26,8 @@ body, *[class|="app"] {
 	padding-top:10px;
 	height:70px;
 	text-align: center;
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #f1f1f1;
+    color: #000000;
 }
 
 .app-content {
@@ -69,7 +69,7 @@ input,select{
 
 .app-button-bar-novo{
 	display: flex;
-	justify-content: center;
+	justify-content: left;
 	padding: 20px;
 }
 
