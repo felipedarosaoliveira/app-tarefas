@@ -8,13 +8,11 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="../template.xhtml">
+<ui:composition template="../template-listagem.xhtml">
 	<ui:param name="headerTitle" value="Projetos"></ui:param>
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
-		
-		<p:button value="Novo Projeto" outcome="formulario.xhtml" />
 		<p:dataTable value="#{projetoBean.projetos}" var="atual">
 			<p:column>
 				<f:facet name="header">Id</f:facet>
@@ -28,28 +26,8 @@
 				<f:facet name="header">Descrição</f:facet>
 					#{atual.descricao}	
 				</p:column>
-			<p:column>
-				<f:facet name="header">DataHoraCriação</f:facet>
-					#{atual.dataHoraCriacao}	
-				</p:column>
-			<p:column>
-				<f:facet name="header">DataHoraAtualização</f:facet>
-					#{atual.dataHoraAtualizacao}	
-				</p:column>
-			<p:column>
-				<f:facet name="header">DataHoraFim</f:facet>
-					#{atual.dataHoraFim}	
-				</p:column>
-			<p:column>
-				<f:facet name="header">Opções</f:facet>
-				<h:outputLink value="./formulario.jsf">
-					<f:param name="oid" value="#{atual.id}"></f:param>
-					Editar
-					</h:outputLink>
-			</p:column>
 		</p:dataTable>
 	</ui:define>
-
 </ui:composition>
 </html>
 
