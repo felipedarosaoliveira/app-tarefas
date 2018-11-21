@@ -15,7 +15,5 @@ public class ProjetoBusiness {
 		}
 		return resultado;
 	}
-	
-	
-
 }
+
