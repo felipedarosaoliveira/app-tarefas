@@ -20,7 +20,6 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 @SessionScoped
 public class TarefaBean extends AbstractBean {
 
-	// listas para selecionar na view
 	private List<Tarefa> tarefas;
 	private List<Situacao> situacoes;
 
@@ -110,6 +109,7 @@ public class TarefaBean extends AbstractBean {
 		if (tarefaAtual != null) {
 			tarefaAtual.setUsuario(usuario);
 		}
+
 	}
 
 	public List<Tarefa> getTarefa() {

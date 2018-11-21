@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="./template-login.xhtml">
+	<ui:param name="headerTitle" value="Login"></ui:param>
+	<ui:define name="content">
+		<h:messages></h:messages>
+
+		<div class="content">
+			<h:form class="app-login">
+				<h:panelGrid>
+					<p:outputLabel>Email</p:outputLabel>
+					<p:inputText></p:inputText>
+					<p:outputLabel>Senha</p:outputLabel>
+					<p:password id="senhaLogin" label="Password 1" feedback="true"
+						style="width:95%" />
+				</h:panelGrid>
+				<h:messages></h:messages>
+				<div class="app-button-bar-login">
+					<p:button value="Entrar" style="padding-right:70px; padding-left:70px;">
+					</p:button>
+				</div>
+			</h:form>
+			<h:form>
+
+			</h:form>
+
+
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
