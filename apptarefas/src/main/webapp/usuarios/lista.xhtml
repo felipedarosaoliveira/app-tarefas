@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 
@@ -9,68 +8,12 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="../template.xhtml">
-	<ui:param name="headerTitle" value="Projetos"></ui:param>
-	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
-	<ui:define name="content">
-		<h:messages></h:messages>
-		<h3>Usuários</h3>
-		<h:outputLink value="./formulario.jsf">
-			<f:param name="oid" value="novo"></f:param>
-			Novo
-		</h:outputLink>
-
-		<div class="content">
-			<p:panel header="USUÁRIOS" style="text-align:center">
-				<p:dataTable value="#{usuarioBean.usuarios}" var="usuario">
-					<p:column>
-						<f:facet name="header">Id</f:facet>
-					#{usuario.id}
-				</p:column>
-					<p:column>
-						<f:facet name="header">Nome</f:facet>
-					#{usuario.nome}
-				</p:column>
-					<p:column>
-						<f:facet name="header">Email</f:facet>
-					#{usuario.email}
-				</p:column>
-					<p:column>
-						<f:facet name="header">Status</f:facet>
-					#{usuario.status}
-				</p:column>
-					<p:column>
-						<f:facet name="header">Opções</f:facet>
-						<h:outputLink value="./formulario.jsf">
-							<f:param name="oid" value="#{usuario.id}"></f:param>
-						Editar
-				</h:outputLink>
-					</p:column>
-
-				</p:dataTable>
-			</p:panel>
-		</div>
-	</ui:define>
-</ui:composition>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
-<ui:composition template="../template.xhtml">
+<ui:composition template="../template-listagem.xhtml">
 	<ui:param name="headerTitle" value="Usuários"></ui:param>
 	<ui:param name="breadcrumb" value="#{usuarioBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
 
-		<p:button value="Novo Usuário" outcome="formulario.xhtml" />
-
 		<div class="content">
 			<p:panel header="USUÁRIOS" style="text-align:center">
 				<p:dataTable value="#{usuarioBean.usuarios}" var="usuario">
@@ -103,5 +46,4 @@
 		</div>
 	</ui:define>
 </ui:composition>
->>>>>>> branch 'master' of https://github.com/felipedarosaoliveira/app-tarefas.git
 </html>

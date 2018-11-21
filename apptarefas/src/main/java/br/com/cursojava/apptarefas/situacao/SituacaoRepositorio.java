@@ -33,7 +33,6 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		if (situacao != null && situacao.getId() != null){
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			em.find(Situacao.class, situacao);
 			em.merge(situacao);
 			em.getTransaction().commit();
 			em.close();

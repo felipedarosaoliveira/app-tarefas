@@ -17,21 +17,27 @@
 		<div class="app-header">
 			<ui:include src="header.xhtml" />
 		</div>
+		<div class="app-page-header">
+			<ui:include src="page-header.xhtml" />
+		</div>
 		<ui:include src="navegacao.xhtml" />
 
-		<div class="app-page-header">		
-			<ui:param name="headerTitle" value="#{bean}"></ui:param>
+		<h:form>
+			<div class="app-button-bar-novo">
 
-		</div>
+				<p:button outcome="./formulario.jsf" value="Novo"
+					style="margin-right:10px">
+					<f:param name="oid" value="novo"></f:param>
+				</p:button>
+			</div>
+		</h:form>
+
 
 		<div class="app-content">
-			<h:form id="form">
-				<ui:insert name="content-form"></ui:insert>
-				<ui:include src="button-bar.xhtml">
-					<ui:param name="bean" value="#{bean}"></ui:param>
-				</ui:include>
-			</h:form>
+			<ui:insert name="content">
+			</ui:insert>
 		</div>
+
 		<div class="app-footer">
 			<ui:include src="footer.xhtml" />
 		</div>
@@ -39,4 +45,3 @@
 </h:body>
 
 </html>
-
