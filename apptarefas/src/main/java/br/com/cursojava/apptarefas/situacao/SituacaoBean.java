@@ -2,6 +2,8 @@ package br.com.cursojava.apptarefas.situacao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
@@ -9,8 +11,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
-@ManagedBean
+@ManagedBean(name = "situacaoBean")
 @ViewScoped
 public class SituacaoBean extends AbstractBean {
 
@@ -28,7 +31,7 @@ public class SituacaoBean extends AbstractBean {
 	public void setOid(String oid) {
 		this.oid = oid;
 		if ("novo".equals(oid)) {
-			setSituacaoAtual(facade.novaSituacao());
+			situacaoAtual = facade.novaSituacao();
 			novo();
 		} else {
 			try {
@@ -45,73 +48,78 @@ public class SituacaoBean extends AbstractBean {
 	}
 
 	public Integer getId() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getId() : null;
+		return situacaoAtual != null ? situacaoAtual.getId() : null;
 	}
 
 	public void setId(Integer id) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setId(id);
+		if (situacaoAtual != null) {
+			situacaoAtual.setId(id);
 		}
 	}
 
+	
+
 	public String getNome() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getNome() : "";
+		return situacaoAtual != null ? situacaoAtual.getNome() : "";
 	}
 
 	public void setNome(String nome) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setNome(nome);
+		if (situacaoAtual != null) {
+			situacaoAtual.setNome(nome);
 		}
 	}
 
+	
+
 	public TipoSituacao getTipo() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getTipo() : null;
+		return situacaoAtual != null ? situacaoAtual.getTipo() : null;
 	}
 
 	public void setTipo(TipoSituacao tipo) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setTipo(tipo);
+		if (situacaoAtual != null) {
+			situacaoAtual.setTipo(tipo);
 		}
 	}
 
+
 	public Date getDataHoraCriacao() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getDataHoraCriacao() : null;
+		return situacaoAtual != null ? situacaoAtual.getDataHoraCriacao() : null;
 
 	}
 
 	public void setDataHoraCriacao(Date dataHoraCriacao) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setDataHoraCriacao(dataHoraCriacao);
+		if (situacaoAtual != null) {
+			situacaoAtual.setDataHoraCriacao(dataHoraCriacao);
 		}
 	}
 
 	public Date getDataHoraAtualizacao() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getDataHoraAtualizacao() : null;
+		return situacaoAtual != null ? situacaoAtual.getDataHoraAtualizacao() : null;
 	}
 
 	public void setDataHoraAtualizacao(Date dataHoraAtualizacao) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setDataHoraAtualizacao(dataHoraAtualizacao);
+		if (situacaoAtual != null) {
+			situacaoAtual.setDataHoraAtualizacao(dataHoraAtualizacao);
 		}
 	}
 
 	public Date getDataHoraRemocao() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getDataHoraRemocao() : null;
+		return situacaoAtual != null ? situacaoAtual.getDataHoraRemocao() : null;
 	}
 
 	public void setDataHoraRemocao(Date dataHoraRemocao) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setDataHoraRemocao(dataHoraRemocao);
+		if (situacaoAtual != null) {
+			situacaoAtual.setDataHoraRemocao(dataHoraRemocao);
 		}
 	}
 
 	public StatusSituacao getStatus() {
-		return getSituacaoAtual() != null ? getSituacaoAtual().getStatus() : null;
+		return situacaoAtual != null ? situacaoAtual.getStatus() : null;
 	}
 
 	public void setStatus(StatusSituacao status) {
-		if (getSituacaoAtual() != null) {
-			getSituacaoAtual().setStatus(status);
+		if (situacaoAtual != null) {
+			situacaoAtual.setStatus(status);
 		}
 	}
 
@@ -124,33 +132,41 @@ public class SituacaoBean extends AbstractBean {
 	}
 
 	public void salvar() {
-		boolean ok = false;
-		if (getSituacaoAtual() != null) {
-			if (getSituacaoAtual().getDataHoraCriacao() == null) {
-				getSituacaoAtual().setDataHoraCriacao(new Date());
+
+		ValidationResult result;
+		if (situacaoAtual != null) {
+			if (situacaoAtual.getDataHoraCriacao() == null) {
+				situacaoAtual.setDataHoraCriacao(new Date());
 			}
-			getSituacaoAtual().setDataHoraAtualizacao(new Date());
-			ok = facade.salvar(getSituacaoAtual());
-		}
-		if (ok) {
-			addMensagem("Situação salva com sucesso", FacesMessage.SEVERITY_INFO);
-			novo = false;
-			podeEditar = false;
-		} else {
-			addMensagem("Não foi possível salvar a Situação", FacesMessage.SEVERITY_ERROR);
+			situacaoAtual.setDataHoraAtualizacao(new Date());
+			result = facade.salvar(situacaoAtual);
+
+			if (result.isOk()) {
+				addMessage("Situação salva com sucesso", FacesMessage.SEVERITY_INFO);
+				setNovo(false);
+				setPodeEditar(false);
+			} else {
+				Map<String, String> messages = result.getMessages();
+				for (Map.Entry<String, String> message : messages.entrySet()) {
+					addMessage(message.getValue(), FacesMessage.SEVERITY_ERROR);
+				}
+			}
+
 		}
 	}
 
 	public void remover() {
 		boolean ok = false;
-		if (getSituacaoAtual() != null && !novo) {
-			getSituacaoAtual().setDataHoraRemocao(new Date());
-			ok = facade.removerSituacao(getSituacaoAtual());
+
+		if (situacaoAtual != null && !novo) {
+			situacaoAtual.setDataHoraRemocao(new Date());
+			ok = facade.removerSituacao(situacaoAtual);
 			if (ok) {
-				addMensagem("Contato removido com sucesso", FacesMessage.SEVERITY_INFO);
+				addMessage("Situação removida com sucesso", FacesMessage.SEVERITY_INFO);
 				novo();
 			} else {
-				addMensagem("Não foi possível remover o contato", FacesMessage.SEVERITY_ERROR);
+				addMessage("Não foi possível remover a situação", FacesMessage.SEVERITY_ERROR);
+
 			}
 
 		}
@@ -180,9 +196,10 @@ public class SituacaoBean extends AbstractBean {
 		return situacoes;
 	}
 
-	private void addMensagem(String mensagem, Severity severidade) {
+
+	private void addMessage(String messagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = new FacesMessage(mensagem);
+		FacesMessage message = new FacesMessage(messagem);
 		message.setSeverity(severidade);
 		context.addMessage(null, message);
 	}
@@ -193,6 +210,11 @@ public class SituacaoBean extends AbstractBean {
 
 	public void setPodeEditar(boolean podeEditar) {
 		this.podeEditar = podeEditar;
+	}
+
+
+	public void setNovo(boolean novo) {
+		this.novo = novo;
 	}
 
 	public Situacao getSituacaoAtual() {

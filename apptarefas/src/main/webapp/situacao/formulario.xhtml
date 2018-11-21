@@ -7,44 +7,55 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
-<ui:composition template="../template.xhtml">
-	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
-	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
-	<ui:define name="content">
 
-		<f:metadata>
-			<f:viewParam name="oid" value="#{situacaoBean.oid}" />
-		</f:metadata>
+<ui:composition template="../template-form.xhtml">
+	<ui:param name="headerTitle" value="Form Situação"></ui:param>
+	<ui:param name="bean" value="#{situacaoBean}"></ui:param>
+	<ui:param name="breadcrumb" value="#{situacaoBean.breadcrumb}"></ui:param>
 
-		<h:messages></h:messages>
-		<h:form id = "form">
-			<div class="form-vertical">
-				<p:outputLabel>Id</p:outputLabel>
-				<p:inputText value="#{situacaoBean.id}" disabled="true"></p:inputText>
-				<p:outputLabel>Nome</p:outputLabel>
-				<p:inputText value="#{situacaoBean.nome}"
-					disabled="#{!situacaoBean.podeEditar}"></p:inputText>
-				<p:outputLabel>Tipo</p:outputLabel>
-
-				<p:selectOneMenu id="tipo" value="#{situacaoBean.tipo}"
-					disabled="#{!situacaoBean.podeEditar}">
-					<f:selectItems value="#{situacaoBean.tipos}"></f:selectItems>
-				</p:selectOneMenu>
-				<p:outputLabel>Status</p:outputLabel>
-				<p:selectOneMenu id="status" value="#{situacaoBean.status}"
-					disabled="#{!situacaoBean.podeEditar}">
-					<f:selectItems value="#{situacaoBean.situacao}"></f:selectItems>
-
-				</p:selectOneMenu>
-				<ui:include src="../button-bar.xhtml">
-					<ui:param name="bean" value="#{situacaoBean}"></ui:param>
-				</ui:include>
-
-			</div>
+	<ui:define name="content-form">
+		<div class="app-form-group">
+			<p:outputLabel value="Id: " />
+			<p:inputText value="#{situacaoBean.id}" disabled="true"
+				styleClass="app-form-control"></p:inputText>
+		</div>
 
 
-		</h:form>
+		<div class="app-form-group">
+			<p:outputLabel value="Nome: " for="nome" />
+
+			<p:inputText styleClass="app-form-control" id="nome"
+				value="#{situacaoBean.nome}">
+				<f:validateLength minimum="3" />
+				<f:ajax event="blur" render="messageNome" />
+			</p:inputText>
+
+			<p:message for="nome" id="messageNome" />
+		</div>
+
+
+
+		<div class="app-form-group">
+			<p:outputLabel>Tipo</p:outputLabel>
+
+			<p:selectOneMenu value="#{situacaoBean.tipo}"
+				styleClass="app-form-control" disabled="#{!situacaoBean.podeEditar}">
+				<f:selectItems value="#{situacaoBean.tipos}"></f:selectItems>
+			</p:selectOneMenu>
+		</div>
+
+
+		<div class="app-form-group">
+			<p:outputLabel>Status</p:outputLabel>
+			<p:selectOneMenu value="#{situacaoBean.status}"
+				styleClass="app-form-control" disabled="#{!situacaoBean.podeEditar}">
+
+				<f:selectItems value="#{situacaoBean.situacao}"></f:selectItems>
+			</p:selectOneMenu>
+		</div>
+
+
+
 	</ui:define>
 
 </ui:composition>
