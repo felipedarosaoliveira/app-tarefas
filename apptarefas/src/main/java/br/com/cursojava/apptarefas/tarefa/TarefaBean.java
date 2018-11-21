@@ -233,7 +233,10 @@ public class TarefaBean extends AbstractBean {
 	List<Situacao> listaSituacoes = getSituacoes();
 
 	public List<Tarefa> getBacklog() {
-		List<Tarefa> listaBacklog = getTarefa().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
+		List<Tarefa> listaBacklog = getTarefa().stream().filter(t ->{
+			System.out.println(t);
+		return t.getSituacao().equals(situacoesPadrao.get("Backlog"));	
+		})
 				.collect(Collectors.toList());
 		return listaBacklog;
 	}
@@ -243,8 +246,11 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getPriorizada() {
-		List<Tarefa> listaPriorizada = getTarefa().stream()
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
+		List<Tarefa> listaPriorizada = getTarefa().stream().filter(t ->{
+			System.out.println(t);
+		return t.getSituacao().equals(situacoesPadrao.get("Priorizada"));	
+		})
+				.collect(Collectors.toList());
 		return listaPriorizada;
 	}
 
@@ -253,8 +259,10 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getDesenvolvimento() {
-		List<Tarefa> listaEmDesenvolvimento = getTarefa().stream()
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
+		List<Tarefa> listaEmDesenvolvimento = getTarefa().stream().filter(t ->{
+			System.out.println(t);
+		return t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento"));	
+		})
 				.collect(Collectors.toList());
 		return listaEmDesenvolvimento;
 	}
@@ -264,8 +272,11 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getFinalizada() {
-		List<Tarefa> listaFinalizada = getTarefa().stream()
-				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
+		List<Tarefa> listaFinalizada = getTarefa().stream().filter(t ->{
+			System.out.println(t);
+		return t.getSituacao().equals(situacoesPadrao.get("Finalizada"));	
+		})
+				.collect(Collectors.toList());
 		return listaFinalizada;
 	}
 

@@ -3,9 +3,15 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p:panel id="panel" header="#{title}"
-		style="margin-bottom:10px; width:300px; height:500px; text-align:center">
-		<h:panelGrid columns="1" cellpadding="5">
-		</h:panelGrid>
-	</p:panel>
+
+	<h3>
+		#{titleTabela}
+		<p:button rendered="#{showButtonAdd}" value="+" outcome="./projeto/formulario.jsf?faces-redirect=true">
+		</p:button>
+	</h3>
+
+	<ui:repeat var="tarefa" value="#{listaTabela}">
+		<ui:include src="componente-tarefa.xhtml"></ui:include>
+		<ui:param name="tarefa" value="#{tarefa}"></ui:param>
+	</ui:repeat>
 </ui:composition>
