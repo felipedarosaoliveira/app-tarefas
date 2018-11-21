@@ -21,15 +21,7 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 @ManagedBean
 @SessionScoped
 public class TarefaBean extends AbstractBean {
-
-	private Integer id;
-	private String nome;
-	private String descricao;
-	private Projeto projeto;
-	private Situacao situacao;
-	private Usuario responsavel;
-
-	// listas para selecionar na view
+	
 	private List<Projeto> projetos;
 	private List<Tarefa> tarefas;
 	private List<Usuario> usuarios;
@@ -62,54 +54,7 @@ public class TarefaBean extends AbstractBean {
 			}
 		}
 	}
-
-	public Integer getId() {
-		return tarefaAtual != null ? tarefaAtual.getId() : null;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return tarefaAtual != null ? tarefaAtual.getNome() : null;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return tarefaAtual != null ? tarefaAtual.getDescricao() : null;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Projeto getProjeto() {
-		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
-	}
-
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
-	}
-
-	public Situacao getSituacao() {
-		return tarefaAtual != null ? tarefaAtual.getSituacao() : null;
-	}
-
-	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao;
-	}
-
-	public Usuario getResponsavel() {
-		return tarefaAtual != null ? tarefaAtual.getUsuario() : null;
-	}
-
-	public void setResponsavel(Usuario responsavel) {
-		this.responsavel = responsavel;
-	}
+	
 
 	public List<Projeto> getProjetos() {
 		if (projetos == null || projetos.isEmpty()) {
@@ -213,14 +158,7 @@ public class TarefaBean extends AbstractBean {
 		editar();
 	}
 
-	public void limparCampos() {
-		this.id = null;
-		this.nome = "";
-		this.descricao = "";
-		this.projeto = null;
-		this.situacao = null;
-		this.responsavel = null;
-	}
+	
 
 	private void addMensagem(String mensagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
