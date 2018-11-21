@@ -1,10 +1,14 @@
 package br.com.cursojava.apptarefas.usuario;
 
+import java.util.Date;
 import java.util.List;
+
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class UsuarioFacade {
 
 	private UsuarioRepositorio repositorio = new UsuarioRepositorio();
+	private UsuarioBusiness business  = new UsuarioBusiness();
 
 	public Usuario novoUsuario() {
 		return new Usuario();
@@ -14,14 +18,21 @@ public class UsuarioFacade {
 		return repositorio.buscarPorId(id);
 	}
 
-	public boolean salvar(Usuario usuarioAtual) {
+	public ValidationResult salvar(Usuario usuarioAtual) {
 		boolean ok = false;
-		if (usuarioAtual.getId() == null) {
-			ok = repositorio.inserir(usuarioAtual);
-		} else {
-			ok = repositorio.atualizar(usuarioAtual);
+		usuarioAtual.setDataHoraAtualizacao(new Date());
+		ValidationResult result = business.validar(usuarioAtual);
+		if(result.isOk()){
+			if (usuarioAtual.getId() == null) {
+				ok = repositorio.inserir(usuarioAtual);
+			} else {
+				ok = repositorio.atualizar(usuarioAtual);
+			}
+			if(!ok){
+				result.addErrorMessage("persistencia", "Não foi possível salvar os dados do usuário.");
+			}
 		}
-		return ok;
+		return result;
 	}
 
 	public boolean removerContato(Usuario usuarioAtual) {
