@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<ui:composition template="template-form.xhtml">
+	<ui:param name="headerTitle" value="Form Tarefas"></ui:param>
+	<ui:param name="bean" value="#{tarefaBean}"></ui:param>
+	<ui:param name="breadcrumb" value="#{tarefaBean.breadcrumb}"></ui:param>
+
+	<ui:define name="content-form">
+
+		<div class="app-form-group">
+			<p:outputLabel value="Id: " />
+			<p:inputText value="#{tarefaBean.id}" disabled="true"
+				style="width:95%"></p:inputText>
+		</div>
+		<div class="app-form-group">
+			<p:outputLabel value="Nome: " for="nome" />
+			<p:inputText id="nome" value="#{tarefaBean.nome}" style="width:95%">
+				<f:validateLength minimum="3" />
+				<f:ajax event="blur" render="messageNome" />
+			</p:inputText>
+
+			<p:message for="nome" id="messageNome" />
+		</div>
+		<div class="app-form-group">
+			<p:outputLabel value="Descrição: " for="descricao" />
+
+			<p:inputTextarea id="descricao" value="#{tarefaBean.descricao}"
+				style="width:95%" disabled="#{!tarefaBean.podeEditar}" rows="5"
+				cols="30" counter="display" maxlength="1000"
+				counterTemplate="{0} characters remaining." autoResize="false"
+				required="true" />
+			<h:outputText id="display" />
+		</div>
+		<div class="app-form-group">
+			<p:outputLabel>Usuario: </p:outputLabel>
+			<p:inputText value="#{tarefaBean.usuario.nome}" disabled="true"
+				id="usuarioTarefa" />
+			<p:commandButton value="Selecionar Usuário" type="button" ajax="true"
+				onclick="PF('dialogUser').show()" />
+
+		</div>
+		<div class="app-form-group">
+			<p:outputLabel>Situação: </p:outputLabel>
+			<p:inputText value="#{tarefaBean.situacao.nome}" disabled="true"
+				id="situacaoTarefa" />
+			<p:commandButton value="Selecionar Situação" type="button"
+				ajax="true" onclick="PF('dialogSit').show()" />
+
+		</div>
+
+
+	</ui:define>
+	<ui:define name="dialogs">
+		<p:dialog header="Selecione o Usuario" widgetVar="dialogUser">
+			<ui:include id="dialogUser" src="usuarios/modalUsuarios.xhtml">
+				<ui:param name="update" value="form:usuarioTarefa"></ui:param>
+			</ui:include>
+		</p:dialog>
+		<p:dialog header="Selecione a Situação" widgetVar="dialogSit">
+			<ui:include id="dialogSit" src="situacao/modalSituacao.xhtml"></ui:include>
+			<ui:param name="update" value="form:situacaoTarefa"></ui:param>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+
+</html>

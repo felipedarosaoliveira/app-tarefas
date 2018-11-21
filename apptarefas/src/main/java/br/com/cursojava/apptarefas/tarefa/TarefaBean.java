@@ -3,8 +3,6 @@ package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -22,17 +20,8 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 @SessionScoped
 public class TarefaBean extends AbstractBean {
 
-	private Integer id;
-	private String nome;
-	private String descricao;
-	private Projeto projeto;
-	private Situacao situacao;
-	private Usuario responsavel;
-
 	// listas para selecionar na view
-	private List<Projeto> projetos;
 	private List<Tarefa> tarefas;
-	private List<Usuario> usuarios;
 	private List<Situacao> situacoes;
 
 	private TarefaFacade facade = new TarefaFacade();
@@ -68,7 +57,9 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		if (tarefaAtual != null) {
+			tarefaAtual.setId(id);
+		}
 	}
 
 	public String getNome() {
@@ -76,7 +67,9 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		if (tarefaAtual != null) {
+			tarefaAtual.setNome(nome);
+		}
 	}
 
 	public String getDescricao() {
@@ -84,7 +77,9 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		if (tarefaAtual != null) {
+			tarefaAtual.setDescricao(descricao);
+		}
 	}
 
 	public Projeto getProjeto() {
@@ -92,7 +87,9 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
+		if (tarefaAtual != null) {
+			tarefaAtual.setProjeto(projeto);
+		}
 	}
 
 	public Situacao getSituacao() {
@@ -100,26 +97,19 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao;
+		if (tarefaAtual != null) {
+			tarefaAtual.setSituacao(situacao);
+		}
 	}
 
-	public Usuario getResponsavel() {
+	public Usuario getUsuario() {
 		return tarefaAtual != null ? tarefaAtual.getUsuario() : null;
 	}
 
-	public void setResponsavel(Usuario responsavel) {
-		this.responsavel = responsavel;
-	}
-
-	public List<Projeto> getProjetos() {
-		if (projetos == null || projetos.isEmpty()) {
-			projetos = facade.carregarProjetos();
+	public void setUsuario(Usuario usuario) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setUsuario(usuario);
 		}
-		return projetos;
-	}
-
-	public void setProjetos(List<Projeto> projetos) {
-		this.projetos = projetos;
 	}
 
 	public List<Tarefa> getTarefa() {
@@ -135,17 +125,6 @@ public class TarefaBean extends AbstractBean {
 
 	public boolean isNovo() {
 		return novo;
-	}
-
-	public List<Usuario> getUsuarios() {
-		if (usuarios == null || usuarios.isEmpty()) {
-			usuarios = facade.carregarUsuarios();
-		}
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
 	}
 
 	public List<Situacao> getSituacoes() {
@@ -213,15 +192,6 @@ public class TarefaBean extends AbstractBean {
 		editar();
 	}
 
-	public void limparCampos() {
-		this.id = null;
-		this.nome = "";
-		this.descricao = "";
-		this.projeto = null;
-		this.situacao = null;
-		this.responsavel = null;
-	}
-
 	private void addMensagem(String mensagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage(mensagem);
@@ -233,7 +203,7 @@ public class TarefaBean extends AbstractBean {
 	List<Situacao> listaSituacoes = getSituacoes();
 
 	public List<Tarefa> getBacklog() {
-		return facade.listaBacklog();		
+		return facade.listaBacklog();
 	}
 
 	public int getQtdBacklog() {
