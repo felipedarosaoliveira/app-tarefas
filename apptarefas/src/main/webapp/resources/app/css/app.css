@@ -30,6 +30,11 @@ body, *[class|="app"] {
     color: #000000;
 }
 
+.app-breadcrumb {
+	margin-top: 18px;
+	height:32px;
+}
+
 .app-content {
 	flex: 1 0 auto;
 	padding: 20px;
