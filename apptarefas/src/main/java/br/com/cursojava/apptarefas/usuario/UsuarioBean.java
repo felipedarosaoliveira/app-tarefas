@@ -2,6 +2,7 @@ package br.com.cursojava.apptarefas.usuario;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -11,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 @ManagedBean
 @ViewScoped
@@ -79,21 +81,32 @@ public class UsuarioBean extends AbstractBean{
 	}
 
 	public void salvar() {
-		boolean ok = false;
+		ValidationResult result;
+//		boolean ok = false;
 		if (usuarioAtual != null) {
-			if (usuarioAtual.getDataHoraCriacao() == null) {
+			if(usuarioAtual.getDataHoraCriacao() == null){
 				usuarioAtual.setDataHoraCriacao(new Date());
 			}
 			usuarioAtual.setDataHoraAtualizacao(new Date());
-			ok = facade.salvar(usuarioAtual);
+			result = facade.salvar(usuarioAtual);			
+			if (result.isOk()) {
+				addMessage("Usuário salvo com sucesso", FacesMessage.SEVERITY_INFO);
+				novo = false;
+				podeEditar = false;
+			} else {
+				Map<String, String> messages = result.getMessages();
+				for (Map.Entry<String, String> message : messages.entrySet()) {
+					addMessage(message.getValue(), FacesMessage.SEVERITY_ERROR);
+				}
+			}
 		}
-		if (ok) {
-			addMessage("Usuário salva com sucesso", FacesMessage.SEVERITY_INFO);
-			novo = false;
-			podeEditar = false;
-		} else {
-			addMessage("Não foi possível salvar o Usuário", FacesMessage.SEVERITY_ERROR);
-		}
+//		if (ok) {
+//			addMessage("Usuário salva com sucesso", FacesMessage.SEVERITY_INFO);
+//			novo = false;
+//			podeEditar = false;
+//		} else {
+//			addMessage("Não foi possível salvar o Usuário", FacesMessage.SEVERITY_ERROR);
+//		}
 	}
 
 	public void remover() {
