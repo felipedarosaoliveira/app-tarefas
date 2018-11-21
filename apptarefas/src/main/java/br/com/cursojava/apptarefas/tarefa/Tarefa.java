@@ -14,7 +14,7 @@ import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 
 @Entity
-@Table
+@Table(name="tarefas")
 public class Tarefa {
 
 	@Id
