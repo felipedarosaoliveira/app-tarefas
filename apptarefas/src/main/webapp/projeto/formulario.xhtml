@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
 
 <ui:composition template="../template-form.xhtml">
 	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
@@ -21,35 +22,35 @@
 		</div>
 
 		<div class="app-form-group">
-		<p:outputLabel value="Nome: " for="nome" />
+			<p:outputLabel value="Nome: " for="nome" />
 
-		<p:inputText styleClass="app-form-control" id="nome" value="#{projetoBean.nome}" >
-			<f:validateLength minimum="3" />
-			<f:ajax event="blur" render="messageNome" />
-		</p:inputText>
+			<p:inputText styleClass="app-form-control" id="nome"
+				value="#{projetoBean.nome}">
+				<f:validateLength minimum="3" />
+				<f:ajax event="blur" render="messageNome" />
+			</p:inputText>
 
-		<p:message for="nome" id="messageNome" />
+			<p:message for="nome" id="messageNome" />
 		</div>
 
 		<div class="app-form-group">
-		<p:outputLabel value="Descrição: " for="descricao" />
+			<p:outputLabel value="Descrição: " for="descricao" />
 
-		<p:inputTextarea id="descricao" value="#{projetoBean.descricao}"
-			styleClass="app-form-control" disabled="#{!projetoBean.podeEditar}" rows="5"
-			counter="display" maxlength="1000"
-			counterTemplate="{0} characters remaining." autoResize="false" />
+			<p:inputTextarea id="descricao" value="#{projetoBean.descricao}"
+				styleClass="app-form-control" disabled="#{!projetoBean.podeEditar}"
+				rows="5" counter="display" maxlength="1000"
+				counterTemplate="{0} characters remaining." autoResize="false" />
 
-		<h:outputText id="display" />
+			<h:outputText id="display" />
 		</div>
 		<div class="app-form-group">
 			<p:outputLabel>Status: </p:outputLabel>
 
-		<p:selectOneMenu value="#{projetoBean.status}" styleClass="app-form-control"
-			disabled="#{!projetoBean.podeEditar}">
-			<f:selectItems value="#{projetoBean.statusList}"></f:selectItems>
-		</p:selectOneMenu>
+			<p:selectOneMenu value="#{projetoBean.status}"
+				styleClass="app-form-control" disabled="#{!projetoBean.podeEditar}">
+				<f:selectItems value="#{projetoBean.statusList}"></f:selectItems>
+			</p:selectOneMenu>
 		</div>
-
 	</ui:define>
 
 </ui:composition>
