@@ -36,7 +36,7 @@ public class SituacaoBean extends AbstractBean {
 		} else {
 			try {
 				Integer id = Integer.parseInt(oid);
-				situacaoAtual = facade.carregarSituacao(id);
+				setSituacaoAtual(facade.carregarSituacao(id));
 				novo = false;
 			} catch (NumberFormatException ex) {
 				FacesContext context = FacesContext.getCurrentInstance();
@@ -57,6 +57,8 @@ public class SituacaoBean extends AbstractBean {
 		}
 	}
 
+	
+
 	public String getNome() {
 		return situacaoAtual != null ? situacaoAtual.getNome() : "";
 	}
@@ -67,6 +69,8 @@ public class SituacaoBean extends AbstractBean {
 		}
 	}
 
+	
+
 	public TipoSituacao getTipo() {
 		return situacaoAtual != null ? situacaoAtual.getTipo() : null;
 	}
@@ -76,6 +80,7 @@ public class SituacaoBean extends AbstractBean {
 			situacaoAtual.setTipo(tipo);
 		}
 	}
+
 
 	public Date getDataHoraCriacao() {
 		return situacaoAtual != null ? situacaoAtual.getDataHoraCriacao() : null;
@@ -127,6 +132,7 @@ public class SituacaoBean extends AbstractBean {
 	}
 
 	public void salvar() {
+
 		ValidationResult result;
 		if (situacaoAtual != null) {
 			if (situacaoAtual.getDataHoraCriacao() == null) {
@@ -145,11 +151,13 @@ public class SituacaoBean extends AbstractBean {
 					addMessage(message.getValue(), FacesMessage.SEVERITY_ERROR);
 				}
 			}
+
 		}
 	}
 
 	public void remover() {
 		boolean ok = false;
+
 		if (situacaoAtual != null && !novo) {
 			situacaoAtual.setDataHoraRemocao(new Date());
 			ok = facade.removerSituacao(situacaoAtual);
@@ -158,6 +166,7 @@ public class SituacaoBean extends AbstractBean {
 				novo();
 			} else {
 				addMessage("Não foi possível remover a situação", FacesMessage.SEVERITY_ERROR);
+
 			}
 
 		}
@@ -174,7 +183,7 @@ public class SituacaoBean extends AbstractBean {
 	}
 
 	public String novo() {
-		this.situacaoAtual = facade.novaSituacao();
+		this.setSituacaoAtual(facade.novaSituacao());
 		novo = true;
 		editar();
 		return "";
@@ -186,6 +195,7 @@ public class SituacaoBean extends AbstractBean {
 		}
 		return situacoes;
 	}
+
 
 	private void addMessage(String messagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -202,7 +212,25 @@ public class SituacaoBean extends AbstractBean {
 		this.podeEditar = podeEditar;
 	}
 
+
 	public void setNovo(boolean novo) {
 		this.novo = novo;
 	}
+
+	public Situacao getSituacaoAtual() {
+		return situacaoAtual;
+	}
+
+	public void setSituacaoAtual(Situacao situacaoAtual) {
+		this.situacaoAtual = situacaoAtual;
+	}
+
+	public void cancelar() {
+
+	}
+
+	public void selecionar() {
+		System.out.println("situacao Atual: " + situacaoAtual);
+	}
+
 }

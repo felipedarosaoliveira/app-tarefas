@@ -1,3 +1,4 @@
+
 package br.com.cursojava.apptarefas.projeto;
 
 import br.com.cursojava.apptarefas.utils.ValidationResult;
@@ -9,7 +10,7 @@ public class ProjetoBusiness {
 		
 		String nome = projeto.getNome();
 		if(nome == null || "".equals(nome.trim())){
-			resultado.addErrorMessage("nome", "O campo nome é Obrigatório");
+			resultado.addErrorMessage("nome", "O campo nome ï¿½ Obrigatï¿½rio");
 		}else if(nome.length() < 3){
 			resultado.addErrorMessage("nome", "O campo nome deve possuir ao menos 3 caracteres");
 		}

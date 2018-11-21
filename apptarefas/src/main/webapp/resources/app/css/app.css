@@ -72,15 +72,12 @@ input,select{
 	display: flex;
 	justify-content: center;
 	padding: 20px;
-<<<<<<< HEAD
-=======
 }
 
 .app-button-bar-novo{
 	display: flex;
 	justify-content: left;
 	padding: 20px;
->>>>>>> master
 }
 
 .app-button-bar-login{
@@ -102,7 +99,7 @@ input,select{
 	justify-content:center
 }
 .app-card-panel{
-	display-flex;
+	display:flex;
 	flex-direction:column;
 }
 .app-card{
@@ -115,4 +112,3 @@ input,select{
 	font-size: 20px;
 	background-color: #ff6600;
 }
-
