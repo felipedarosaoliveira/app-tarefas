@@ -34,7 +34,6 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		if (tarefas != null && tarefas.getId() != null) {
 			EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
 			ent.getTransaction().begin();
-			ent.find(Tarefa.class, tarefas);
 			ent.merge(tarefas);
 			ent.getTransaction().commit();
 			ent.close();

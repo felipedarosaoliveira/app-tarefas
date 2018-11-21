@@ -8,16 +8,11 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="../template.xhtml">
-	<ui:param name="headerTitle" value="Usuarios"></ui:param>
+<ui:composition template="../template-listagem.xhtml">
+	<ui:param name="headerTitle" value="Usuários"></ui:param>
 	<ui:param name="breadcrumb" value="#{usuarioBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
-		<h3>Usuários</h3>
-		<h:outputLink value="./formulario.jsf">
-			<f:param name="oid" value="novo"></f:param>
-			Novo
-		</h:outputLink>
 
 		<div class="content">
 			<p:panel header="USUÁRIOS" style="text-align:center">
