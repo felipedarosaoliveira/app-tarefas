@@ -18,11 +18,14 @@
 			<ui:include src="header.xhtml" />
 		</div>
 		<ui:include src="navegacao.xhtml" />
-		<div class="app-page-header">
-			<h3>Page Header</h3>
+
+		<div class="app-page-header">		
+			<ui:param name="headerTitle" value="#{bean}"></ui:param>
+
 		</div>
 
 		<div class="app-content">
+		<h:messages></h:messages>
 			<h:form id="form">
 				<ui:insert name="content-form"></ui:insert>
 				<ui:include src="button-bar.xhtml">

@@ -70,12 +70,15 @@ input,select{
 	display: flex;
 	justify-content: center;
 	padding: 20px;
+<<<<<<< HEAD
+=======
 }
 
 .app-button-bar-novo{
 	display: flex;
 	justify-content: left;
 	padding: 20px;
+>>>>>>> master
 }
 
 
