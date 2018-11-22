@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -18,18 +17,14 @@
 			<ui:include src="header.xhtml" />
 		</div>
 
-		<div class="app-page-header">
-			<ui:param name="headerTitle" value="#{bean}"></ui:param>
-
 		<div class="app-page-header">		
 			<ui:include src="page-header.xhtml" />
-
 		</div>
 		<ui:include src="navegacao.xhtml" />
 
 		<div class="app-content">
-			<h:messages></h:messages>
 			<h:form id="form">
+				<h:messages></h:messages>
 				<ui:insert name="content-form"></ui:insert>
 				<ui:include src="button-bar.xhtml">
 					<ui:param name="bean" value="#{bean}"></ui:param>
@@ -37,7 +32,8 @@
 			</h:form>
 		</div>
 		<div class="app-dialog">
-			<ui:insert name="dialogs"></ui:insert>
+			<ui:insert name="dialogsUsuario" ></ui:insert>
+			<ui:insert name="dialogsSituacao" ></ui:insert>
 		</div>
 		<div class="app-footer">
 			<ui:include src="footer.xhtml" />

@@ -109,5 +109,16 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		return resultado;
 	}
 
-}
 
+	public Usuario buscarPorEmail(String email) {
+		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Usuario> cQuery = builder.createQuery(Usuario.class);
+		Root<Usuario> usuarios = cQuery.from(Usuario.class);
+		cQuery.select(usuarios);
+		cQuery.where(builder.equal(usuarios.get("email"), email));
+		TypedQuery<Usuario> query = em.createQuery(cQuery);
+		Usuario result = query.getSingleResult();
+		return result;
+	}
+}
