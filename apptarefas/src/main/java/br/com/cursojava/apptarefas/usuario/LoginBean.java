@@ -1,23 +1,30 @@
 package br.com.cursojava.apptarefas.usuario;
 
-import java.util.Date;
-import java.util.Objects;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import br.com.cursojava.apptarefas.utils.Sistema;
 
 import br.com.cursojava.apptarefas.utils.Sistema;
 
 public class LoginBean {
-		
+
 	private String email;
 	private String senha;
-	private boolean ok= false;
 	Usuario usuario = new Usuario();
-	
+
 	public String autenticar() {
-		
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		if (usuario.getEmail().equals(email) && usuario.getSenha().equals(Sistema.gerarHash(senha))) {
+			HttpSession session = (HttpSession) ctx.getExternalContext().getSession(true);
+			session.setAttribute("usuarioLogado", usuario);
+			return "index.xhtml?faces-redirect=true";
+		} else {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Inv�lido",
+					"Email ou senha inv�lidos");
+			ctx.addMessage(null, msg);
+		}
 		return null;
 	}
 	
