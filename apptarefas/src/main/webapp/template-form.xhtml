@@ -24,8 +24,8 @@
 		<ui:include src="navegacao.xhtml" />
 
 		<div class="app-content">
-		<h:messages></h:messages>
 			<h:form id="form">
+				<h:messages></h:messages>
 				<ui:insert name="content-form"></ui:insert>
 				<ui:include src="button-bar.xhtml">
 					<ui:param name="bean" value="#{bean}"></ui:param>
