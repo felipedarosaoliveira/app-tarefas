@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template-listagem.xhtml">
+	<ui:param name="headerTitle" value="Listagem Situação"></ui:param>
+	<ui:param name="breadcrumb" value="#{situacaoBean.breadcrumb}"></ui:param>
+	<ui:param name="bean" value="#{situacaoBean}"></ui:param>
+
+	<ui:define name="content">
+
+		<div class="main">
+
+			<div class="content">
+				<p:panel header="LISTA DE TAREFAS" style="text-align:center">
+
+					<h:form>
+						<p:dataTable id="tabelaTarefas" value="#{tarefaBean.tarefas}"
+							var="atual" paginator="true" rows="5" widgetVar="tabelaTarefas">
+							
+
+							<p:column headerText="Id" sortBy="#{atual.id}"
+								filterBy="#{atual.id}" filterMatchMode="startsWith">
+								<h:outputText value="#{atual.id}" />
+							</p:column>
+
+							<p:column headerText="Nome" sortBy="#{atual.nome}"
+								filterBy="#{atual.nome}" filterMatchMode="contains">
+								<h:outputText value="#{atual.nome}" />
+							</p:column>
+
+							<p:column headerText="Descrição" sortBy="#{atual.descricao}"
+								filterBy="#{atual.descricao}" filterMatchMode="contains">
+								<h:outputText value="#{atual.descricao}" />
+							</p:column>
+
+							<p:column headerText="Projeto" sortBy="#{atual.projeto.nome}"
+								filterBy="#{atual.projeto.nome}" filterMatchMode="contains">
+								<h:outputText value="#{atual.projeto.nome}" />
+							</p:column>
+
+							<p:column headerText="Usuário" sortBy="#{atual.usuario.nome}"
+								filterBy="#{atual.usuario.nome}" filterMatchMode="contains">
+								<h:outputText value="#{atual.usuario.nome}" />
+							</p:column>
+							<p:column headerText="Situação" sortBy="#{atual.situacao.nome}"
+								filterBy="#{atual.situacao.nome}" filterMatchMode="contains">
+								<h:outputText value="#{atual.situacao.nome}" />
+							</p:column>
+
+
+							<p:column>
+								<f:facet name="header">Opções</f:facet>
+								<h:outputLink value="./formulario.jsf">
+									<f:param name="oid" value="#{atual.id}"></f:param>
+									Editar
+								</h:outputLink>
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+					<h:outputLink value="./formulario.jsf">
+						<f:param name="oid" value="novo"></f:param>
+						Nova Tarefa
+					</h:outputLink>
+				</p:panel>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+</html>

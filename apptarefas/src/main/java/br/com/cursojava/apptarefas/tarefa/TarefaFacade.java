@@ -13,15 +13,13 @@ import br.com.cursojava.apptarefas.usuario.UsuarioFacade;
 import br.com.cursojava.apptarefas.utils.Sistema;
 
 public class TarefaFacade {
-	
 
-private TarefaRepositorio repositorio = new TarefaRepositorio();
-	
-	
+	private TarefaRepositorio repositorio = new TarefaRepositorio();
+
 	public Tarefa novaTarefa() {
 		return new Tarefa();
 	}
-	
+
 	public Tarefa carregarTarefa(Integer id) {
 		return repositorio.buscarPorId(id);
 	}
@@ -29,28 +27,28 @@ private TarefaRepositorio repositorio = new TarefaRepositorio();
 	public List<Tarefa> carregarTarefas() {
 		return repositorio.buscarTodos();
 	}
-	
+
 	public boolean salvar(Tarefa tarefaAtual) {
 		boolean resultado = false;
-		if(tarefaAtual.getId() == null) {
+		if (tarefaAtual.getId() == null) {
 			resultado = repositorio.inserir(tarefaAtual);
-			System.out.println("Inserindo tarefa no Banco: " + tarefaAtual.getNome());
-		}else {
+		} else {
 			resultado = repositorio.atualizar(tarefaAtual);
-			System.out.println("Atualizando tarefa no Banco: " + tarefaAtual.getNome());
 		}
 		return resultado;
 	}
+
 	public boolean removerTarefa(Tarefa tarefaAtual) {
 		return repositorio.remover(tarefaAtual.getId());
 	}
-	
+
 	public List<Tarefa> buscarSituacaoTarefa(String situacao) {
 		return repositorio.buscarPorSituacao(situacao);
 	}
+
 	public List<Projeto> carregarProjetos() {
 		ProjetoFacade pFacade = new ProjetoFacade();
-		return pFacade.carregarProjetos();		
+		return pFacade.carregarProjetos();
 	}
 
 	public List<Usuario> carregarUsuarios() {
@@ -59,26 +57,28 @@ private TarefaRepositorio repositorio = new TarefaRepositorio();
 	}
 
 	public List<Situacao> carregarSituacao() {
-		 SituacaoFacade sFacade = new SituacaoFacade();
+		SituacaoFacade sFacade = new SituacaoFacade();
 		return sFacade.carregarSituacoes();
 	}
+
 	public long contarTarefa() {
 		return repositorio.contar();
 	}
 
 	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 	List<Situacao> listaSituacoes = carregarSituacao();
-	
+
 	public List<Tarefa> listaBacklog() {
-		List<Tarefa> listaBacklog = carregarTarefas().stream().filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog")))
-				.collect(Collectors.toList());
+		List<Tarefa> listaBacklog = carregarTarefas().stream()
+				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog"))).collect(Collectors.toList());
 		return listaBacklog;
 	}
 
 	public List<Tarefa> listaPriorizada() {
 		List<Tarefa> listaPriorizada = carregarTarefas().stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
-		return listaPriorizada;	}
+		return listaPriorizada;
+	}
 
 	public List<Tarefa> listaDesenvolvimento() {
 		List<Tarefa> listaEmDesenvolvimento = carregarTarefas().stream()
@@ -92,7 +92,5 @@ private TarefaRepositorio repositorio = new TarefaRepositorio();
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
 		return listaFinalizada;
 	}
-	
 
 }
-
