@@ -20,14 +20,13 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 @SessionScoped
 public class TarefaBean extends AbstractBean {
 
-	private List<Tarefa> tarefas;
-	private List<Situacao> situacoes;
-
 	private TarefaFacade facade = new TarefaFacade();
 	private Tarefa tarefaAtual = facade.novaTarefa();
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
+	private List<Tarefa> tarefas;
+	private List<Situacao> situacoes;
 
 	public String getOid() {
 		return oid;
@@ -36,6 +35,7 @@ public class TarefaBean extends AbstractBean {
 	public void setOid(String oid) {
 		this.oid = oid;
 		if ("novo".equals(oid)) {
+			tarefaAtual = facade.novaTarefa();
 			novo();
 		} else {
 			try {
@@ -43,10 +43,7 @@ public class TarefaBean extends AbstractBean {
 				tarefaAtual = facade.carregarTarefa(id);
 				novo = false;
 			} catch (NumberFormatException ex) {
-				FacesContext context = FacesContext.getCurrentInstance();
-				FacesMessage message = new FacesMessage("Id invï¿½lido");
-				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				context.addMessage(null, message);
+				addMensagem("Id inválido", FacesMessage.SEVERITY_ERROR);
 			}
 		}
 	}
@@ -136,6 +133,13 @@ public class TarefaBean extends AbstractBean {
 
 	public void setSituacoes(List<Situacao> situacoes) {
 		this.situacoes = situacoes;
+	}
+
+	public List<Tarefa> getTarefas() {
+		if (tarefas == null || tarefas.isEmpty()) {
+			tarefas = facade.carregarTarefas();
+		}
+		return tarefas;
 	}
 
 	public void setNovo(boolean novo) {

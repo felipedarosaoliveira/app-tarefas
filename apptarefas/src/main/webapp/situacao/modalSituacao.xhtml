@@ -14,15 +14,15 @@
 	<h:form id="formModalSituacao">
 
 		<p:selectOneListbox value="#{tarefaBean.situacao}"
-			id="listboxSituacao" converter="situacaoConverter" filter="true" var="u"
-			filterMatchMode="contains" style="height: 100%;width:100%">
+			id="listboxSituacao" converter="situacaoConverter" filter="true"
+			var="u" filterMatchMode="contains" style="height: 100%;width:100%">
 			<f:selectItems value="#{situacaoBean.situacoes}" var="situacao"
 				itemLabel="#{situacao.nome}" itemValue="#{situacao}" />
 
-			<p:column headerText="ID" >
+			<p:column headerText="ID">
 				<h:outputText value="#{u.id}" />
 			</p:column>
-			<p:column headerText="NOME" >
+			<p:column headerText="NOME">
 				<f:facet name="header">Nome</f:facet>
 				<h:outputText value="#{u.nome}" />
 			</p:column>
@@ -33,11 +33,11 @@
 		<p:commandButton value="Cancelar" action="#{situacaoBean.cancelar}"
 			icon="ui-icon-circle-close" process="@this"
 			onclick="PF('dialogSit').hide()" />
-			
+
 
 		<p:commandButton id="botaoSelecionar" value="Selecionar"
-			process="@form" update="#{update}" ajax="true"
-			icon="ui-icon-check" onclick="PF('dialogSit').hide()"  />
+			process="@form" update="#{update}" ajax="true" icon="ui-icon-check"
+			onclick="PF('dialogSit').hide()" />
 
 
 

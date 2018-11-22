@@ -13,16 +13,16 @@
 
 	<h:form id="ModalUsuario">
 
-		<p:selectOneListbox value="#{tarefaBean.usuario}"
-			id="listboxUsuario" converter="usuarioConverter" filter="true" var="u"
+		<p:selectOneListbox value="#{tarefaBean.usuario}" id="listboxUsuario"
+			converter="usuarioConverter" filter="true" var="u"
 			filterMatchMode="contains" style="height: 100%;width:100%">
 			<f:selectItems value="#{usuarioBean.usuarios}" var="usuario"
 				itemLabel="#{usuario.nome}" itemValue="#{usuario}" />
 
-			<p:column headerText="ID" >
+			<p:column headerText="ID">
 				<h:outputText value="#{u.id}" />
 			</p:column>
-			<p:column headerText="NOME" >
+			<p:column headerText="NOME">
 				<f:facet name="header">Nome</f:facet>
 				<h:outputText value="#{u.nome}" />
 			</p:column>
@@ -35,8 +35,8 @@
 			onclick="PF('dialogUser').hide()" />
 
 		<p:commandButton id="botaoSelecionar" value="Selecionar"
-			process="@form" update="#{update}" ajax="true"
-			icon="ui-icon-check"  onclick="PF('dialogUser').hide()" />
+			process="@form" update="#{update}" ajax="true" icon="ui-icon-check"
+			onclick="PF('dialogUser').hide()" />
 
 	</h:form>
 
