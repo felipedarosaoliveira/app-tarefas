@@ -110,7 +110,6 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 	}
 
 
-	@Override
 	public Usuario buscarPorEmail(String email) {
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 		CriteriaBuilder builder = em.getCriteriaBuilder();

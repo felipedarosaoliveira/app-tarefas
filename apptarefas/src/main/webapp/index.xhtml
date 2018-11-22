@@ -20,7 +20,9 @@
 		<h:outputText value="#{homeBean.mensagem}" />
 	</h1>
 	
-	<h3>Nomes</h3>
+	<h3><h:outputLabel value="#{tarefaBean.projetoAtual.nome}"></h:outputLabel>
+</h3>
+	
 	<div class="app-main-panel">
 	<div class="app-card-panel">
 		<ui:repeat var="atual" value="#{homeBean.nomes}">

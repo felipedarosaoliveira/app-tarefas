@@ -176,6 +176,10 @@ public class ProjetoBean extends AbstractBean{
 		this.novo = novo;
 	}
 
+	public String carregarDashProjeto() {
+		addSessionAttribute("projetoAtual", projetoAtual);
+		return "/index.xhtml?faces-redirect=true";
+	}
 
 	
 }

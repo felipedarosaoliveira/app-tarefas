@@ -11,7 +11,6 @@ public interface CrudRepository<T> {
 	public List<T> buscarTodos();
 	public T buscarPorId(int id);
 	public long contar();
-	public T buscarPorEmail(String email);
 	
 
 }
