@@ -37,12 +37,13 @@
 			<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
 		</p:selectOneMenu>
 		<p></p>
-		<div align="center">
-			<ui:include src="../button-bar.xhtml">
-				<ui:param name="bean" value="#{usuarioBean}"></ui:param>
-			</ui:include>
-		</div>
+
+		<h:messages></h:messages>
+		</p:panelGrid>
+		</h:form>
+		</p:panel>
 		
+
 		<div class="app-form-group">
 			<p:outputLabel value="Email:" for="email" />
 			<p:inputText id="email" value="#{usuarioBean.email}"
