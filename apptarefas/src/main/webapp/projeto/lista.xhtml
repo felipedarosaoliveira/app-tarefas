@@ -13,7 +13,7 @@
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
-		<p:dataTable id="" value="#{projetoBean.projetos}" var="atual">
+		<p:dataTable id="lista" value="#{projetoBean.projetos}" var="atual">
 			<p:column>
 				<f:facet name="header">Id</f:facet>
 					#{atual.id}	
