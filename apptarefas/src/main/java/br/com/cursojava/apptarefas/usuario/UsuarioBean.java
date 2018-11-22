@@ -208,14 +208,11 @@ public class UsuarioBean extends AbstractBean{
 	}
 
 	public String cancelar() {
-		usuarioSelecionado = usuarioAtual;
-		System.out.println("Botão Cancelar Pressionado " + usuarioAtual.getId());
 		return null;
 	}
 
 	public String selecionar() {
 	
-		System.out.println("Botão Selecionar Pressionado " + usuarioSelecionado);
 		return null;
 
 	}

@@ -1,10 +1,7 @@
-
 package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -21,17 +18,14 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 @ManagedBean
 @SessionScoped
 public class TarefaBean extends AbstractBean {
-	
-	private List<Projeto> projetos;
-	private List<Tarefa> tarefas;
-	private List<Usuario> usuarios;
-	private List<Situacao> situacoes;
 
 	private TarefaFacade facade = new TarefaFacade();
 	private Tarefa tarefaAtual = facade.novaTarefa();
 	private String oid;
 	private boolean novo = true;
 	private boolean podeEditar = true;
+	private List<Tarefa> tarefas;
+	private List<Situacao> situacoes;
 
 	public String getOid() {
 		return oid;
@@ -40,6 +34,7 @@ public class TarefaBean extends AbstractBean {
 	public void setOid(String oid) {
 		this.oid = oid;
 		if ("novo".equals(oid)) {
+			tarefaAtual = facade.novaTarefa();
 			novo();
 		} else {
 			try {
@@ -47,24 +42,70 @@ public class TarefaBean extends AbstractBean {
 				tarefaAtual = facade.carregarTarefa(id);
 				novo = false;
 			} catch (NumberFormatException ex) {
-				FacesContext context = FacesContext.getCurrentInstance();
-				FacesMessage message = new FacesMessage("Id invï¿½lido");
-				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				context.addMessage(null, message);
+				addMensagem("Id inválido", FacesMessage.SEVERITY_ERROR);
 			}
 		}
 	}
-	
 
-	public List<Projeto> getProjetos() {
-		if (projetos == null || projetos.isEmpty()) {
-			projetos = facade.carregarProjetos();
-		}
-		return projetos;
+	public Integer getId() {
+		return tarefaAtual != null ? tarefaAtual.getId() : null;
 	}
 
-	public void setProjetos(List<Projeto> projetos) {
-		this.projetos = projetos;
+	public void setId(Integer id) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setId(id);
+		}
+	}
+
+	public String getNome() {
+		return tarefaAtual != null ? tarefaAtual.getNome() : null;
+	}
+
+	public void setNome(String nome) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setNome(nome);
+		}
+	}
+
+	public String getDescricao() {
+		return tarefaAtual != null ? tarefaAtual.getDescricao() : null;
+	}
+
+	public void setDescricao(String descricao) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setDescricao(descricao);
+		}
+	}
+
+	public Projeto getProjeto() {
+		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setProjeto(projeto);
+		}
+	}
+
+	public Situacao getSituacao() {
+		return tarefaAtual != null ? tarefaAtual.getSituacao() : null;
+	}
+
+	public void setSituacao(Situacao situacao) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setSituacao(situacao);
+		}
+	}
+
+	public Usuario getUsuario() {
+		return tarefaAtual != null ? tarefaAtual.getUsuario() : null;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		if (tarefaAtual != null) {
+			tarefaAtual.setUsuario(usuario);
+		}
+
 	}
 
 	public List<Tarefa> getTarefa() {
@@ -82,17 +123,6 @@ public class TarefaBean extends AbstractBean {
 		return novo;
 	}
 
-	public List<Usuario> getUsuarios() {
-		if (usuarios == null || usuarios.isEmpty()) {
-			usuarios = facade.carregarUsuarios();
-		}
-		return usuarios;
-	}
-
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
 	public List<Situacao> getSituacoes() {
 		if (situacoes == null || situacoes.isEmpty()) {
 			situacoes = facade.carregarSituacao();
@@ -102,6 +132,13 @@ public class TarefaBean extends AbstractBean {
 
 	public void setSituacoes(List<Situacao> situacoes) {
 		this.situacoes = situacoes;
+	}
+
+	public List<Tarefa> getTarefas() {
+		if (tarefas == null || tarefas.isEmpty()) {
+			tarefas = facade.carregarTarefas();
+		}
+		return tarefas;
 	}
 
 	public void setNovo(boolean novo) {
@@ -158,8 +195,6 @@ public class TarefaBean extends AbstractBean {
 		editar();
 	}
 
-	
-
 	private void addMensagem(String mensagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage(mensagem);
@@ -171,7 +206,7 @@ public class TarefaBean extends AbstractBean {
 	List<Situacao> listaSituacoes = getSituacoes();
 
 	public List<Tarefa> getBacklog() {
-		return facade.listaBacklog();		
+		return facade.listaBacklog();
 	}
 
 	public int getQtdBacklog() {
