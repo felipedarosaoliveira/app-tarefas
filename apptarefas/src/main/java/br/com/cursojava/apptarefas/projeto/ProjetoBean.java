@@ -1,6 +1,7 @@
 package br.com.cursojava.apptarefas.projeto;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -9,21 +10,20 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 @ManagedBean(name = "projetoBean")
 @ViewScoped
 public class ProjetoBean extends AbstractBean{
 
-	
-	
-	
-	private ProjetoFacade facade = new ProjetoFacade();
-	private List<Projeto> projetos;
-	private Projeto projetoAtual = facade.novoProjeto();
+		
 	private String oid;
+	private List<Projeto> projetos;
 	private boolean novo = true;
 	private boolean podeEditar = true;
-	private String teste = "testando123";
+	private ProjetoFacade facade = new ProjetoFacade();
+	private Projeto projetoAtual = facade.novoProjeto();
+	
 	
 	public boolean isPodeEditar() {
 		return podeEditar;
@@ -42,12 +42,9 @@ public class ProjetoBean extends AbstractBean{
 			try {
 				Integer id = Integer.parseInt(oid);
 				projetoAtual = facade.carregarProjeto(id);
-				novo = false;
+				setNovo(false);
 			} catch (NumberFormatException ex) {
-				FacesContext context = FacesContext.getCurrentInstance();
-				FacesMessage message = new FacesMessage("Id invï¿½lido");
-				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				context.addMessage(null, message);
+				addMessage("ID Inválido!", FacesMessage.SEVERITY_ERROR);
 			}
 		}
 	}
@@ -115,45 +112,49 @@ public class ProjetoBean extends AbstractBean{
 	
 	
 	public void salvar() {
-		boolean ok = false;
+		ValidationResult result;
 		if (projetoAtual != null) {
-			ok = facade.salvar(projetoAtual);			
-		}
-		if (ok) {
-			addMensagem("Projeto salvo com sucesso", FacesMessage.SEVERITY_INFO);
-			novo = false;
-			podeEditar = false;
-		} else {
-			addMensagem("Não foi possível salvar o contato", FacesMessage.SEVERITY_ERROR);
+			result = facade.salvar(projetoAtual);			
+			if (result.isOk()) {
+				addMessage("Projeto salvo com sucesso", FacesMessage.SEVERITY_INFO);
+				setNovo(false);
+				setPodeEditar(false);
+			} else {
+				Map<String, String> messages = result.getMessages();
+				for (Map.Entry<String, String> message : messages.entrySet()) {
+					addMessage(message.getValue(), FacesMessage.SEVERITY_ERROR);
+				}
+			}
 		}
 	}
 
 	public void remover() {
 		boolean ok = false;
-		if (projetoAtual != null && !novo) {
+		if (projetoAtual != null && !isNovo()) {
 			ok = facade.removerProjeto(projetoAtual);
 			if (ok) {
-				addMensagem("Projeto Removido com Sucesso", FacesMessage.SEVERITY_INFO);
+				addMessage("Projeto Removido com Sucesso", FacesMessage.SEVERITY_INFO);
 				novo();
 			} else {
-				addMensagem("Nï¿½o foi possï¿½vel remover o contato", FacesMessage.SEVERITY_ERROR);
+				addMessage("Nï¿½o foi possï¿½vel remover o contato", FacesMessage.SEVERITY_ERROR);
 			}
 		}
 	}
 
 	public void editar() {
-		this.podeEditar = true;
+		this.setPodeEditar(true);
 	}
 
 	public void novo() {
+	System.out.println("Cliquei no novo()");
 		this.projetoAtual = facade.novoProjeto();
-		novo = true;
+		setNovo(true);
 		editar();
 	}
 
 	
 
-	private void addMensagem(String mensagem, Severity severidade) {
+	private void addMessage(String mensagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage(mensagem);
 		message.setSeverity(severidade);
@@ -161,13 +162,20 @@ public class ProjetoBean extends AbstractBean{
 	}
 
 
-	public String getTeste() {
-		return teste;
+	public void setPodeEditar(boolean podeEditar) {
+		this.podeEditar = podeEditar;
 	}
 
 
-	public void setTeste(String teste) {
-		this.teste = teste;
+	public boolean isNovo() {
+		return novo;
 	}
+
+
+	public void setNovo(boolean novo) {
+		this.novo = novo;
+	}
+
+
 	
 }

@@ -50,5 +50,8 @@ create table tarefas (
     foreign key ("situacaoId") references situacao(id)
     );
 
+-- Atualizaçõ tabela Projetos 19/11/2018
+alter table projetos alter column "dataHoraFim" drop not null;
 
-alter table projetos alter column "dataHoraFim" drop not null;;
+--Atualização tabela usuarios
+alter table usuarios add unique (email);

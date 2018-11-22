@@ -1,10 +1,7 @@
-
 package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
@@ -22,14 +19,6 @@ import br.com.cursojava.apptarefas.utils.Sistema;
 @SessionScoped
 public class TarefaBean extends AbstractBean {
 
-	private Integer id;
-	private String nome;
-	private String descricao;
-	private Projeto projeto;
-	private Situacao situacao;
-	private Usuario responsavel;
-
-	// listas para selecionar na view
 	private List<Projeto> projetos;
 	private List<Tarefa> tarefas;
 	private List<Usuario> usuarios;
@@ -61,54 +50,6 @@ public class TarefaBean extends AbstractBean {
 				context.addMessage(null, message);
 			}
 		}
-	}
-
-	public Integer getId() {
-		return tarefaAtual != null ? tarefaAtual.getId() : null;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return tarefaAtual != null ? tarefaAtual.getNome() : null;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return tarefaAtual != null ? tarefaAtual.getDescricao() : null;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Projeto getProjeto() {
-		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
-	}
-
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
-	}
-
-	public Situacao getSituacao() {
-		return tarefaAtual != null ? tarefaAtual.getSituacao() : null;
-	}
-
-	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao;
-	}
-
-	public Usuario getResponsavel() {
-		return tarefaAtual != null ? tarefaAtual.getUsuario() : null;
-	}
-
-	public void setResponsavel(Usuario responsavel) {
-		this.responsavel = responsavel;
 	}
 
 	public List<Projeto> getProjetos() {
@@ -213,15 +154,6 @@ public class TarefaBean extends AbstractBean {
 		editar();
 	}
 
-	public void limparCampos() {
-		this.id = null;
-		this.nome = "";
-		this.descricao = "";
-		this.projeto = null;
-		this.situacao = null;
-		this.responsavel = null;
-	}
-
 	private void addMensagem(String mensagem, Severity severidade) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage(mensagem);
@@ -233,12 +165,7 @@ public class TarefaBean extends AbstractBean {
 	List<Situacao> listaSituacoes = getSituacoes();
 
 	public List<Tarefa> getBacklog() {
-		List<Tarefa> listaBacklog = getTarefa().stream().filter(t ->{
-			System.out.println(t);
-		return t.getSituacao().equals(situacoesPadrao.get("Backlog"));	
-		})
-				.collect(Collectors.toList());
-		return listaBacklog;
+		return facade.listaBacklog();
 	}
 
 	public int getQtdBacklog() {
@@ -246,12 +173,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getPriorizada() {
-		List<Tarefa> listaPriorizada = getTarefa().stream().filter(t ->{
-			System.out.println(t);
-		return t.getSituacao().equals(situacoesPadrao.get("Priorizada"));	
-		})
-				.collect(Collectors.toList());
-		return listaPriorizada;
+		return facade.listaPriorizada();
 	}
 
 	public int getQtdPriorizada() {
@@ -259,12 +181,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getDesenvolvimento() {
-		List<Tarefa> listaEmDesenvolvimento = getTarefa().stream().filter(t ->{
-			System.out.println(t);
-		return t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento"));	
-		})
-				.collect(Collectors.toList());
-		return listaEmDesenvolvimento;
+		return facade.listaDesenvolvimento();
 	}
 
 	public int getQtdDesenvolvimento() {
@@ -272,12 +189,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getFinalizada() {
-		List<Tarefa> listaFinalizada = getTarefa().stream().filter(t ->{
-			System.out.println(t);
-		return t.getSituacao().equals(situacoesPadrao.get("Finalizada"));	
-		})
-				.collect(Collectors.toList());
-		return listaFinalizada;
+		return facade.listaFinalizada();
 	}
 
 	public int getQtdFinalizada() {

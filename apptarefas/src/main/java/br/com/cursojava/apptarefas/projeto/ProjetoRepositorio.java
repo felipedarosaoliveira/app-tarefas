@@ -33,7 +33,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		if (projeto != null && projeto.getId() != null){
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			em.find(Projeto.class, projeto);
+			em.find(Projeto.class, projeto.getId());
 			em.merge(projeto);
 			em.getTransaction().commit();
 			em.close();

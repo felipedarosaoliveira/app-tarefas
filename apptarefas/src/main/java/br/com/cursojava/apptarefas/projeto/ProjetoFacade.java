@@ -3,10 +3,12 @@ package br.com.cursojava.apptarefas.projeto;
 import java.util.Date;
 import java.util.List;
 
+import br.com.cursojava.apptarefas.utils.ValidationResult;
+
 public class ProjetoFacade {
 
 	private ProjetoRepositorio repositorio = new ProjetoRepositorio();
-
+	private ProjetoBusiness business  = new ProjetoBusiness();
 	public Projeto novoProjeto() {
 		return new Projeto();
 	}
@@ -19,16 +21,24 @@ public class ProjetoFacade {
 		return repositorio.buscarTodos();
 	}
 
-	public boolean salvar(Projeto projetoAtual) {
+	public ValidationResult salvar(Projeto projetoAtual) {
 		boolean ok = false;
 		projetoAtual.setDataHoraAtualizacao(new Date());
-		if (projetoAtual.getId() == null) {
-			projetoAtual.setDataHoraCriacao(new Date());
-			ok = repositorio.inserir(projetoAtual);
-		} else {
-			ok = repositorio.atualizar(projetoAtual);
+		ValidationResult result = business.validar(projetoAtual);
+		if(result.isOk()){
+			if (projetoAtual.getId() == null) {
+				projetoAtual.setDataHoraCriacao(new Date());
+				ok = repositorio.inserir(projetoAtual);
+			} else {
+				ok = repositorio.atualizar(projetoAtual);
+			}
+			if(!ok){
+				result.addErrorMessage("persistencia", "Não foi possível salvar os dados do projeto");
+			}
 		}
-		return ok;
+		
+		
+		return result;
 	}
 
 	public boolean removerProjeto(Projeto projetoAtual) {

@@ -8,56 +8,67 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="../template.xhtml">
-	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
-	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
-	<ui:define name="content">
+<ui:composition template="../template-form.xhtml">
+	<ui:param name="headerTitle" value="Form Usuários"></ui:param>
+	<ui:param name="bean" value="#{usuarioBean}"></ui:param>
+	<ui:param name="breadcrumb" value="#{usuarioBean.breadcrumb}"></ui:param>
 
-		<f:metadata>
-			<f:viewParam name="oid" value="#{usuarioBean.oid}" />
-		</f:metadata>
-		<h:messages></h:messages>
-		<h:form>
-			<div class="form-vertical">
-				<p:outputLabel>Id</p:outputLabel>
-				<p:inputText value="#{usuarioBean.id}" disabled="true"></p:inputText>
-				<p:outputLabel value="Nome:" for="nome" />
-				<p:inputText id="nome" value="#{usuarioBean.nome}">
-					<f:validateLength minimum="3" />
-					<f:ajax event="blur" render="messageNome" />
-				</p:inputText>
-				<p:message for="nome" id="messageNome" />
-				<p:outputLabel value="Email:" for="email" />
-				<p:inputText id="email" value="#{usuarioBean.email}"
-					disabled="#{!usuarioBean.podeEditar}"
-					validatorMessage="Email inválido (nome@provedor.com)">
-					<f:attribute name="type" value="email" />
-					<f:passThroughAttribute name="placeholder" value="Digite o E-mail"></f:passThroughAttribute>
-					<f:validateRegex pattern=".+@.+"></f:validateRegex>
-					<f:ajax event="blur" render="messageEmail" />
-				</p:inputText>
-				<p:message for="email" id="messageEmail" />
+	<ui:define name="content-form">
 
-				<h:outputLabel for="pwd1" value="Digite sua Senha" />
-				<p:password id="pwd1" value="#{usuarioBean.senha}"
-					disabled="#{!usuarioBean.podeEditar}" match="pwd2"
-					label="Password 1" feedback="true" />
+		<div class="app-form-group">
+			<p:outputLabel value="Id: " />
+			<p:inputText value="#{usuarioBean.id}" disabled="true"
+				styleClass="app-form-control"></p:inputText>
+		</div>
 
-				<h:outputLabel for="pwd2" value="Confirme sua Senha" />
-				<p:password id="pwd2" value="#{usuarioBean.senha}"
-					disabled="#{!usuarioBean.podeEditar}" label="Password 2" />
+		<div class="app-form-group">
+			<p:outputLabel value="Nome: " for="nome" />
+			<p:inputText styleClass="app-form-control" id="nome"
+				value="#{usuarioBean.nome}">
+				<f:validateLength minimum="3" />
+				<f:ajax event="blur" render="messageNome" />
+			</p:inputText>
+			<p:message for="nome" id="messageNome" />
+		</div>
 
-				<p:outputLabel>Status</p:outputLabel>
-				<p:selectOneMenu value="#{usuarioBean.status}"
-					disabled="#{!usuarioBean.podeEditar}">
-					<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
-				</p:selectOneMenu>
-				<ui:include src="../button-bar.xhtml">
-					<ui:param name="bean" value="#{usuarioBean}"></ui:param>
-				</ui:include>
-			</div>
 
-		</h:form>
-	</ui:define>
+		<div class="app-form-group">
+			<p:outputLabel value="Email:" for="email" />
+			<p:inputText id="email" value="#{usuarioBean.email}"
+				 disabled="#{!usuarioBean.podeEditar}"
+				validatorMessage="Email inválido (nome@provedor.com)"
+				styleClass="app-form-control">
+				<f:attribute name="type" value="email" />
+				<f:passThroughAttribute name="placeholder" value="Digite o E-mail"></f:passThroughAttribute>
+				<f:validateRegex pattern=".+@.+"></f:validateRegex>
+				<f:ajax event="blur" render="messageEmail" />
+			</p:inputText>
+			<p:message for="email" id="messageEmail" />
+		</div>
+
+
+		<div class="app-form-group">
+			<h:outputLabel for="pwd1" value="Digite sua Senha" />
+			<p:password id="pwd1" value="#{usuarioBean.senha}"
+				disabled="#{!usuarioBean.podeEditar}" match="pwd2"
+				label="Password 1" feedback="true" 
+				styleClass="app-form-control"/>
+
+			<h:outputLabel for="pwd2" value="Confirme sua Senha" />
+			<p:password id="pwd2" value="#{usuarioBean.senha}"
+				disabled="#{!usuarioBean.podeEditar}" label="Password 2"
+				styleClass="app-form-control"/>
+		</div>
+
+
+		<div class="app-form-group">
+			<p:outputLabel>Status</p:outputLabel>
+			<p:selectOneMenu value="#{usuarioBean.status}"
+				styleClass="app-form-control" disabled="#{!usuarioBean.podeEditar}">
+				<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
+			</p:selectOneMenu>
+		</div>
+
+ </ui:define>
 </ui:composition>
 </html>

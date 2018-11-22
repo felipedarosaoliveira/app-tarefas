@@ -8,19 +8,12 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="../template.xhtml">
-	<ui:param name="headerTitle" value="Projetos"></ui:param>
-	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
+<ui:composition template="../template-listagem.xhtml">
+	<ui:param name="headerTitle" value="Listagem Situação"></ui:param>
+	<ui:param name="breadcrumb" value="#{situacaoBean.breadcrumb}"></ui:param>
+	<ui:param name="bean" value="#{situacaoBean}"></ui:param>
+
 	<ui:define name="content">
-		<h:messages></h:messages>
-
-		<h3>Situações</h3>
-		<h:outputLink value="./formulario.jsf">
-			<f:param name="oid" value="novo"></f:param>
-			Novo
-		</h:outputLink>
-
-
 		<p:dataTable value="#{situacaoBean.situacoes}" var="atual">
 			<p:column headerText="Id">
 				<h:outputText value="#{atual.id}" />
@@ -31,21 +24,11 @@
 			<p:column headerText="Tipo">
 				<h:outputText value="#{atual.tipo}" />
 			</p:column>
-			<p:column headerText="DataHoraCriação">
-				<h:outputText value="#{atual.dataHoraCriacao}" />
-			</p:column>
-			<p:column headerText="DataHoraAtualização">
-				<h:outputText value="#{atual.dataHoraAtualizacao}" />
-			</p:column>
-			<p:column headerText="DataHoraRemocao">
-				<h:outputText value="#{atual.dataHoraRemocao}" />
-			</p:column>
 			<p:column headerText="Status">
 				<h:outputText value="#{atual.status}" />
 			</p:column>
 		</p:dataTable>
-
-
+		
 	</ui:define>
 </ui:composition>
 </html>
