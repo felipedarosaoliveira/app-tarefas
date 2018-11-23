@@ -112,17 +112,6 @@ public class TarefaBean extends AbstractBean {
 
 	}
 
-	public List<Tarefa> getTarefa() {
-		if (tarefas == null || tarefas.isEmpty()) {
-			tarefas = facade.carregarTarefas();
-		}
-		return tarefas;
-	}
-
-	public void setTarefa(List<Tarefa> tarefas) {
-		this.tarefas = tarefas;
-	}
-
 	public boolean isNovo() {
 		return novo;
 	}
@@ -140,7 +129,7 @@ public class TarefaBean extends AbstractBean {
 
 	public List<Tarefa> getTarefas() {
 		if (tarefas == null || tarefas.isEmpty()) {
-			tarefas = facade.carregarTarefas();
+			tarefas = facade.buscarPorProjeto(projetoAtual);
 		}
 		return tarefas;
 	}
@@ -210,7 +199,7 @@ public class TarefaBean extends AbstractBean {
 	List<Situacao> listaSituacoes = getSituacoes();
 
 	public List<Tarefa> getBacklog() {
-		return facade.listaBacklog();
+		return facade.listaBacklog(projetoAtual);
 	}
 
 	public int getQtdBacklog() {
@@ -218,7 +207,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getPriorizada() {
-		return facade.listaPriorizada();
+		return facade.listaPriorizada(projetoAtual);
 	}
 
 	public int getQtdPriorizada() {
@@ -226,7 +215,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getDesenvolvimento() {
-		return facade.listaDesenvolvimento();
+		return facade.listaDesenvolvimento(projetoAtual);
 	}
 
 	public int getQtdDesenvolvimento() {
@@ -234,7 +223,7 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public List<Tarefa> getFinalizada() {
-		return facade.listaFinalizada();
+		return facade.listaFinalizada(projetoAtual);
 	}
 
 	public int getQtdFinalizada() {
@@ -249,7 +238,9 @@ public class TarefaBean extends AbstractBean {
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		if (session != null) {
 			setProjetoAtual((Projeto) session.getAttribute("projetoAtual"));
+			tarefas = facade.buscarPorProjeto(projetoAtual);
 		}
+		
 
 	}
 

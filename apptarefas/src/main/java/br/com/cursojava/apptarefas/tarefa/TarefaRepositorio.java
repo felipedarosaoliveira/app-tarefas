@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import br.com.cursojava.apptarefas.projeto.Projeto;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.CrudRepository;
 import br.com.cursojava.apptarefas.utils.JPAUtil;
@@ -123,6 +124,19 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		query.where(cb.equal(root.get("situacao"), situacao));
 		TypedQuery<Tarefa> queryFinal = ent.createQuery(query);
 		List<Tarefa> resultado = queryFinal.getResultList();
+
+		return resultado;
+	}
+
+	public List<Tarefa> buscarPorProjeto(Projeto projetoAtual) {
+		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Tarefa> cQuery = builder.createQuery(Tarefa.class);
+		Root<Tarefa> tarefas = cQuery.from(Tarefa.class);
+		cQuery.select(tarefas);
+		cQuery.where(builder.equal(tarefas.get("projeto"), projetoAtual));
+		TypedQuery<Tarefa> query = em.createQuery(cQuery);
+		List<Tarefa> resultado = query.getResultList();
 
 		return resultado;
 	}
