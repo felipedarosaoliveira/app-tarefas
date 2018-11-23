@@ -55,3 +55,11 @@ alter table projetos alter column "dataHoraFim" drop not null;
 
 --Atualização tabela usuarios
 alter table usuarios add unique (email);
+
+-- Atualização tabela usuarios
+alter table usuarios add column "dataHoraRemocao" timestamp;
+
+-- Atualizando tabela tarefas
+alter table tarefas add column "dataHoraRemocao" timestamp;
+
+

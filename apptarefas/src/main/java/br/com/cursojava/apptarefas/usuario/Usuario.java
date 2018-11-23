@@ -14,30 +14,34 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(nullable = false)
 	private String nome;
-	
+
 	@Column(nullable = false)
 	private String email;
-	
+
 	@Column(nullable = false)
 	private String senha;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column (name="\"dataHoraCriacao\"")
+	@Column(name = "\"dataHoraCriacao\"")
 	private Date dataHoraCriacao;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="\"dataHoraAtualizacao\"")
+	@Column(name = "\"dataHoraAtualizacao\"")
 	private Date dataHoraAtualizacao;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "\"dataHoraRemocao\"")
+	private Date dataHoraRemocao;
+
 	@Enumerated(EnumType.STRING)
 	private StatusUsuario status;
 
@@ -47,7 +51,7 @@ public class Usuario {
 	}
 
 	public Usuario(Integer id, String nome, String email, String senha, Date dataHoraCriacao, Date dataHoraAtualizacao,
-			StatusUsuario status) {
+			Date dataHoraRemocao, StatusUsuario status) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -55,6 +59,7 @@ public class Usuario {
 		this.senha = senha;
 		this.dataHoraCriacao = dataHoraCriacao;
 		this.dataHoraAtualizacao = dataHoraAtualizacao;
+		this.dataHoraRemocao = dataHoraRemocao;
 		this.status = status;
 	}
 
@@ -131,6 +136,14 @@ public class Usuario {
 		this.dataHoraAtualizacao = dataHoraAtualizacao;
 	}
 
+	public Date getDataHoraRemocao() {
+		return dataHoraRemocao;
+	}
+
+	public void setDataHoraRemocao(Date dataHoraRemocao) {
+		this.dataHoraRemocao = dataHoraRemocao;
+	}
+
 	public StatusUsuario getStatus() {
 		return status;
 	}
@@ -142,7 +155,8 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", dataHoraCriacao="
-				+ dataHoraCriacao + ", dataHoraAtualizacao=" + dataHoraAtualizacao + ", status=" + status + "]";
+				+ dataHoraCriacao + ", dataHoraAtualizacao=" + dataHoraAtualizacao + ", dataHoraRemocao="
+				+ dataHoraRemocao + " status=" + status + "]";
 	}
 
 }
