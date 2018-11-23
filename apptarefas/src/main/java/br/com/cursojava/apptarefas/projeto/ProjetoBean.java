@@ -178,7 +178,7 @@ public class ProjetoBean extends AbstractBean{
 
 	public String carregarDashProjeto() {
 		addSessionAttribute("projetoAtual", projetoAtual);
-		return "/index.xhtml?faces-redirect=true";
+		return "/dashbord-tarefa.xhtml?faces-redirect=true";
 	}
 
 	

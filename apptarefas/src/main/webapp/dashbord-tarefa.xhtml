@@ -9,6 +9,9 @@
 </head>
 
 <div style="height: 500px">
+	<h1>
+		<h:outputLabel value="#{tarefaBean.projetoAtual.nome}"></h:outputLabel>
+	</h1>
 	<h:form>
 
 		<p:panel header="Contadores" style="text-align:center">
@@ -40,51 +43,44 @@
 					</ui:include>
 				</p:column>
 			</p:panelGrid>
-			<f:facet name="actions">
-				<h:form>
-					<h:outputLink value="./tarefa/formulario.jsf">
-						<f:param name="oid" value="novo"></f:param>
-						Nova Tarefa
-					</h:outputLink>
-				</h:form>
-			</f:facet>
+
+
 		</p:panel>
 	</h:form>
 
 
-<p:panel id="panel" header="Painel de Tarefas"
+	<p:panel id="panel" header="Painel de Tarefas"
 		style="margin-bottom:10px; text-align:center">
-	<p:panelGrid columns="4" layout="grid">
+		<p:panelGrid columns="4" layout="grid">
 
-		<p:column style="width:25%">
-		
-			<ui:include src="painel.xhtml">
-				<ui:param name="titleTabela" value="BACKLOG"></ui:param>
-				<ui:param name="listaTabela" value="#{tarefaBean.backlog}"></ui:param>
-				<ui:param name="showButtonAdd" value="#{true}"></ui:param>
-			</ui:include>
-		</p:column>
-		<p:column style="width:25%">
-			<ui:include src="painel.xhtml">
-				<ui:param name="titleTabela" value="PRIORIZADA"></ui:param>
-				<ui:param name="listaTabela" value="#{tarefaBean.priorizada}"></ui:param>
-			</ui:include>
-		</p:column>
-		<p:column style="width:25%">
-			<ui:include src="painel.xhtml">
-				<ui:param name="titleTabela" value="EM DESENVOLVIMENTO"></ui:param>
-				<ui:param name="listaTabela" value="#{tarefaBean.desenvolvimento}"></ui:param>
-			</ui:include>
-		</p:column>
-		
-		<p:column style="width:25%">
-			<ui:include src="painel.xhtml">
-				<ui:param name="titleTabela" value="FINALIZADA"></ui:param>
-				<ui:param name="listaTabela" value="#{tarefaBean.finalizada}"></ui:param>
-			</ui:include>
-		</p:column>
-	</p:panelGrid>
-</p:panel>
+			<p:column style="width:25%">
+				<ui:include src="painel.xhtml">
+					<ui:param name="titleTabela" value="BACKLOG"></ui:param>
+					<ui:param name="listaTabela" value="#{tarefaBean.backlog}"></ui:param>
+					<ui:param name="showButtonAdd" value="#{true}"></ui:param>
+				</ui:include>
+			</p:column>
+			<p:column style="width:25%">
+				<ui:include src="painel.xhtml">
+					<ui:param name="titleTabela" value="PRIORIZADA"></ui:param>
+					<ui:param name="listaTabela" value="#{tarefaBean.priorizada}"></ui:param>
+				</ui:include>
+			</p:column>
+			<p:column style="width:25%">
+				<ui:include src="painel.xhtml">
+					<ui:param name="titleTabela" value="EM DESENVOLVIMENTO"></ui:param>
+					<ui:param name="listaTabela" value="#{tarefaBean.desenvolvimento}"></ui:param>
+				</ui:include>
+			</p:column>
+
+			<p:column style="width:25%">
+				<ui:include src="painel.xhtml">
+					<ui:param name="titleTabela" value="FINALIZADA"></ui:param>
+					<ui:param name="listaTabela" value="#{tarefaBean.finalizada}"></ui:param>
+				</ui:include>
+			</p:column>
+		</p:panelGrid>
+	</p:panel>
 
 
 

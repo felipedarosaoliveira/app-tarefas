@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.projeto;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -49,10 +50,13 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			Projeto projeto = em.find(Projeto.class, id);
-			em.remove(projeto);
+			projeto.setStatus(ProjetoStatus.INATIVO);
+			projeto.setDataHoraAtualizacao(new Date());
+			projeto.setDataHoraFim(new Date());
+			em.merge(projeto);
+			resultado = true;
 			em.getTransaction().commit();
 			em.close();
-			resultado = true;
 		}
 		return resultado;
 	}
@@ -65,6 +69,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
 		Root<Projeto> root = query.from(Projeto.class);
 		query.select(root);
+		query.where(cb.isNull(root.get("DataHoraFim")));
 		Query queryFinal = em.createQuery(query);
 		List<Projeto> resultado = queryFinal.getResultList();
 		return resultado;
