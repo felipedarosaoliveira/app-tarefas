@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.usuario;
 
+import br.com.cursojava.apptarefas.utils.Sistema;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class UsuarioBusiness {
@@ -25,6 +26,17 @@ public class UsuarioBusiness {
 		}
 		
 		return resultado;
+	}
+
+	public ValidationResult autenticar(Usuario usuario, String senha) {
+		ValidationResult resultado = new ValidationResult();	
+		if(usuario == null) {
+			resultado.addErrorMessage("email", "email invalido");
+		} else if (!usuario.getSenha().equals(Sistema.gerarHash(senha))) {
+			resultado.addErrorMessage("senha", "senha inválida");
+		}
+		return resultado;
+		
 	}
 
 }
