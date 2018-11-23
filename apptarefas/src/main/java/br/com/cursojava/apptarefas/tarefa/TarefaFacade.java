@@ -24,8 +24,8 @@ public class TarefaFacade {
 		return repositorio.buscarPorId(id);
 	}
 
-	public List<Tarefa> carregarTarefas() {
-		return repositorio.buscarTodos();
+	public List<Tarefa> carregarTarefas(Projeto projeto) {
+		return repositorio.buscarPorProjeto(projeto);
 	}
 
 	public boolean salvar(Tarefa tarefaAtual) {
@@ -68,29 +68,33 @@ public class TarefaFacade {
 	Map<String, Situacao> situacoesPadrao = Sistema.getSituacoesPadrao();
 	List<Situacao> listaSituacoes = carregarSituacao();
 
-	public List<Tarefa> listaBacklog() {
-		List<Tarefa> listaBacklog = carregarTarefas().stream()
+	public List<Tarefa> listaBacklog(Projeto projeto) {
+		List<Tarefa> listaBacklog = carregarTarefas(projeto).stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Backlog"))).collect(Collectors.toList());
 		return listaBacklog;
 	}
 
-	public List<Tarefa> listaPriorizada() {
-		List<Tarefa> listaPriorizada = carregarTarefas().stream()
+	public List<Tarefa> listaPriorizada(Projeto projeto) {
+		List<Tarefa> listaPriorizada = carregarTarefas(projeto).stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Priorizada"))).collect(Collectors.toList());
 		return listaPriorizada;
 	}
 
-	public List<Tarefa> listaDesenvolvimento() {
-		List<Tarefa> listaEmDesenvolvimento = carregarTarefas().stream()
+	public List<Tarefa> listaDesenvolvimento(Projeto projeto) {
+		List<Tarefa> listaEmDesenvolvimento = carregarTarefas(projeto).stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Em desenvolvimento")))
 				.collect(Collectors.toList());
 		return listaEmDesenvolvimento;
 	}
 
-	public List<Tarefa> listaFinalizada() {
-		List<Tarefa> listaFinalizada = carregarTarefas().stream()
+	public List<Tarefa> listaFinalizada(Projeto projeto) {
+		List<Tarefa> listaFinalizada = carregarTarefas(projeto).stream()
 				.filter(t -> t.getSituacao().equals(situacoesPadrao.get("Finalizada"))).collect(Collectors.toList());
 		return listaFinalizada;
+	}
+
+	public List<Tarefa> buscarPorProjeto(Projeto projetoAtual) {
+		return repositorio.buscarPorProjeto(projetoAtual);
 	}
 
 }
