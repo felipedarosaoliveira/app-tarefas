@@ -1,14 +1,15 @@
-
 package br.com.cursojava.apptarefas.tarefa;
 
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import br.com.cursojava.apptarefas.projeto.Projeto;
 import br.com.cursojava.apptarefas.situacao.Situacao;
@@ -27,6 +28,8 @@ public class TarefaBean extends AbstractBean {
 	private boolean podeEditar = true;
 	private List<Tarefa> tarefas;
 	private List<Situacao> situacoes;
+	
+
 
 	public String getOid() {
 		return oid;
@@ -236,5 +239,25 @@ public class TarefaBean extends AbstractBean {
 
 	public int getQtdFinalizada() {
 		return getFinalizada().size();
+	}
+	
+	private Projeto projetoAtual;
+
+	@PostConstruct
+	public void carregarDados() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		if (session != null) {
+			setProjetoAtual((Projeto) session.getAttribute("projetoAtual"));
+		}
+
+	}
+
+	public Projeto getProjetoAtual() {
+		return projetoAtual;
+	}
+
+	public void setProjetoAtual(Projeto projetoAtual) {
+		this.projetoAtual = projetoAtual;
 	}
 }

@@ -57,21 +57,21 @@
 	</ui:define>
 
 
-	<ui:define name="dialogsUsuario">
+	<ui:define name="dialogs">
 		<p:dialog header="Selecione o Usuario" widgetVar="dialogUser">
 			<ui:include id="dialogUser" src="/usuarios/modalUsuarios.xhtml">
 				<ui:param name="update" value="form:usuarioTarefa"></ui:param>
 			</ui:include>
 		</p:dialog>
-	</ui:define>
-
-	<ui:define name="dialogsSituacao">
+		
 		<p:dialog header="Selecione a Situação" widgetVar="dialogSit">
 			<ui:include id="dialogSit" src="/situacao/modalSituacao.xhtml">
 				<ui:param name="update" value="form:situacaoTarefa"></ui:param>
 			</ui:include>
 		</p:dialog>
 	</ui:define>
+
+	
 
 
 </ui:composition>

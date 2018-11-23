@@ -30,19 +30,14 @@
 			</p:inputText>
 			<p:message for="nome" id="messageNome" />
 		</div>
-
+		<div class="app-form-group">
 		<p:outputLabel>Status</p:outputLabel>
 		<p:selectOneMenu value="#{usuarioBean.status}"
-			disabled="#{!usuarioBean.podeEditar}" style="width:90%">
+			styleClass="app-form-control" disabled="#{!usuarioBean.podeEditar}">
 			<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
 		</p:selectOneMenu>
-		<p></p>
-		<div align="center">
-			<ui:include src="../button-bar.xhtml">
-				<ui:param name="bean" value="#{usuarioBean}"></ui:param>
-			</ui:include>
-		</div>
-		
+		</div>	
+
 		<div class="app-form-group">
 			<p:outputLabel value="Email:" for="email" />
 			<p:inputText id="email" value="#{usuarioBean.email}"
