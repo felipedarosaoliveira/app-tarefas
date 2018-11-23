@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.usuario;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -54,6 +55,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		CriteriaQuery<Usuario> cQuery = builder.createQuery(Usuario.class);
 		Root<Usuario> usuarios = cQuery.from(Usuario.class);
 		cQuery.select(usuarios);
+		// criar o filtro para verificar se dataremoção nao for nulo
 		TypedQuery<Usuario> query = em.createQuery(cQuery);
 		List<Usuario> results = query.getResultList();
 		return results;
@@ -67,7 +69,8 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 			CriteriaQuery<Usuario> cQuery = builder.createQuery(Usuario.class);
 			Root<Usuario> usuarios = cQuery.from(Usuario.class);
 			cQuery.select(usuarios);
-			cQuery.where(builder.equal(usuarios.get("id"), id));
+			
+			cQuery.where (builder.and(builder.equal(usuarios.get("id"), id), builder.isNull(usuarios.get("dataHoraRemocao"))));
 			TypedQuery<Usuario> query = em.createQuery(cQuery);
 			Usuario result = query.getSingleResult();
 			return result;
@@ -95,10 +98,15 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			try {
 				em.getTransaction().begin();
-				em.remove(em.find(Usuario.class, id));
+				Usuario usuario = em.find(Usuario.class, id);
+				usuario.setStatus(StatusUsuario.INATIVO);
+				usuario.setDataHoraAtualizacao(new Date());
+				usuario.setDataHoraRemocao(new Date());
+				em.merge(usuario);
+				resultado = true;
 				em.getTransaction().commit();
 				em.close();
-				resultado = true;
+				
 			} catch (Exception e) {
 				if (em != null && em.isOpen()) {
 					em.getTransaction().rollback();
