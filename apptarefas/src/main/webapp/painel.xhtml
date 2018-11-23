@@ -4,14 +4,18 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h3>
-		#{titleTabela}
-		<p:button rendered="#{showButtonAdd}" value="+" outcome="./projeto/formulario.jsf?faces-redirect=true">
-		</p:button>
-	</h3>
 
-	<ui:repeat var="tarefa" value="#{listaTabela}">
-		<ui:include src="componente-tarefa.xhtml"></ui:include>
-		<ui:param name="tarefa" value="#{tarefa}"></ui:param>
-	</ui:repeat>
-	</ui:composition>
+
+	<p:panel style="text-align:center; position:relative" >
+		<f:facet name="header">#{titleTabela}
+			<p:button rendered="#{showButtonAdd}" value="+"
+				outcome="./tarefa/formulario.jsf?faces-redirect=true"
+				style="position:absolute; right:5px; top: 5px; display:flex"  />
+		</f:facet>
+
+		<ui:repeat var="tarefa" value="#{listaTabela}">
+			<ui:include src="componente-tarefa.xhtml"></ui:include>
+			<ui:param name="tarefa" value="#{tarefa}"></ui:param>
+		</ui:repeat>
+	</p:panel>
+</ui:composition>
