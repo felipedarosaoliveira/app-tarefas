@@ -20,20 +20,33 @@ public class AppFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String path = req.getServletPath();
-		if (!req.getRequestURI().contains(".")) {
-			if (!"/login.xhtml".equals(path)) {
-				boolean ok = validarAutorizacao(req);
-				if (ok) {
-					chain.doFilter(request, response);
-				} else {
-					HttpServletResponse resp = (HttpServletResponse) response;
-					resp.sendRedirect(req.getContextPath() + "/login.xhtml");
-				}
-			} else {
+		//se é um recurso publico então deixa passar
+		//senão verifica se está logado
+		System.out.println("path ==> " + path);
+		if (!isPublico(path)) {
+			boolean ok = validarAutorizacao(req);
+			if (ok) {
 				chain.doFilter(request, response);
+			} else {
+				HttpServletResponse resp = (HttpServletResponse) response;
+				resp.sendRedirect(req.getContextPath() + "/login.xhtml");
 			}
-			System.out.println("path ==> " + path);
+		} else {
+			chain.doFilter(request, response);
 		}
+		if (req.getRequestURI().matches(".*(css|jpg|png|gif|js)")) {
+			
+			
+		}
+	}
+
+	private boolean isPublico(String path) {
+		if(path != null && (path.startsWith("/javax.faces.resource/" ) || 
+		   path.equals("/login.xhtml") ||
+		   path.equals("/login.jsf"))){
+			return true;
+		}
+		return false;
 	}
 
 	private boolean validarAutorizacao(HttpServletRequest req) {
