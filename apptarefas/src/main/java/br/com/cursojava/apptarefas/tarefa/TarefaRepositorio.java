@@ -110,7 +110,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cQuery = builder.createQuery(Long.class);
 		Root<Tarefa> tarefas = cQuery.from(Tarefa.class);
-		cQuery.multiselect(builder.count(tarefas));
+		cQuery.multiselect(builder.count(tarefas),builder.isNull(tarefas.get("dataHoraRemocao")));
 		TypedQuery<Long> query = em.createQuery(cQuery);
 		Long results = query.getSingleResult();
 		return results;
@@ -136,7 +136,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		CriteriaQuery<Tarefa> cQuery = builder.createQuery(Tarefa.class);
 		Root<Tarefa> tarefas = cQuery.from(Tarefa.class);
 		cQuery.select(tarefas);
-		cQuery.where(builder.equal(tarefas.get("projeto"), projetoAtual));
+		cQuery.where(builder.and(builder.equal(tarefas.get("projeto"), projetoAtual),builder.isNull(tarefas.get("dataHoraRemocao"))));
 		TypedQuery<Tarefa> query = em.createQuery(cQuery);
 		List<Tarefa> resultado = query.getResultList();
 
