@@ -43,11 +43,8 @@ public class ProjetoFacade {
 
 	public boolean removerProjeto(Projeto projetoAtual) {
 		boolean ok = false;
-		projetoAtual.setStatus(ProjetoStatus.INATIVO);
-		projetoAtual.setDataHoraAtualizacao(new Date());
-		projetoAtual.setDataHoraFim(new Date());
-		repositorio.atualizar(projetoAtual);
-		ok = repositorio.buscarPorId(projetoAtual.getId()).getStatus().equals(ProjetoStatus.INATIVO);
+		int id = projetoAtual.getId();
+		ok = repositorio.remover(id);
 		return ok;
 	}
 
