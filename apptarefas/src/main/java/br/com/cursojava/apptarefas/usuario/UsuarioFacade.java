@@ -36,6 +36,7 @@ public class UsuarioFacade {
 	}
 
 	public boolean removerContato(Usuario usuarioAtual) {
+		//boolean ok = false;
 		return repositorio.remover(usuarioAtual.getId());
 	}
 
