@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.com.cursojava.apptarefas.utils.CrudRepository;
@@ -83,7 +84,10 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
 		Root<Projeto> root = query.from(Projeto.class);
 		query.select(root);
-		query.where(cb.equal(root.get("id"), id));
+		Predicate equal = cb.equal(root.get("id"), id);
+		Predicate naoRemovido = cb.isNull(root.get("DataHoraFim"));
+		Predicate resultadoAnd = cb.and(equal, naoRemovido);
+		query.where(resultadoAnd);
 		Query queryFinal = em.createQuery(query);
 		Projeto resultado = (Projeto)queryFinal.getSingleResult();
 		return resultado;
@@ -95,7 +99,8 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> queryCCount = cb.createQuery(Long.class);
-		queryCCount.select(cb.count(queryCCount.from(Projeto.class)));
+		Root<Projeto> root = queryCCount.from(Projeto.class);
+		queryCCount.select(cb.count(root)).where(cb.isNull(root.get("DataHoraFim")));
 		Query queryCCountFinal = em.createQuery(queryCCount);
 		Long resultado = (Long) queryCCountFinal.getSingleResult();
 		return resultado;
