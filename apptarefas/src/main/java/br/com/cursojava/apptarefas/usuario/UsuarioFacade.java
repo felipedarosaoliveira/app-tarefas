@@ -49,6 +49,7 @@ public class UsuarioFacade {
 
 	public ValidationResult autenticar(String email, String senha,AppSession session) {
 		Usuario usuario = repositorio.buscarPorEmail(email);
+		System.out.println(usuario);
 		 ValidationResult autenticar = business.autenticar(usuario, senha);
 		 if(autenticar.isOk()) {
 			 session.addAttribute("usuarioLogado", usuario);
