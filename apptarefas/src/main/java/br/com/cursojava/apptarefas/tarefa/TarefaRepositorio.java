@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.tarefa;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -58,8 +59,9 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			try {
 				em.getTransaction().begin();
-				em.merge(em.find(Tarefa.class, id));
-				//em.remove(em.find(Usuario.class, id));
+				Tarefa tarefa = em.find(Tarefa.class, id);
+				tarefa.setDataHoraRemocao(new Date());
+				em.merge(tarefa);
 				em.getTransaction().commit();
 				em.close();
 				resultado = true;
