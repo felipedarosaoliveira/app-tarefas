@@ -22,7 +22,7 @@ public class SituacaoBean extends AbstractBean {
 	private List<Situacao> situacoes;
 	private String oid;
 	private boolean novo = true;
-	private boolean podeEditar = true;
+	private boolean podeEditar = false;
 
 	public String getOid() {
 		return oid;
