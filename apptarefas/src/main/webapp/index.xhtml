@@ -5,58 +5,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="template.xhtml">
 
 	<ui:param name="headerTitle" value="Titulo Index"></ui:param>
 	<ui:param name="breadcrumb" value="#{homeBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
-	   <f:metadata>
-		<f:viewParam name="nome" value="#{homeBean.nome}" />
-	</f:metadata>
-	<h1>
-		 
-		<h:outputText value="#{homeBean.mensagem}" />
-	</h1>
-	
-	<h3><h:outputLabel value="#{tarefaBean.projetoAtual.nome}"></h:outputLabel>
-</h3>
-	
-	<div class="app-main-panel">
-	<div class="app-card-panel">
-		<ui:repeat var="atual" value="#{homeBean.nomes}">
-			<ui:include src="./card.xhtml">
-				<ui:param name="nome" value="#{atual}"></ui:param>
-			</ui:include>
-		</ui:repeat>
-	</div>
-	<div class="app-card-panel">
-		<ui:repeat var="atual" value="#{homeBean.nomes}">
-			<ui:include src="./card.xhtml">
-				<ui:param name="nome" value="#{atual}"></ui:param>
-			</ui:include>
-		</ui:repeat>
-	</div>
-	<div class="app-card-panel">
-		<ui:repeat var="atual" value="#{homeBean.nomes}">
-			<ui:include src="./card.xhtml">
-				<ui:param name="nome" value="#{atual}"></ui:param>
-			</ui:include>
-		</ui:repeat>
-	</div>
-	<div class="app-card-panel">
-		<ui:repeat var="atual" value="#{homeBean.nomes}">
-			<ui:include src="./card.xhtml">
-				<ui:param name="nome" value="#{atual}"></ui:param>
-			</ui:include>
-		</ui:repeat>
-	</div>
-	
-	</div>
-	
+		<f:metadata>
+			<f:viewParam name="nome" value="#{homeBean.nome}" />
+		</f:metadata>
+		<h1>
+
+			<h:outputText value="#{homeBean.mensagem}" />
+		</h1>
+
+		<h3>
+			<h:outputLabel value="#{tarefaBean.projetoAtual.nome}"></h:outputLabel>
+		</h3>
+
+		<div class="app-main-panel">
+			<div class="app-card-panel">
+				<p:button outcome="./projeto/lista.jsf" value="Projeto" icon="fa fa-cube" style="margin-right:20px;">					
+				</p:button>
+			</div>
+			<div class="app-card-panel">
+				<p:button outcome="./usuarios/lista.jsf" value="Usuário" 
+					style="margin-right:20px;" icon="fa fa-user">					
+				</p:button>
+			</div>
+			<div class="app-card-panel">
+				<p:button outcome="./situacao/lista.jsf" value="Situação" icon="fa fa-compass"
+					style="margin-right:20px;">					
+				</p:button>
+			</div>
+
+
+		</div>
+
 	</ui:define>
-	
+
 </ui:composition>
 </html>
 
