@@ -1,4 +1,6 @@
+
 package br.com.cursojava.apptarefas.usuario;
+
 
 import java.util.Date;
 
@@ -56,3 +58,4 @@ public class UsuarioRepositorioTest {
 	}
 
 }
+

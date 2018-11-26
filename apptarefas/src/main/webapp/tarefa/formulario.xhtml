@@ -28,7 +28,10 @@
 		</div>
 		<div class="app-form-group">
 			<p:outputLabel value="Nome: " for="nome" />
-			<p:inputText id="nome" value="#{tarefaBean.nome}" style="width:95%">
+
+			<p:inputText id="nome" value="#{tarefaBean.nome}" style="width:95%" disabled="#{!tarefaBean.podeEditar}">
+				<f:validateLength minimum="3" />
+
 				<f:ajax event="blur" render="messageNome" />
 			</p:inputText>
 
@@ -48,14 +51,14 @@
 			<p:inputText value="#{tarefaBean.usuario.nome}" disabled="true"
 				id="usuarioTarefa" />
 			<p:commandButton value="Selecionar Usuário" type="button" ajax="true"
-				onclick="PF('dialogUser').show()" />
+				onclick="PF('dialogUser').show()" disabled="#{!tarefaBean.podeEditar}" />
 		</div>
 		<div class="app-form-group">
 			<p:outputLabel>Situação: </p:outputLabel>
 			<p:inputText value="#{tarefaBean.situacao.nome}" disabled="true"
 				id="situacaoTarefa" />
 			<p:commandButton value="Selecionar Situação" type="button"
-				ajax="true" onclick="PF('dialogSit').show()" />
+				ajax="true" onclick="PF('dialogSit').show()" disabled="#{!tarefaBean.podeEditar}" />
 			<p:outputLabel>Projeto: </p:outputLabel>
 			<p:inputText value="#{tarefaBean.projeto.nome}" disabled="true"
 				id="projetoTarefa" />

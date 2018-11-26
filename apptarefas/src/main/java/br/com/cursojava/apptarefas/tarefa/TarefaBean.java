@@ -261,4 +261,11 @@ public class TarefaBean extends AbstractBean {
 		return "./tarefa/formulario.xhtml";
 	}
 
+	public String anexarTarefa() {
+		addMensagem("Método a ser implementado na versão 2.1!", FacesMessage.SEVERITY_INFO);
+		System.out.println("MEnsgemss");
+		return "";
+
+	}
+
 }
