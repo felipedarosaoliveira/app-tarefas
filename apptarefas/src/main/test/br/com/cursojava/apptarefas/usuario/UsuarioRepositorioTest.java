@@ -1,6 +1,7 @@
 
 package br.com.cursojava.apptarefas.usuario;
 
+
 import java.util.Date;
 
 import org.junit.Assert;
@@ -57,5 +58,4 @@ public class UsuarioRepositorioTest {
 	}
 
 }
-
 
