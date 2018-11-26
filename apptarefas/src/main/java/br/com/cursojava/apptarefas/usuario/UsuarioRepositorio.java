@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.com.cursojava.apptarefas.utils.CrudRepository;
@@ -51,11 +52,12 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 	@Override
 	public List<Usuario> buscarTodos() {
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+		em.getTransaction().begin();
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Usuario> cQuery = builder.createQuery(Usuario.class);
 		Root<Usuario> usuarios = cQuery.from(Usuario.class);
 		cQuery.select(usuarios);
-		// criar o filtro para verificar se dataremoção nao for nulo
+		cQuery.where(builder.isNull(usuarios.get("dataHoraRemocao")));
 		TypedQuery<Usuario> query = em.createQuery(cQuery);
 		List<Usuario> results = query.getResultList();
 		return results;
@@ -65,12 +67,15 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 	public Usuario buscarPorId(int id) {
 		if (id >= 0) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+			em.getTransaction().begin();
 			CriteriaBuilder builder = em.getCriteriaBuilder();
 			CriteriaQuery<Usuario> cQuery = builder.createQuery(Usuario.class);
 			Root<Usuario> usuarios = cQuery.from(Usuario.class);
 			cQuery.select(usuarios);
-			
-			cQuery.where (builder.and(builder.equal(usuarios.get("id"), id), builder.isNull(usuarios.get("dataHoraRemocao"))));
+			Predicate equal = builder.equal(usuarios.get("id"), id);
+			Predicate naoRemovido = builder.isNull(usuarios.get("dataHoraRemocao"));
+			Predicate resultAnd = builder.and(equal, naoRemovido);
+			cQuery.where(resultAnd);
 			TypedQuery<Usuario> query = em.createQuery(cQuery);
 			Usuario result = query.getSingleResult();
 			return result;
@@ -106,7 +111,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 				resultado = true;
 				em.getTransaction().commit();
 				em.close();
-				
+
 			} catch (Exception e) {
 				if (em != null && em.isOpen()) {
 					em.getTransaction().rollback();
@@ -116,7 +121,6 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		}
 		return resultado;
 	}
-
 
 	public Usuario buscarPorEmail(String email) {
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();

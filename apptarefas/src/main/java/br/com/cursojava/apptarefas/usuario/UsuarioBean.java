@@ -100,13 +100,7 @@ public class UsuarioBean extends AbstractBean{
 				}
 			}
 		}
-//		if (ok) {
-//			addMessage("Usuário salva com sucesso", FacesMessage.SEVERITY_INFO);
-//			novo = false;
-//			podeEditar = false;
-//		} else {
-//			addMessage("Não foi possível salvar o Usuário", FacesMessage.SEVERITY_ERROR);
-//		}
+
 	}
 
 	public void remover() {
