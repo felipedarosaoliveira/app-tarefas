@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
+import br.com.cursojava.apptarefas.utils.Sistema;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 @ManagedBean
@@ -164,6 +165,7 @@ public class UsuarioBean extends AbstractBean{
 
 	public void setSenha(String senha) {
 		if (usuarioAtual != null) {
+		senha = Sistema.gerarHash(senha);             // -- implementar na classe UsuarioFacade para validar somente na edição de usuario.
 			usuarioAtual.setSenha(senha);
 		}
 	}

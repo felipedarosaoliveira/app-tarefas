@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.cursojava.apptarefas.utils.AppSession;
+import br.com.cursojava.apptarefas.utils.Sistema;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class UsuarioFacade {
@@ -21,9 +22,17 @@ public class UsuarioFacade {
 
 	public ValidationResult salvar(Usuario usuarioAtual) {
 		boolean ok = false;
+
 		usuarioAtual.setDataHoraAtualizacao(new Date());
+		
+//		if(usuarioAtual != null){							testando a alteração de senha para criptografia
+//			String senha = Sistema.gerarHash(senha);
+//		
+//		}
+
 		ValidationResult result = business.validar(usuarioAtual);
 		if (result.isOk()) {
+			
 			if (usuarioAtual.getId() == null) {
 				ok = repositorio.inserir(usuarioAtual);
 			} else {
@@ -33,6 +42,7 @@ public class UsuarioFacade {
 				result.addErrorMessage("persistencia", "Não foi possível salvar os dados do usuário.");
 			}
 		}
+		
 		return result;
 	}
 
@@ -47,13 +57,13 @@ public class UsuarioFacade {
 		return repositorio.buscarTodos();
 	}
 
-	public ValidationResult autenticar(String email, String senha,AppSession session) {
+	public ValidationResult autenticar(String email, String senha, AppSession session) {
 		Usuario usuario = repositorio.buscarPorEmail(email);
 		System.out.println(usuario);
-		 ValidationResult autenticar = business.autenticar(usuario, senha);
-		 if(autenticar.isOk()) {
-			 session.addAttribute("usuarioLogado", usuario);
-		 }
-		 return autenticar;
+		ValidationResult autenticar = business.autenticar(usuario, senha);
+		if (autenticar.isOk()) {
+			session.addAttribute("usuarioLogado", usuario);
+		}
+		return autenticar;
 	}
 }
