@@ -50,6 +50,9 @@ public class UsuarioRepositorioTest {
 		dao.atualizar(user);
 		Assert.assertEquals(dao.buscarPorId(3).getNome(), "Maria");
 	}
-	
+	@Test
+	public void buscarPorEmail() {
+		Assert.assertEquals(dao.buscarPorEmail("ravena@gmail.com").getNome(), "Ravena");
+	}
 
 }
