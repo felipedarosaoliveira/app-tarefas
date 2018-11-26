@@ -35,7 +35,6 @@
 
 			<p:inputText styleClass="app-form-control" id="nome"
 				value="#{projetoBean.nome}" disabled="#{!projetoBean.podeEditar}">
-				<f:validateLength minimum="3" />
 				<f:ajax event="blur" render="messageNome" />
 			</p:inputText>
 
