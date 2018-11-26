@@ -43,6 +43,7 @@ public class ProjetoBean extends AbstractBean{
 				Integer id = Integer.parseInt(oid);
 				projetoAtual = facade.carregarProjeto(id);
 				setNovo(false);
+				visualizar();
 			} catch (NumberFormatException ex) {
 				addMessage("ID Inválido!", FacesMessage.SEVERITY_ERROR);
 			}
@@ -143,6 +144,9 @@ public class ProjetoBean extends AbstractBean{
 
 	public void editar() {
 		this.setPodeEditar(true);
+	}
+	public void visualizar() {
+		this.setPodeEditar(false);
 	}
 
 	public void novo() {
