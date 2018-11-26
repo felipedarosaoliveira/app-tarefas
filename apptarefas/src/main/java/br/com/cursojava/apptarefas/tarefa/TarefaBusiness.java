@@ -25,8 +25,6 @@ public class TarefaBusiness {
 		try {
 		if(situacao == null || "".equals(situacao.getNome().trim())) {
 			result.addErrorMessage("situacao", "O campo Situação é obrigatório");
-		}else if(situacao.getNome().length() < 3) {
-			result.addErrorMessage("situacao", "O campo Situação deve possuir, no mínimo, 3 caracteres!");
 		}
 		}catch(NullPointerException e) {
 			result.addErrorMessage("situacao", "O campo Situação é obrigatório");

@@ -3,14 +3,17 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<link rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+	</h:head>
 
 
-
-	<p:panel style="text-align:center; position:relative" >
+	<p:panel style="text-align:center; position:relative">
 		<f:facet name="header">#{titleTabela}
 			<p:button rendered="#{showButtonAdd}" value="+"
 				outcome="./tarefa/formulario.jsf?faces-redirect=true"
-				style="position:absolute; right:5px; top: 5px; display:flex"  />
+				style="position:absolute; right:5px; top: 5px; display:flex" />
 		</f:facet>
 
 		<ui:repeat var="tarefa" value="#{listaTabela}">

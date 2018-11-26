@@ -11,11 +11,19 @@
 	<f:viewParam name="oid" value="#{projetoBean.oid}"></f:viewParam>
 </f:metadata>
 <ui:composition template="../template-form.xhtml">
+	<ui:param name="title" value="Form Projetos"></ui:param>
 	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
 	<ui:param name="bean" value="#{projetoBean}"></ui:param>
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 
 	<ui:define name="content-form">
+
+		<f:metadata>
+			<f:viewParam name="oid" value="#{projetoBean.oid}" />
+		</f:metadata>
+
+
+
 		<div class="app-form-group">
 			<p:outputLabel value="Id: " />
 			<p:inputText value="#{projetoBean.id}" disabled="true"
