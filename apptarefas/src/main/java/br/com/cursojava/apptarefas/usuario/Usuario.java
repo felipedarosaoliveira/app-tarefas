@@ -62,6 +62,11 @@ public class Usuario {
 		this.dataHoraRemocao = dataHoraRemocao;
 		this.status = status;
 	}
+	
+	public Usuario(Integer id, String nome, String email, String senha, Date dataHoraCriacao, Date dataHoraAtualizacao,
+			 StatusUsuario status) {
+		this(id, nome,email,senha,dataHoraCriacao,dataHoraAtualizacao,null,status);
+	}
 
 	@Override
 	public int hashCode() {
