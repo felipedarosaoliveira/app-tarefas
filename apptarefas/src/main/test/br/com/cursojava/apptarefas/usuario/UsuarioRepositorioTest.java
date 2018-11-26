@@ -10,16 +10,16 @@ public class UsuarioRepositorioTest {
 
 	UsuarioRepositorio dao;
 
-	@Before
-	public void antesDeCadaTest() {
-		dao = new UsuarioRepositorio();
-		dao.inserir(new Usuario(null, "Usuario01", "user01@teste.com", "senha000", new Date(), new Date(),
-				StatusUsuario.ATIVO));
-		dao.inserir(new Usuario(null, "Usuario02", "user02@teste.com", "senha000", new Date(), new Date(),
-				StatusUsuario.ATIVO));
-		dao.inserir(new Usuario(null, "Usuario03", "user03@teste.com", "senha000", new Date(), new Date(),
-				StatusUsuario.INATIVO));
-	}
+//	@Before
+//	public void antesDeCadaTest() {
+//		dao = new UsuarioRepositorio();
+//		dao.inserir(new Usuario(null, "Usuario01", "user01@teste.com", "senha000", new Date(), new Date(),
+//				StatusUsuario.ATIVO));
+//		dao.inserir(new Usuario(null, "Usuario02", "user02@teste.com", "senha000", new Date(), new Date(),
+//				StatusUsuario.ATIVO));
+//		dao.inserir(new Usuario(null, "Usuario03", "user03@teste.com", "senha000", new Date(), new Date(),
+//				StatusUsuario.INATIVO));
+//	}
 	
 	@Test
 	public void contarUsuarios() {
