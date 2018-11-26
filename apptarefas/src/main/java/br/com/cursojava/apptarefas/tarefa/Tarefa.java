@@ -1,5 +1,7 @@
 package br.com.cursojava.apptarefas.tarefa;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,44 +16,55 @@ import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 
 @Entity
-@Table(name="tarefas")
+@Table(name = "tarefas")
 public class Tarefa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column
 	private String nome;
-	
+
 	@Column
 	private String descricao;
 
+	@Column(name = "\"dataHoraCriacao\"")
+	private Date dataHoraCriacao;
+
+	@Column(name = "\"dataHoraAtualizacao\"")
+	private Date dataHoraAtualizacao;
+
+	@Column(name = "\"dataHoraRemocao\"")
+	private Date dataHoraRemocao;
+
 	@ManyToOne
-	@JoinColumn(name="\"projetoId\"")
+	@JoinColumn(name = "\"projetoId\"")
 	private Projeto projeto;
 
 	@ManyToOne
-	@JoinColumn(name="\"situacaoId\"")
+	@JoinColumn(name = "\"situacaoId\"")
 	private Situacao situacao;
 
 	@ManyToOne
-	@JoinColumn(name="\"usuarioId\"")
+	@JoinColumn(name = "\"usuarioId\"")
 	private Usuario usuario;
 
 	public Tarefa() {
 		super();
 	}
 
-	public Tarefa(Integer id, String nome, String descricao, Projeto projetos, Situacao situacao,
-			Usuario usuarios) {
+	public Tarefa(Integer id, String nome, String descricao, Date dataHoraCriacao, Date dataHoraAtualizacao,
+			Projeto projeto, Situacao situacao, Usuario usuario) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
-		this.projeto = projetos;
+		this.dataHoraCriacao = dataHoraCriacao;
+		this.dataHoraAtualizacao = dataHoraAtualizacao;
+		this.projeto = projeto;
 		this.situacao = situacao;
-		this.usuario = usuarios;
+		this.usuario = usuario;
 	}
 
 	public Integer getId() {
@@ -100,6 +113,30 @@ public class Tarefa {
 
 	public void setUsuario(Usuario usuarios) {
 		this.usuario = usuarios;
+	}
+
+	public Date getDataHoraCriacao() {
+		return dataHoraCriacao;
+	}
+
+	public void setDataHoraCriacao(Date dataHoraCriacao) {
+		this.dataHoraCriacao = dataHoraCriacao;
+	}
+
+	public Date getDataHoraAtualizacao() {
+		return dataHoraAtualizacao;
+	}
+
+	public void setDataHoraAtualizacao(Date dataHoraAtualizacao) {
+		this.dataHoraAtualizacao = dataHoraAtualizacao;
+	}
+
+	public Date getDataHoraRemocao() {
+		return dataHoraRemocao;
+	}
+
+	public void setDataHoraRemocao(Date dataHoraRemocao) {
+		this.dataHoraRemocao = dataHoraRemocao;
 	}
 
 	@Override
