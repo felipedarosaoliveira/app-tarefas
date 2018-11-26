@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.tarefa;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -11,10 +12,12 @@ import br.com.cursojava.apptarefas.situacao.SituacaoFacade;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 import br.com.cursojava.apptarefas.usuario.UsuarioFacade;
 import br.com.cursojava.apptarefas.utils.Sistema;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class TarefaFacade {
 
 	private TarefaRepositorio repositorio = new TarefaRepositorio();
+	private TarefaBusiness business = new TarefaBusiness();
 
 	public Tarefa novaTarefa() {
 		return new Tarefa();
@@ -28,14 +31,22 @@ public class TarefaFacade {
 		return repositorio.buscarPorProjeto(projeto);
 	}
 
-	public boolean salvar(Tarefa tarefaAtual) {
+	public ValidationResult salvar(Tarefa tarefaAtual) {
 		boolean resultado = false;
-		if (tarefaAtual.getId() == null) {
-			resultado = repositorio.inserir(tarefaAtual);
-		} else {
-			resultado = repositorio.atualizar(tarefaAtual);
+		tarefaAtual.setDataHoraAtualizacao(new Date());
+		ValidationResult result = business.validar(tarefaAtual);
+		if (result.isOk()) {
+			if (tarefaAtual.getId() == null) {
+				tarefaAtual.setDataHoraCriacao(new Date());
+				resultado = repositorio.inserir(tarefaAtual);
+			} else {
+				resultado = repositorio.atualizar(tarefaAtual);
+			}
+			if (!resultado) {
+				result.addErrorMessage("persistencia", "Não foi possível salvar os dados da tarefa");
+			}
 		}
-		return resultado;
+		return result;
 	}
 
 	public boolean removerTarefa(Tarefa tarefaAtual) {
