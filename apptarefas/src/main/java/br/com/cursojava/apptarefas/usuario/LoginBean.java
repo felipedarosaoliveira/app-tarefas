@@ -33,7 +33,6 @@ public class LoginBean {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 	
 	public String autenticar() {
 		FacesContext ctx = FacesContext.getCurrentInstance();		
