@@ -15,21 +15,26 @@
 
 	<ui:define name="content">
 		<p:dataTable value="#{situacaoBean.situacoes}" var="atual">
-			<p:column headerText="Id">
-				<h:outputText value="#{atual.id}" />
+
+			<p:column headerText="Id"  sortBy="#{atual.id}">
+				<h:outputLink value="./formulario.xhtml">
+					<f:param name="oid" value="#{atual.id}" />
+					<h:outputText value="#{atual.id}" />
+				</h:outputLink>
 			</p:column>
-			<p:column headerText="Nome">
+
+			<p:column headerText="Nome" >
 				<h:outputText value="#{atual.nome}" />
 			</p:column>
-			<p:column headerText="Tipo">
+			<p:column headerText="Tipo" >
 				<h:outputText value="#{atual.tipo}" />
 			</p:column>
-			<p:column headerText="Status">
+			<p:column headerText="Status" >
 				<h:outputText value="#{atual.status}" />
 			</p:column>
-	
+
 		</p:dataTable>
-		
+
 	</ui:define>
 </ui:composition>
 </html>
