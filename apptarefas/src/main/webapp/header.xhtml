@@ -5,6 +5,6 @@
 	xmlns:p="http://primefaces.org/ui">
 	<div>
 		<h1>APP-Tarefas</h1>
-		<p>Usuário: #{usuarioLogado.nome}</p>
+		<p>Usuário: #{usuarioLogado.nome}<p:commandLink value="Sair" action="#{loginBean.logout()}"></p:commandLink></p>
 	</div>
 </ui:composition>
