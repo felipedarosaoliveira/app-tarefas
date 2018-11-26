@@ -16,17 +16,17 @@
 					<p:separator></p:separator>
 					<h:panelGrid columns="2" style="width:10%">
 						<h:form>
-							<h:outputLink value="#{tarefaBean.editarTarefa()}" >
-									<i class="fa fa-fw fa-edit"></i>
+							<h:outputLink value="#{tarefaBean.editarTarefa()}">
+								<i class="fa fa-fw fa-edit"></i>
 								<f:param name="oid" value="#{tarefa.id}" />
-								</h:outputLink>
+							</h:outputLink>
 
 						</h:form>
-						<h:form>
-							<ui:include src="/icones/iconeAnexar.xhtml">
-								<ui:param name="id" value="#{tarefa.id}"></ui:param>
-							</ui:include>
-						</h:form>
+					
+						<p:commandButton icon="fa fa-paperclip"
+							action="#{tarefaBean.anexarTarefa()}" process="@this"
+							update=":messages" style="background-color:transparent;border:none" />
+
 					</h:panelGrid>
 				</h:panelGrid>
 			</p:panel>
