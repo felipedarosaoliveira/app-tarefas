@@ -130,7 +130,12 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		cQuery.select(usuarios);
 		cQuery.where(builder.equal(usuarios.get("email"), email));
 		TypedQuery<Usuario> query = em.createQuery(cQuery);
-		Usuario result = query.getSingleResult();
+		Usuario result = null;
+		try {
+			result = query.getSingleResult();
+		}catch(Exception e) {
+			result = null;
+		}
 		return result;
 	}
 }

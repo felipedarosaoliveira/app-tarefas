@@ -10,6 +10,11 @@
 <h:head></h:head>
 
 <ui:composition template="/template-form.xhtml">
+	<f:metadata>
+		<f:viewParam name="oid" value="#{tarefaBean.oid}" />
+	</f:metadata>
+
+	<ui:param name="title" value="Form Tarefas"></ui:param>
 	<ui:param name="headerTitle" value="Form Tarefas"></ui:param>
 	<ui:param name="bean" value="#{tarefaBean}"></ui:param>
 	<ui:param name="breadcrumb" value="#{tarefaBean.breadcrumb}"></ui:param>
@@ -52,7 +57,9 @@
 				id="situacaoTarefa" />
 			<p:commandButton value="Selecionar Situação" type="button"
 				ajax="true" onclick="PF('dialogSit').show()" />
-
+			<p:outputLabel>Projeto: </p:outputLabel>
+			<p:inputText value="#{tarefaBean.projeto.nome}" disabled="true"
+				id="projetoTarefa" />
 		</div>
 	</ui:define>
 
@@ -63,7 +70,7 @@
 				<ui:param name="update" value="form:usuarioTarefa"></ui:param>
 			</ui:include>
 		</p:dialog>
-		
+
 		<p:dialog header="Selecione a Situação" widgetVar="dialogSit">
 			<ui:include id="dialogSit" src="/situacao/modalSituacao.xhtml">
 				<ui:param name="update" value="form:situacaoTarefa"></ui:param>
@@ -71,7 +78,7 @@
 		</p:dialog>
 	</ui:define>
 
-	
+
 
 
 </ui:composition>
