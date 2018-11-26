@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.tarefa;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -57,8 +58,9 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			try {
 				em.getTransaction().begin();
-				em.merge(em.find(Tarefa.class, id));
-				//em.remove(em.find(Usuario.class, id));
+				Tarefa tarefa = em.find(Tarefa.class, id);
+				tarefa.setDataHoraRemocao(new Date());
+				em.merge(tarefa);
 				em.getTransaction().commit();
 				em.close();
 				resultado = true;
@@ -109,7 +111,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cQuery = builder.createQuery(Long.class);
 		Root<Tarefa> tarefas = cQuery.from(Tarefa.class);
-		cQuery.multiselect(builder.count(tarefas));
+		cQuery.multiselect(builder.count(tarefas),builder.isNull(tarefas.get("dataHoraRemocao")));
 		TypedQuery<Long> query = em.createQuery(cQuery);
 		Long results = query.getSingleResult();
 		return results;
@@ -135,7 +137,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		CriteriaQuery<Tarefa> cQuery = builder.createQuery(Tarefa.class);
 		Root<Tarefa> tarefas = cQuery.from(Tarefa.class);
 		cQuery.select(tarefas);
-		cQuery.where(builder.equal(tarefas.get("projeto"), projetoAtual));
+		cQuery.where(builder.and(builder.equal(tarefas.get("projeto"), projetoAtual),builder.isNull(tarefas.get("dataHoraRemocao"))));
 		TypedQuery<Tarefa> query = em.createQuery(cQuery);
 		List<Tarefa> resultado = query.getResultList();
 
