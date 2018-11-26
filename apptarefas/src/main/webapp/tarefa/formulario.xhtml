@@ -24,7 +24,6 @@
 		<div class="app-form-group">
 			<p:outputLabel value="Nome: " for="nome" />
 			<p:inputText id="nome" value="#{tarefaBean.nome}" style="width:95%">
-				<f:validateLength minimum="3" />
 				<f:ajax event="blur" render="messageNome" />
 			</p:inputText>
 

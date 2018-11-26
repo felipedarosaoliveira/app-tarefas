@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.tarefa;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
 import br.com.cursojava.apptarefas.utils.Sistema;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 @ManagedBean
 @SessionScoped
@@ -152,17 +154,26 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void salvar() {
-		boolean ok = false;
+		ValidationResult result;
 		if (tarefaAtual != null) {
-			ok = facade.salvar(tarefaAtual);
+			if(tarefaAtual.getDataHoraCriacao() == null) {
+			tarefaAtual.setDataHoraCriacao(new Date());
 		}
-		if (ok) {
+			tarefaAtual.setDataHoraAtualizacao(new Date());
+			result = facade.salvar(tarefaAtual);
+			
+			
+		if (result.isOk()) {
 			addMensagem("Tarefa salva com sucesso", FacesMessage.SEVERITY_INFO);
-			novo = false;
-			podeEditar = false;
+			setNovo(true);
+			setPodeEditar(false);
 		} else {
-			addMensagem("Não foi possível salvar a tarefa", FacesMessage.SEVERITY_ERROR);
+			Map<String, String> messages = result.getMessages();
+			for(Map.Entry<String, String> message : messages.entrySet()) {
+			addMensagem(message.getValue(), FacesMessage.SEVERITY_ERROR);
+			}
 		}
+	}
 	}
 
 	public void remover() {
