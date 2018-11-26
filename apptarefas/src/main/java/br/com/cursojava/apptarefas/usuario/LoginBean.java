@@ -51,5 +51,14 @@ public class LoginBean {
 			return null;
 		}
 	}
+	
+	public void logout(){
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);
+		if (session != null && session.getAttribute("usuarioLogado") != null){
+			session = null;
+			return;
+		}
+	}
 		
 }
