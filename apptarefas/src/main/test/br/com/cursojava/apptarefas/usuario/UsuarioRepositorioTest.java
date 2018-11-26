@@ -10,7 +10,6 @@ public class UsuarioRepositorioTest {
 
 	UsuarioRepositorio dao;
 
-
 	@Before
 	public void antesDeCadaTest() {
 		dao = new UsuarioRepositorio();
@@ -21,7 +20,6 @@ public class UsuarioRepositorioTest {
 		dao.inserir(new Usuario(null, "Usuario03", "user03@teste.com", "senha000", new Date(),new Date(), new Date(),
 				StatusUsuario.INATIVO));
 	}
-
 	
 	@Test
 	public void contarUsuarios() {
@@ -52,6 +50,10 @@ public class UsuarioRepositorioTest {
 		dao.atualizar(user);
 		Assert.assertEquals(dao.buscarPorId(3).getNome(), "Maria");
 	}
-	
+	@Test
+	public void buscarPorEmail() {
+		Assert.assertEquals(dao.buscarPorEmail("ravena@gmail.com").getNome(), "Ravena");
+	}
 
 }
+
