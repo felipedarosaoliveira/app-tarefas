@@ -55,3 +55,16 @@ alter table projetos alter column "dataHoraFim" drop not null;
 
 --Atualização tabela usuarios
 alter table usuarios add unique (email);
+
+-- Atualização tabela usuarios
+alter table usuarios add column "dataHoraRemocao" timestamp;
+
+--Atualizando tabela tarefas
+alter table tarefas add column "dataHoraRemocao" timestamp;
+
+--Atualização tabela usuarios coluna senha (aumenta o tamanho da coluna para inserir senha criptografada)
+ALTER TABLE usuarios ALTER COLUMN senha TYPE varchar(80);
+
+--Insere usuario para testes: t@teste.com senha 12345678 (criptografada)
+INSERT INTO usuarios(nome,email,senha,"dataHoraCriacao","dataHoraAtualizacao",status) VALUES
+('Usuário Teste','t@teste.com','25d55ad283aa400af464c76d713c07ad',now(),now(),'ATIVO');
