@@ -9,11 +9,19 @@
 <h:head></h:head>
 
 <ui:composition template="../template-form.xhtml">
+	<ui:param name="title" value="Form Projetos"></ui:param>
 	<ui:param name="headerTitle" value="Form Projetos"></ui:param>
 	<ui:param name="bean" value="#{projetoBean}"></ui:param>
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 
 	<ui:define name="content-form">
+
+		<f:metadata>
+			<f:viewParam name="oid" value="#{projetoBean.oid}" />
+		</f:metadata>
+
+
+
 		<div class="app-form-group">
 			<p:outputLabel value="Id: " />
 			<p:inputText value="#{projetoBean.id}" disabled="true"
@@ -51,11 +59,12 @@
 			</p:selectOneMenu>
 		</div>
 		<div>
-		
-		<p:commandButton value="Adcionar Tarefas" action="#{projetoBean.carregarDashProjeto()}" >
-		</p:commandButton>
+
+			<p:commandButton value="Adcionar Tarefas"
+				action="#{projetoBean.carregarDashProjeto()}">
+			</p:commandButton>
 		</div>
-		
+
 	</ui:define>
 
 </ui:composition>

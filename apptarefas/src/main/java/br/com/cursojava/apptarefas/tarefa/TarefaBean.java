@@ -85,11 +85,7 @@ public class TarefaBean extends AbstractBean {
 		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
 	}
 
-	public void setProjeto(Projeto projeto) {
-		if (tarefaAtual != null) {
-			tarefaAtual.setProjeto(projeto);
-		}
-	}
+	
 
 	public Situacao getSituacao() {
 		return tarefaAtual != null ? tarefaAtual.getSituacao() : null;
@@ -185,6 +181,7 @@ public class TarefaBean extends AbstractBean {
 	public void novo() {
 		this.tarefaAtual = facade.novaTarefa();
 		novo = true;
+		this.tarefaAtual.setProjeto(projetoAtual);
 		editar();
 	}
 
@@ -239,6 +236,7 @@ public class TarefaBean extends AbstractBean {
 		if (session != null) {
 			setProjetoAtual((Projeto) session.getAttribute("projetoAtual"));
 			tarefas = facade.buscarPorProjeto(projetoAtual);
+			this.tarefaAtual.setProjeto(projetoAtual);
 		}
 		
 
