@@ -13,15 +13,18 @@
 	<ui:param name="breadcrumb" value="#{projetoBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 		<h:messages></h:messages>
-		<p:dataTable id="lista" value="#{projetoBean.projetos}" var="atual">
+		<p:dataTable id="lista" value="#{projetoBean.projetos}" var="atual" sortBy="#{atual.id}">
 			<p:column>
 				<f:facet name="header">Id</f:facet>
 					#{atual.id}	
 				</p:column>
 			<p:column>
 				<f:facet name="header">Nome</f:facet>
-					#{atual.nome}	
-				</p:column>
+				<h:outputLink value="./formulario.jsf">
+					<f:param name="oid" value="#{atual.id}"></f:param>
+					#{atual.nome}
+					</h:outputLink>
+			</p:column>
 			<p:column>
 				<f:facet name="header">Descrição</f:facet>
 					#{atual.descricao}	
