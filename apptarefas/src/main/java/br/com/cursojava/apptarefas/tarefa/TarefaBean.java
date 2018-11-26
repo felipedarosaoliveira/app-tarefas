@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +18,7 @@ import br.com.cursojava.apptarefas.utils.AbstractBean;
 import br.com.cursojava.apptarefas.utils.Sistema;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class TarefaBean extends AbstractBean {
 
 	private TarefaFacade facade = new TarefaFacade();
@@ -28,8 +28,6 @@ public class TarefaBean extends AbstractBean {
 	private boolean podeEditar = true;
 	private List<Tarefa> tarefas;
 	private List<Situacao> situacoes;
-	
-
 
 	public String getOid() {
 		return oid;
@@ -84,8 +82,6 @@ public class TarefaBean extends AbstractBean {
 	public Projeto getProjeto() {
 		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
 	}
-
-	
 
 	public Situacao getSituacao() {
 		return tarefaAtual != null ? tarefaAtual.getSituacao() : null;
@@ -226,7 +222,7 @@ public class TarefaBean extends AbstractBean {
 	public int getQtdFinalizada() {
 		return getFinalizada().size();
 	}
-	
+
 	private Projeto projetoAtual;
 
 	@PostConstruct
@@ -238,7 +234,6 @@ public class TarefaBean extends AbstractBean {
 			tarefas = facade.buscarPorProjeto(projetoAtual);
 			this.tarefaAtual.setProjeto(projetoAtual);
 		}
-		
 
 	}
 
@@ -249,4 +244,10 @@ public class TarefaBean extends AbstractBean {
 	public void setProjetoAtual(Projeto projetoAtual) {
 		this.projetoAtual = projetoAtual;
 	}
+
+	public String editarTarefa() {
+		this.podeEditar = true;
+		return "./tarefa/formulario.xhtml";
+	}
+
 }

@@ -3,12 +3,13 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
+	<h:head>
+		<link rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+	</h:head>
 	<div>
 		<h:form>
-			<p:link update="@this"  process="@this" action="#{tarefaBean.editarTarefa(id)}" title="Editar">
-				<p:graphicImage id="Edit" value="/resources/imagens/icon/edit.png" />
-			</p:link>
+
 		</h:form>
 	</div>
 </ui:composition>
