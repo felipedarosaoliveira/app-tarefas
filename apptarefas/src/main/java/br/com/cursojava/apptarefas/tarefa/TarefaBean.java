@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.tarefa;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -16,9 +17,10 @@ import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
 import br.com.cursojava.apptarefas.utils.Sistema;
+import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class TarefaBean extends AbstractBean {
 
 	private TarefaFacade facade = new TarefaFacade();
@@ -28,8 +30,6 @@ public class TarefaBean extends AbstractBean {
 	private boolean podeEditar = true;
 	private List<Tarefa> tarefas;
 	private List<Situacao> situacoes;
-	
-
 
 	public String getOid() {
 		return oid;
@@ -83,12 +83,6 @@ public class TarefaBean extends AbstractBean {
 
 	public Projeto getProjeto() {
 		return tarefaAtual != null ? tarefaAtual.getProjeto() : null;
-	}
-
-	public void setProjeto(Projeto projeto) {
-		if (tarefaAtual != null) {
-			tarefaAtual.setProjeto(projeto);
-		}
 	}
 
 	public Situacao getSituacao() {
@@ -152,17 +146,26 @@ public class TarefaBean extends AbstractBean {
 	}
 
 	public void salvar() {
-		boolean ok = false;
+		ValidationResult result;
 		if (tarefaAtual != null) {
-			ok = facade.salvar(tarefaAtual);
+			if(tarefaAtual.getDataHoraCriacao() == null) {
+			tarefaAtual.setDataHoraCriacao(new Date());
 		}
-		if (ok) {
+			tarefaAtual.setDataHoraAtualizacao(new Date());
+			result = facade.salvar(tarefaAtual);
+			
+			
+		if (result.isOk()) {
 			addMensagem("Tarefa salva com sucesso", FacesMessage.SEVERITY_INFO);
-			novo = false;
-			podeEditar = false;
+			setNovo(true);
+			setPodeEditar(false);
 		} else {
-			addMensagem("N√£o foi poss√≠vel salvar a tarefa", FacesMessage.SEVERITY_ERROR);
+			Map<String, String> messages = result.getMessages();
+			for(Map.Entry<String, String> message : messages.entrySet()) {
+			addMensagem(message.getValue(), FacesMessage.SEVERITY_ERROR);
+			}
 		}
+	}
 	}
 
 	public void remover() {
@@ -185,6 +188,7 @@ public class TarefaBean extends AbstractBean {
 	public void novo() {
 		this.tarefaAtual = facade.novaTarefa();
 		novo = true;
+		this.tarefaAtual.setProjeto(projetoAtual);
 		editar();
 	}
 
@@ -229,7 +233,7 @@ public class TarefaBean extends AbstractBean {
 	public int getQtdFinalizada() {
 		return getFinalizada().size();
 	}
-	
+
 	private Projeto projetoAtual;
 
 	@PostConstruct
@@ -239,8 +243,8 @@ public class TarefaBean extends AbstractBean {
 		if (session != null) {
 			setProjetoAtual((Projeto) session.getAttribute("projetoAtual"));
 			tarefas = facade.buscarPorProjeto(projetoAtual);
+			this.tarefaAtual.setProjeto(projetoAtual);
 		}
-		
 
 	}
 
@@ -251,4 +255,17 @@ public class TarefaBean extends AbstractBean {
 	public void setProjetoAtual(Projeto projetoAtual) {
 		this.projetoAtual = projetoAtual;
 	}
+
+	public String editarTarefa() {
+		this.podeEditar = true;
+		return "./tarefa/formulario.xhtml";
+	}
+
+	public String anexarTarefa() {
+		addMensagem("MÈtodo a ser implementado na vers„o 2.1!", FacesMessage.SEVERITY_INFO);
+		System.out.println("MEnsgemss");
+		return "";
+
+	}
+
 }

@@ -6,12 +6,16 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <head>
+<link rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
 </head>
 
 <div style="height: 500px">
 	<h1>
 		<h:outputLabel value="#{tarefaBean.projetoAtual.nome}"></h:outputLabel>
 	</h1>
+	 <p:growl id="messages" showDetail="true" />
+    
 	<h:form>
 
 		<p:panel header="Contadores" style="text-align:center">
