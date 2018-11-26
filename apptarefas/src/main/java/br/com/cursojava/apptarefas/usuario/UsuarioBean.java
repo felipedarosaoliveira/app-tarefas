@@ -39,6 +39,7 @@ public class UsuarioBean extends AbstractBean{
 				Integer id = Integer.parseInt(oid);
 				usuarioAtual = facade.carregarUsuario(id);
 				novo = false;
+				visualizar();
 			} catch (Exception e) {
 				addMessage("ID Inválido!", FacesMessage.SEVERITY_ERROR);
 			}
@@ -73,6 +74,10 @@ public class UsuarioBean extends AbstractBean{
 
 	public void editar() {
 		this.setPodeEditar(true);
+	}
+	
+	public void visualizar() {
+		this.setPodeEditar(false);
 	}
 
 	public String listar() {
