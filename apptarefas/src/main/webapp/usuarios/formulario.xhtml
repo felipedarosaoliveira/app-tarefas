@@ -31,13 +31,7 @@
 			</p:inputText>
 			<p:message for="nome" id="messageNome" />
 		</div>
-		<div class="app-form-group">
-		<p:outputLabel>Status</p:outputLabel>
-		<p:selectOneMenu value="#{usuarioBean.status}"
-			styleClass="app-form-control" disabled="#{!usuarioBean.podeEditar}">
-			<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
-		</p:selectOneMenu>
-		</div>	
+	
 
 		<div class="app-form-group">
 			<p:outputLabel value="Email:" for="email" />
@@ -65,12 +59,12 @@
 				disabled="#{!usuarioBean.podeEditar}" label="Password 2"
 				styleClass="app-form-control" />
 		</div>
-		<div class="app-form-group">
-			<p:outputLabel>Status</p:outputLabel>
-			<p:selectOneMenu value="#{usuarioBean.status}"
-				styleClass="app-form-control" disabled="#{!usuarioBean.podeEditar}">
-				<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
-			</p:selectOneMenu>
+			<div class="app-form-group">
+		<p:outputLabel>Status</p:outputLabel>
+		<p:selectOneMenu value="#{usuarioBean.status}"
+			styleClass="app-form-control" disabled="#{!usuarioBean.podeEditar}">
+			<f:selectItems value="#{usuarioBean.opcoesStatus}"></f:selectItems>
+		</p:selectOneMenu>
 		</div>
 
 	</ui:define>
