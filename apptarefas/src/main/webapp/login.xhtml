@@ -11,28 +11,25 @@
 <ui:composition template="./template-login.xhtml">
 	<ui:param name="headerTitle" value="Login"></ui:param>
 	<ui:define name="content">
-		<h:messages></h:messages>
+
 
 		<div class="content">
-			<h:form class="app-login">
+			<h:form class="app-login" id="form">
 				<h:panelGrid>
 					<p:outputLabel>Email</p:outputLabel>
-					<p:inputText></p:inputText>
+					<p:inputText id="email" label="email" value="#{loginBean.email}"></p:inputText>
 					<p:outputLabel>Senha</p:outputLabel>
-					<p:password id="senhaLogin" label="Password 1" feedback="true"
-						style="width:95%" />
+					<p:password id="senha" label="senha" feedback="false"
+						value="#{loginBean.senha}" style="width:95%" />
 				</h:panelGrid>
 				<h:messages></h:messages>
 				<div class="app-button-bar-login">
-					<p:button value="Entrar" style="padding-right:70px; padding-left:70px;">
-					</p:button>
+					<p:commandButton value="Entrar" action="#{loginBean.autenticar()}"
+						style="padding-right:70px; padding-left:70px;" update="form"
+						process="form" ajax="true">
+					</p:commandButton>
 				</div>
 			</h:form>
-			<h:form>
-
-			</h:form>
-
-
 		</div>
 	</ui:define>
 </ui:composition>
