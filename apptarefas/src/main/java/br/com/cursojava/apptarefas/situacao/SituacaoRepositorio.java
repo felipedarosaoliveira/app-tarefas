@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.situacao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	@Override
 	public boolean inserir(Situacao situacao) {
 		boolean resultado = false;
-		if (situacao != null && situacao.getId() == null){
+		if (situacao != null && situacao.getId() == null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			em.persist(situacao);
@@ -32,7 +33,7 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	@Override
 	public boolean atualizar(Situacao situacao) {
 		boolean resultado = false;
-		if (situacao != null && situacao.getId() != null){
+		if (situacao != null && situacao.getId() != null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			em.merge(situacao);
@@ -46,11 +47,14 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 	@Override
 	public boolean remover(int id) {
 		boolean resultado = false;
-		if (id != 0){
+		if (id != 0) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			Situacao situacao = em.find(Situacao.class, id);
-			em.remove(situacao);
+			situacao.setStatus(StatusSituacao.INATIVA);
+			situacao.setDataHoraAtualizacao(new Date());
+			situacao.setDataHoraRemocao(new Date());
+			em.merge(situacao);
 			em.getTransaction().commit();
 			em.close();
 			resultado = true;
@@ -60,14 +64,17 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 
 	@Override
 	public List<Situacao> buscarTodos() {
+
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
-		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Situacao> cQuery = builder.createQuery(Situacao.class);
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Situacao> cQuery = cb.createQuery(Situacao.class);
 		Root<Situacao> situacoes = cQuery.from(Situacao.class);
 		cQuery.select(situacoes);
+		cQuery.where(cb.isNull(situacoes.get("dataHoraRemocao")));
 		TypedQuery<Situacao> query = em.createQuery(cQuery);
 		List<Situacao> results = query.getResultList();
 		return results;
+
 	}
 
 	@Override
@@ -78,9 +85,9 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		CriteriaQuery<Situacao> query = cb.createQuery(Situacao.class);
 		Root<Situacao> root = query.from(Situacao.class);
 		query.select(root);
-		query.where(cb.equal(root.get("id"), id));
+		query.where(cb.and(cb.equal(root.get("id"), id), (cb.isNull(root.get("dataHoraRemocao")))));
 		Query queryFinal = em.createQuery(query);
-		Situacao resultado = (Situacao)queryFinal.getSingleResult();
+		Situacao resultado = (Situacao) queryFinal.getSingleResult();
 		return resultado;
 	}
 
