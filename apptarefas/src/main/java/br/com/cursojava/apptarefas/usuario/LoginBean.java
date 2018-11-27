@@ -1,7 +1,6 @@
 package br.com.cursojava.apptarefas.usuario;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -54,12 +53,9 @@ public class LoginBean {
 	
 	public String logout(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);
-		if (session != null && session.getAttribute("usuarioLogado") != null){
-			session = null;
-			return "login.jsf?faces-redirect=true";
-		}
-		return null;
+		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);		
+			session.invalidate();
+			return "login.jsf?faces-redirect=true";		
 	}
 		
 }
