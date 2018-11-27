@@ -73,6 +73,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		query.where(cb.isNull(root.get("DataHoraFim")));
 		Query queryFinal = em.createQuery(query);
 		List<Projeto> resultado = queryFinal.getResultList();
+		em.close();
 		return resultado;
 	}
 
@@ -90,6 +91,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		query.where(resultadoAnd);
 		Query queryFinal = em.createQuery(query);
 		Projeto resultado = (Projeto)queryFinal.getSingleResult();
+		em.close();
 		return resultado;
 	}
 
@@ -103,6 +105,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		queryCCount.select(cb.count(root)).where(cb.isNull(root.get("DataHoraFim")));
 		Query queryCCountFinal = em.createQuery(queryCCount);
 		Long resultado = (Long) queryCCountFinal.getSingleResult();
+		em.close();
 		return resultado;
 	}
 
