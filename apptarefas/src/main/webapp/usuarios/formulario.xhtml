@@ -52,7 +52,9 @@
 			<h:outputLabel for="pwd1" value="Digite sua Senha" />
 			<p:password id="pwd1" value="#{usuarioBean.senha}"
 				disabled="#{!usuarioBean.podeEditar}" match="pwd2"
-				label="Password 1" feedback="true" styleClass="app-form-control" />
+				label="Password 1" feedback="true" styleClass="app-form-control" >
+				<f:validateLength minimum="8" />
+				</p:password>
 
 			<h:outputLabel for="pwd2" value="Confirme sua Senha" />
 			<p:password id="pwd2" value="#{usuarioBean.senha}"
