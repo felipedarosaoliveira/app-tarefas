@@ -142,7 +142,7 @@ public class TarefaBean extends AbstractBean {
 
 	public String listar() {
 		novo();
-		return "./lista.jsf";
+		return "/dashbord-tarefa.xhtml";
 	}
 
 	public void salvar() {
