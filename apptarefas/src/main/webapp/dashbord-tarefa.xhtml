@@ -12,8 +12,9 @@
 	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
 </head>
 
-<ui:composition template="./template-login.xhtml">
+<ui:composition template="./template-dash.xhtml">
 	<ui:param name="headerTitle" value="#{tarefaBean.projetoAtual.nome}"></ui:param>
+	<ui:param name="breadcrumb" value="#{usuarioBean.breadcrumb}"></ui:param>
 	<ui:define name="content">
 
 
