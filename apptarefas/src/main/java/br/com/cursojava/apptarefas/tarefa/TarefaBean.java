@@ -142,7 +142,7 @@ public class TarefaBean extends AbstractBean {
 
 	public String listar() {
 		novo();
-		return "/dashbord-tarefa.xhtml";
+		return "/dashbord-tarefa.xhtml?faces-redirect=true";
 	}
 
 	public void salvar() {
