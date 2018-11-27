@@ -1,95 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <head>
 <link rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
 </head>
 
-<div style="height: 500px">
-	<h1>
-		<h:outputLabel value="#{tarefaBean.projetoAtual.nome}"></h:outputLabel>
-	</h1>
-	 <p:growl id="messages" showDetail="true" />
-    
-	<h:form>
-
-		<p:panel header="Contadores" style="text-align:center">
-			<p:panelGrid columns="4" layout="grid">
-
-				<p:column style="width:25%">
-					<ui:include src="componenteContador.xhtml">
-						<ui:param name="tituloContador" value="Backlog"></ui:param>
-						<ui:param name="quantidade" value="#{tarefaBean.qtdBacklog}"></ui:param>
-					</ui:include>
-				</p:column>
-				<p:column style="width:25%">
-					<ui:include src="componenteContador.xhtml">
-						<ui:param name="tituloContador" value="Priorizada"></ui:param>
-						<ui:param name="quantidade" value="#{tarefaBean.qtdPriorizada}"></ui:param>
-					</ui:include>
-				</p:column>
-				<p:column style="width:25%">
-					<ui:include src="componenteContador.xhtml">
-						<ui:param name="tituloContador" value="Em Desenvolvimento"></ui:param>
-						<ui:param name="quantidade"
-							value="#{tarefaBean.qtdDesenvolvimento}"></ui:param>
-					</ui:include>
-				</p:column>
-				<p:column style="width:25%">
-					<ui:include src="componenteContador.xhtml">
-						<ui:param name="tituloContador" value="Finalizada"></ui:param>
-						<ui:param name="quantidade" value="#{tarefaBean.qtdFinalizada}"></ui:param>
-					</ui:include>
-				</p:column>
-			</p:panelGrid>
+<ui:composition template="./template-login.xhtml">
+	<ui:param name="headerTitle" value="#{tarefaBean.projetoAtual.nome}"></ui:param>
+	<ui:define name="content">
 
 
-		</p:panel>
-	</h:form>
-
-
-	<p:panel id="panel" header="Painel de Tarefas"
-		style="margin-bottom:10px; text-align:center">
-		<p:panelGrid columns="4" layout="grid">
-
-			<p:column style="width:25%">
-				<ui:include src="painel.xhtml">
-					<ui:param name="titleTabela" value="BACKLOG"></ui:param>
-					<ui:param name="listaTabela" value="#{tarefaBean.backlog}"></ui:param>
-					<ui:param name="showButtonAdd" value="#{true}"></ui:param>
-				</ui:include>
-			</p:column>
-			<p:column style="width:25%">
-				<ui:include src="painel.xhtml">
-					<ui:param name="titleTabela" value="PRIORIZADA"></ui:param>
-					<ui:param name="listaTabela" value="#{tarefaBean.priorizada}"></ui:param>
-				</ui:include>
-			</p:column>
-			<p:column style="width:25%">
-				<ui:include src="painel.xhtml">
-					<ui:param name="titleTabela" value="EM DESENVOLVIMENTO"></ui:param>
-					<ui:param name="listaTabela" value="#{tarefaBean.desenvolvimento}"></ui:param>
-				</ui:include>
-			</p:column>
-
-			<p:column style="width:25%">
-				<ui:include src="painel.xhtml">
-					<ui:param name="titleTabela" value="FINALIZADA"></ui:param>
-					<ui:param name="listaTabela" value="#{tarefaBean.finalizada}"></ui:param>
-				</ui:include>
-			</p:column>
-		</p:panelGrid>
-	</p:panel>
+		<div class="content">
 
 
 
+			<p:growl id="messages" showDetail="true" />
+
+			<h:form>
+
+				<p:panel header="Contadores" style="text-align:center">
+					<p:panelGrid columns="4" layout="grid">
+
+						<p:column style="width:25%">
+							<ui:include src="componenteContador.xhtml">
+								<ui:param name="tituloContador" value="Backlog"></ui:param>
+								<ui:param name="quantidade" value="#{tarefaBean.qtdBacklog}"></ui:param>
+							</ui:include>
+						</p:column>
+						<p:column style="width:25%">
+							<ui:include src="componenteContador.xhtml">
+								<ui:param name="tituloContador" value="Priorizada"></ui:param>
+								<ui:param name="quantidade" value="#{tarefaBean.qtdPriorizada}"></ui:param>
+							</ui:include>
+						</p:column>
+						<p:column style="width:25%">
+							<ui:include src="componenteContador.xhtml">
+								<ui:param name="tituloContador" value="Em Desenvolvimento"></ui:param>
+								<ui:param name="quantidade"
+									value="#{tarefaBean.qtdDesenvolvimento}"></ui:param>
+							</ui:include>
+						</p:column>
+						<p:column style="width:25%">
+							<ui:include src="componenteContador.xhtml">
+								<ui:param name="tituloContador" value="Finalizada"></ui:param>
+								<ui:param name="quantidade" value="#{tarefaBean.qtdFinalizada}"></ui:param>
+							</ui:include>
+						</p:column>
+					</p:panelGrid>
 
 
+				</p:panel>
+			</h:form>
 
-</div>
+
+			<p:panel id="panel" header="Painel de Tarefas"
+				style="margin-bottom:10px; text-align:center">
+				<p:panelGrid columns="4" layout="grid">
+
+					<p:column style="width:25%">
+						<ui:include src="painel.xhtml">
+							<ui:param name="titleTabela" value="BACKLOG"></ui:param>
+							<ui:param name="listaTabela" value="#{tarefaBean.backlog}"></ui:param>
+							<ui:param name="showButtonAdd" value="#{true}"></ui:param>
+						</ui:include>
+					</p:column>
+					<p:column style="width:25%">
+						<ui:include src="painel.xhtml">
+							<ui:param name="titleTabela" value="PRIORIZADA"></ui:param>
+							<ui:param name="listaTabela" value="#{tarefaBean.priorizada}"></ui:param>
+						</ui:include>
+					</p:column>
+					<p:column style="width:25%">
+						<ui:include src="painel.xhtml">
+							<ui:param name="titleTabela" value="EM DESENVOLVIMENTO"></ui:param>
+							<ui:param name="listaTabela"
+								value="#{tarefaBean.desenvolvimento}"></ui:param>
+						</ui:include>
+					</p:column>
+
+					<p:column style="width:25%">
+						<ui:include src="painel.xhtml">
+							<ui:param name="titleTabela" value="FINALIZADA"></ui:param>
+							<ui:param name="listaTabela" value="#{tarefaBean.finalizada}"></ui:param>
+						</ui:include>
+					</p:column>
+				</p:panelGrid>
+			</p:panel>
+		</div>
+
+	</ui:define>
+</ui:composition>
+
 </html>
