@@ -46,7 +46,7 @@ public class AppFilter implements Filter {
 		   path.equals("/login.jsf"))){
 			return true;
 		}
-		return true;
+		return false;
 	}
 
 	private boolean validarAutorizacao(HttpServletRequest req) {

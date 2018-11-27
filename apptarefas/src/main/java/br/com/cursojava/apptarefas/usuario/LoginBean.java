@@ -57,7 +57,7 @@ public class LoginBean {
 		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);
 		if (session != null && session.getAttribute("usuarioLogado") != null){
 			session = null;
-			return "login.xhtml?faces-redirect=true";
+			return "login.jsf?faces-redirect=true";
 		}
 		return null;
 	}
