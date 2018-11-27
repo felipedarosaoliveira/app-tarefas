@@ -73,6 +73,7 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		cQuery.where(cb.isNull(situacoes.get("dataHoraRemocao")));
 		TypedQuery<Situacao> query = em.createQuery(cQuery);
 		List<Situacao> results = query.getResultList();
+		em.close();
 		return results;
 
 	}
@@ -88,6 +89,7 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		query.where(cb.and(cb.equal(root.get("id"), id), (cb.isNull(root.get("dataHoraRemocao")))));
 		Query queryFinal = em.createQuery(query);
 		Situacao resultado = (Situacao) queryFinal.getSingleResult();
+		em.close();
 		return resultado;
 	}
 
@@ -100,6 +102,7 @@ public class SituacaoRepositorio implements CrudRepository<Situacao> {
 		queryCCount.select(cb.count(queryCCount.from(Situacao.class)));
 		Query queryCCountFinal = em.createQuery(queryCCount);
 		Long resultado = (Long) queryCCountFinal.getSingleResult();
+		em.close();
 		return resultado;
 	}
 

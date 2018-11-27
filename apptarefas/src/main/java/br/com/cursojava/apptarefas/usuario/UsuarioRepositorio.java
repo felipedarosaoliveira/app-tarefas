@@ -43,6 +43,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 			} catch (Exception e) {
 				if (em != null && em.isOpen()) {
 					em.getTransaction().rollback();
+					em.close();
 				}
 			}
 		}
@@ -60,6 +61,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		cQuery.where(builder.isNull(usuarios.get("dataHoraRemocao")));
 		TypedQuery<Usuario> query = em.createQuery(cQuery);
 		List<Usuario> results = query.getResultList();
+		em.close();
 		return results;
 	}
 
@@ -78,6 +80,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 			cQuery.where(resultAnd);
 			TypedQuery<Usuario> query = em.createQuery(cQuery);
 			Usuario result = query.getSingleResult();
+			em.close();
 			return result;
 		} else {
 			return null;
@@ -93,6 +96,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		cQuery.multiselect(builder.count(usuarios));
 		TypedQuery<Long> query = em.createQuery(cQuery);
 		Long results = query.getSingleResult();
+		em.close();
 		return results;
 	}
 
@@ -115,6 +119,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 			} catch (Exception e) {
 				if (em != null && em.isOpen()) {
 					em.getTransaction().rollback();
+					em.close();
 				}
 
 			}
@@ -136,6 +141,7 @@ public class UsuarioRepositorio implements CrudRepository<Usuario> {
 		}catch(Exception e) {
 			result = null;
 		}
+		em.close();
 		return result;
 	}
 }

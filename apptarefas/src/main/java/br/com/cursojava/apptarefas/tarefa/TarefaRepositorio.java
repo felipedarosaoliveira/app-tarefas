@@ -45,9 +45,10 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 			} catch (Exception e) {
 				if (em != null && em.isOpen()) {
 					em.getTransaction().rollback();
+					em.close();
 				}
 			}
-		}
+		}		
 		return resultado;
 	}
 
@@ -67,6 +68,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 			} catch (Exception e) {
 				if (em != null && em.isOpen()) {
 					em.getTransaction().rollback();
+					em.close();
 				}
 
 			}
@@ -84,6 +86,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		cQuery.where(builder.isNull(tarefas.get("dataHoraRemocao")));
 		TypedQuery<Tarefa> query = em.createQuery(cQuery);
 		List<Tarefa> results = query.getResultList();
+		em.close();
 		return results;
 	}
 
@@ -98,6 +101,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 			cQuery.where(builder.and(builder.equal(tarefas.get("id"), id),builder.isNull(tarefas.get("dataHoraRemocao"))));
 			TypedQuery<Tarefa> query = em.createQuery(cQuery);
 			Tarefa result = query.getSingleResult();
+			em.close();
 			return result;
 		} else {
 			return null;
@@ -114,20 +118,21 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		cQuery.multiselect(builder.count(tarefas),builder.isNull(tarefas.get("dataHoraRemocao")));
 		TypedQuery<Long> query = em.createQuery(cQuery);
 		Long results = query.getSingleResult();
+		em.close();
 		return results;
 	}
 
 	public List<Tarefa> buscarPorSituacao(String situacao) {
-		EntityManager ent = JPAUtil.getEntityManagerFactory().createEntityManager();
-		ent.getTransaction().begin();
-		CriteriaBuilder cb = ent.getCriteriaBuilder();
+		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
+		em.getTransaction().begin();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Tarefa> query = cb.createQuery(Tarefa.class);
 		Root<Tarefa> root = query.from(Tarefa.class);
 		query.select(root);
 		query.where(cb.and(cb.equal(root.get("situacao"), situacao),cb.isNull(root.get("dataHoraRemocao"))));
-		TypedQuery<Tarefa> queryFinal = ent.createQuery(query);
+		TypedQuery<Tarefa> queryFinal = em.createQuery(query);
 		List<Tarefa> resultado = queryFinal.getResultList();
-
+		em.close();
 		return resultado;
 	}
 
@@ -140,7 +145,7 @@ public class TarefaRepositorio implements CrudRepository<Tarefa> {
 		cQuery.where(builder.and(builder.equal(tarefas.get("projeto"), projetoAtual),builder.isNull(tarefas.get("dataHoraRemocao"))));
 		TypedQuery<Tarefa> query = em.createQuery(cQuery);
 		List<Tarefa> resultado = query.getResultList();
-
+		em.close();
 		return resultado;
 	}
 }
