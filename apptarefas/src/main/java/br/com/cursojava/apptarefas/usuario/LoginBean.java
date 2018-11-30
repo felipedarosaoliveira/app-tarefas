@@ -55,7 +55,7 @@ public class LoginBean {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);		
 			session.invalidate();
-			return "login.jsf?faces-redirect=true";		
+			return "/login.jsf?faces-redirect=true";		
 	}
 		
 }

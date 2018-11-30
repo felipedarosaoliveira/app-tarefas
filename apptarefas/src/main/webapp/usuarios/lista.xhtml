@@ -16,7 +16,7 @@
 
 		<div class="content">
 			<p:panel header="USUÁRIOS" style="text-align:center">
-				<p:dataTable value="#{usuarioBean.usuarios}" var="usuario" sortBy="#{atual.id}">
+				<p:dataTable value="#{usuarioBean.usuarios}" var="usuario" sortBy="#{usuario.id}">
 					<p:column>
 						<f:facet name="header">Id</f:facet>
 					#{usuario.id}
