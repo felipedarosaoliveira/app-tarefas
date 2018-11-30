@@ -44,8 +44,8 @@ public class LoginBean {
 		if(result.isOk()) {			
 			return "index.xhtml?faces-redirect=true";
 		}else{
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Inv·lido",
-					"Email ou senha inv·lidos");
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Inv√°lido",
+					"Email ou senha inv√°lidos");
 			ctx.addMessage(null, msg);
 			return null;
 		}
@@ -55,7 +55,8 @@ public class LoginBean {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) ctx.getExternalContext().getSession(false);		
 			session.invalidate();
-			return "/login.jsf?faces-redirect=true";		
+			return "login.jsf?faces-redirect=true";		
+
 	}
 		
 }
