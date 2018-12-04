@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.usuario;
+package br.com.apptarefadao.usuario;
 
 public enum StatusUsuario {
 	ATIVO,

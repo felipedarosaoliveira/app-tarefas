@@ -3,6 +3,8 @@ package br.com.cursojava.apptarefas.projeto;
 import java.util.Date;
 import java.util.List;
 
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.projeto.ProjetoRepositorio;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class ProjetoFacade {

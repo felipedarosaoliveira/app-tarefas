@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.projeto;
+package br.com.apptarefadao.projeto;
 
 import java.util.Date;
 import java.util.List;
@@ -10,15 +10,15 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import br.com.cursojava.apptarefas.utils.CrudRepository;
-import br.com.cursojava.apptarefas.utils.JPAUtil;
+import br.com.apptarefadao.util.CrudRepository;
+import br.com.apptarefadao.util.JPAUtil;
 
 public class ProjetoRepositorio implements CrudRepository<Projeto> {
-	
+
 	@Override
 	public boolean inserir(Projeto projeto) {
 		boolean resultado = false;
-		if (projeto != null && projeto.getId() == null){
+		if (projeto != null && projeto.getId() == null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			em.persist(projeto);
@@ -32,7 +32,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 	@Override
 	public boolean atualizar(Projeto projeto) {
 		boolean resultado = false;
-		if (projeto != null && projeto.getId() != null){
+		if (projeto != null && projeto.getId() != null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			em.find(Projeto.class, projeto.getId());
@@ -47,7 +47,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 	@Override
 	public boolean remover(int id) {
 		boolean resultado = false;
-		if (id != 0){
+		if (id != 0) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
 			Projeto projeto = em.find(Projeto.class, id);
@@ -90,7 +90,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		Predicate resultadoAnd = cb.and(equal, naoRemovido);
 		query.where(resultadoAnd);
 		Query queryFinal = em.createQuery(query);
-		Projeto resultado = (Projeto)queryFinal.getSingleResult();
+		Projeto resultado = (Projeto) queryFinal.getSingleResult();
 		em.close();
 		return resultado;
 	}
@@ -109,7 +109,4 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		return resultado;
 	}
 
-
-
 }
-

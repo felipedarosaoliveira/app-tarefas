@@ -7,6 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.apptarefadao.usuario.StatusUsuario;
+import br.com.apptarefadao.usuario.Usuario;
+import br.com.apptarefadao.usuario.UsuarioRepositorio;
+
 public class UsuarioRepositorioTest {
 
 	UsuarioRepositorio dao;
