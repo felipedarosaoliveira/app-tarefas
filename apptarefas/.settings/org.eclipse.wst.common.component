@@ -25,9 +25,6 @@
         
         
         <property name="context-root" value="app-tarefas"/>
-                                
-        
-        
         <property name="java-output-path" value="/apptarefas/src/main/webapp/WEB-INF/classes"/>
                             
     
