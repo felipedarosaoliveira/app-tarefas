@@ -3,7 +3,8 @@ package br.com.cursojava.facade.situacao;
 import java.util.Date;
 import java.util.List;
 
-
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.situacao.SituacaoRepositorio;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class SituacaoFacade {

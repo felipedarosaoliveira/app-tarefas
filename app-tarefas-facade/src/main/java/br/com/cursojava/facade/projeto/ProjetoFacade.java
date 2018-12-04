@@ -3,8 +3,9 @@ package br.com.cursojava.facade.projeto;
 import java.util.Date;
 import java.util.List;
 
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.projeto.ProjetoRepositorio;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
-import br.com.cursojava.facade.HelloFacade;
 
 public class ProjetoFacade {
 
