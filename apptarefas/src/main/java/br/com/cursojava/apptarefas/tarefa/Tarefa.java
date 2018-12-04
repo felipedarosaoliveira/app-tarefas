@@ -11,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.apptarefadao.projeto.Projeto;
-import br.com.apptarefadao.situacao.Situacao;
-import br.com.apptarefadao.usuario.Usuario;
+import br.com.cursojava.apptarefas.projeto.Projeto;
+import br.com.cursojava.apptarefas.situacao.Situacao;
+import br.com.cursojava.apptarefas.usuario.Usuario;
+
+
 
 @Entity
 @Table(name = "tarefas")
