@@ -5,6 +5,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.projeto.ProjetoRepositorio;
+
 @FacesConverter(value = "projetoConverter")
 public class ProjetoConverter implements Converter {
 

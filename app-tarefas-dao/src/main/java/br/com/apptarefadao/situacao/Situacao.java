@@ -1,148 +1,111 @@
-package br.com.cursojava.apptarefas.tarefa;
+package br.com.apptarefadao.situacao;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import br.com.apptarefadao.projeto.Projeto;
-import br.com.apptarefadao.situacao.Situacao;
-import br.com.apptarefadao.usuario.Usuario;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "tarefas")
-public class Tarefa {
-
+@Table
+public class Situacao {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column
+	
+	@Column(nullable = false)
 	private String nome;
-
-	@Column
-	private String descricao;
-
-	@Column(name = "\"dataHoraCriacao\"")
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private TipoSituacao tipo;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "\"dataHoraCriacao\"", nullable = false)
 	private Date dataHoraCriacao;
-
-	@Column(name = "\"dataHoraAtualizacao\"")
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "\"dataHoraAtualizacao\"",nullable = false)
 	private Date dataHoraAtualizacao;
-
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "\"dataHoraRemocao\"")
 	private Date dataHoraRemocao;
-
-	@ManyToOne
-	@JoinColumn(name = "\"projetoId\"")
-	private Projeto projeto;
-
-	@ManyToOne
-	@JoinColumn(name = "\"situacaoId\"")
-	private Situacao situacao;
-
-	@ManyToOne
-	@JoinColumn(name = "\"usuarioId\"")
-	private Usuario usuario;
-
-	public Tarefa() {
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private StatusSituacao status;
+	
+	public Situacao() {
 		super();
 	}
-
-	public Tarefa(Integer id, String nome, String descricao, Date dataHoraCriacao, Date dataHoraAtualizacao,
-			Projeto projeto, Situacao situacao, Usuario usuario) {
+	
+	public Situacao(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.descricao = descricao;
+	}
+	
+	public Situacao(Integer id, String nome, TipoSituacao tipo, Date dataHoraCriacao, Date dataHoraAtualizacao,
+			Date dataHoraRemocao, StatusSituacao status) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.tipo = tipo;
 		this.dataHoraCriacao = dataHoraCriacao;
 		this.dataHoraAtualizacao = dataHoraAtualizacao;
-		this.projeto = projeto;
-		this.situacao = situacao;
-		this.usuario = usuario;
+		this.dataHoraRemocao = dataHoraRemocao;
+		this.status = status;
 	}
-
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getDescricao() {
-		return descricao;
+	public TipoSituacao getTipo() {
+		return tipo;
 	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setTipo(TipoSituacao tipo) {
+		this.tipo = tipo;
 	}
-
-	public Projeto getProjeto() {
-		return projeto;
-	}
-
-	public void setProjeto(Projeto projetos) {
-		this.projeto = projetos;
-	}
-
-	public Situacao getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(Situacao situacao) {
-		this.situacao = situacao;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuarios) {
-		this.usuario = usuarios;
-	}
-
 	public Date getDataHoraCriacao() {
 		return dataHoraCriacao;
 	}
-
 	public void setDataHoraCriacao(Date dataHoraCriacao) {
 		this.dataHoraCriacao = dataHoraCriacao;
 	}
-
 	public Date getDataHoraAtualizacao() {
 		return dataHoraAtualizacao;
 	}
-
 	public void setDataHoraAtualizacao(Date dataHoraAtualizacao) {
 		this.dataHoraAtualizacao = dataHoraAtualizacao;
 	}
-
 	public Date getDataHoraRemocao() {
 		return dataHoraRemocao;
 	}
-
 	public void setDataHoraRemocao(Date dataHoraRemocao) {
 		this.dataHoraRemocao = dataHoraRemocao;
 	}
-
-	@Override
-	public String toString() {
-		return "TarefasEntidade [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", projetos=" + projeto
-				+ ", situacao=" + situacao + ", usuarios=" + usuario + "]";
+	public StatusSituacao getStatus() {
+		return status;
+	}
+	public void setStatus(StatusSituacao status) {
+		this.status = status;
 	}
 
 	@Override
@@ -161,7 +124,7 @@ public class Tarefa {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tarefa other = (Tarefa) obj;
+		Situacao other = (Situacao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -170,4 +133,13 @@ public class Tarefa {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Situacao [id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", dataHoraCriacao=" + dataHoraCriacao
+				+ ", dataHoraAtualizacao=" + dataHoraAtualizacao + ", dataHoraRemocao=" + dataHoraRemocao + ", status="
+				+ status + "]";
+	}
+	
+	
+	
 }

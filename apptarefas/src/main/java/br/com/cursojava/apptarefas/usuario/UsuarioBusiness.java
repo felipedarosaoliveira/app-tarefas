@@ -1,5 +1,6 @@
 package br.com.cursojava.apptarefas.usuario;
 
+import br.com.apptarefadao.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.Sistema;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 

@@ -3,6 +3,8 @@ package br.com.cursojava.apptarefas.usuario;
 import java.util.Date;
 import java.util.List;
 
+import br.com.apptarefadao.usuario.Usuario;
+import br.com.apptarefadao.usuario.UsuarioRepositorio;
 import br.com.cursojava.apptarefas.utils.AppSession;
 import br.com.cursojava.apptarefas.utils.Sistema;
 import br.com.cursojava.apptarefas.utils.ValidationResult;

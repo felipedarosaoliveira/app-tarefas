@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.tarefa;
+package br.com.apptarefadao.tarefa;
 
 import java.util.Date;
 import java.util.List;

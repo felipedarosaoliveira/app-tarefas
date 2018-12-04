@@ -1,6 +1,7 @@
 package br.com.cursojava.apptarefas.tarefa;
 
-import br.com.cursojava.apptarefas.situacao.Situacao;
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.tarefa.Tarefa;
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
 public class TarefaBusiness {

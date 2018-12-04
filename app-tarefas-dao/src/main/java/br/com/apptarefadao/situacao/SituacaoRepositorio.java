@@ -1,27 +1,27 @@
-package br.com.cursojava.apptarefas.projeto;
+package br.com.apptarefadao.situacao;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.com.apptarefadao.util.CrudRepository;
 import br.com.apptarefadao.util.JPAUtil;
 
-public class ProjetoRepositorio implements CrudRepository<Projeto> {
+public class SituacaoRepositorio implements CrudRepository<Situacao> {
 
 	@Override
-	public boolean inserir(Projeto projeto) {
+	public boolean inserir(Situacao situacao) {
 		boolean resultado = false;
-		if (projeto != null && projeto.getId() == null) {
+		if (situacao != null && situacao.getId() == null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			em.persist(projeto);
+			em.persist(situacao);
 			em.getTransaction().commit();
 			em.close();
 			resultado = true;
@@ -30,13 +30,12 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 	}
 
 	@Override
-	public boolean atualizar(Projeto projeto) {
+	public boolean atualizar(Situacao situacao) {
 		boolean resultado = false;
-		if (projeto != null && projeto.getId() != null) {
+		if (situacao != null && situacao.getId() != null) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			em.find(Projeto.class, projeto.getId());
-			em.merge(projeto);
+			em.merge(situacao);
 			em.getTransaction().commit();
 			em.close();
 			resultado = true;
@@ -50,47 +49,45 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		if (id != 0) {
 			EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 			em.getTransaction().begin();
-			Projeto projeto = em.find(Projeto.class, id);
-			projeto.setStatus(ProjetoStatus.INATIVO);
-			projeto.setDataHoraAtualizacao(new Date());
-			projeto.setDataHoraFim(new Date());
-			em.merge(projeto);
-			resultado = true;
+			Situacao situacao = em.find(Situacao.class, id);
+			situacao.setStatus(StatusSituacao.INATIVA);
+			situacao.setDataHoraAtualizacao(new Date());
+			situacao.setDataHoraRemocao(new Date());
+			em.merge(situacao);
 			em.getTransaction().commit();
 			em.close();
+			resultado = true;
 		}
 		return resultado;
 	}
 
 	@Override
-	public List<Projeto> buscarTodos() {
+	public List<Situacao> buscarTodos() {
+
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
-		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
-		Root<Projeto> root = query.from(Projeto.class);
-		query.select(root);
-		query.where(cb.isNull(root.get("DataHoraFim")));
-		Query queryFinal = em.createQuery(query);
-		List<Projeto> resultado = queryFinal.getResultList();
+		CriteriaQuery<Situacao> cQuery = cb.createQuery(Situacao.class);
+		Root<Situacao> situacoes = cQuery.from(Situacao.class);
+		cQuery.select(situacoes);
+		cQuery.where(cb.isNull(situacoes.get("dataHoraRemocao")));
+		TypedQuery<Situacao> query = em.createQuery(cQuery);
+		List<Situacao> results = query.getResultList();
 		em.close();
-		return resultado;
+		return results;
+
 	}
 
 	@Override
-	public Projeto buscarPorId(int id) {
+	public Situacao buscarPorId(int id) {
 		EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Projeto> query = cb.createQuery(Projeto.class);
-		Root<Projeto> root = query.from(Projeto.class);
+		CriteriaQuery<Situacao> query = cb.createQuery(Situacao.class);
+		Root<Situacao> root = query.from(Situacao.class);
 		query.select(root);
-		Predicate equal = cb.equal(root.get("id"), id);
-		Predicate naoRemovido = cb.isNull(root.get("DataHoraFim"));
-		Predicate resultadoAnd = cb.and(equal, naoRemovido);
-		query.where(resultadoAnd);
+		query.where(cb.and(cb.equal(root.get("id"), id), (cb.isNull(root.get("dataHoraRemocao")))));
 		Query queryFinal = em.createQuery(query);
-		Projeto resultado = (Projeto) queryFinal.getSingleResult();
+		Situacao resultado = (Situacao) queryFinal.getSingleResult();
 		em.close();
 		return resultado;
 	}
@@ -101,8 +98,7 @@ public class ProjetoRepositorio implements CrudRepository<Projeto> {
 		em.getTransaction().begin();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> queryCCount = cb.createQuery(Long.class);
-		Root<Projeto> root = queryCCount.from(Projeto.class);
-		queryCCount.select(cb.count(root)).where(cb.isNull(root.get("DataHoraFim")));
+		queryCCount.select(cb.count(queryCCount.from(Situacao.class)));
 		Query queryCCountFinal = em.createQuery(queryCCount);
 		Long resultado = (Long) queryCCountFinal.getSingleResult();
 		em.close();

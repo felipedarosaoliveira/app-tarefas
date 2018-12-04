@@ -12,9 +12,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import br.com.cursojava.apptarefas.projeto.Projeto;
-import br.com.cursojava.apptarefas.situacao.Situacao;
-import br.com.cursojava.apptarefas.usuario.Usuario;
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.tarefa.Tarefa;
+import br.com.apptarefadao.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
 import br.com.cursojava.apptarefas.utils.Sistema;
 import br.com.cursojava.apptarefas.utils.ValidationResult;

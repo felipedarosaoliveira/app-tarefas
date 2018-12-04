@@ -5,6 +5,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.com.apptarefadao.usuario.Usuario;
+import br.com.apptarefadao.usuario.UsuarioRepositorio;
+
 @FacesConverter(value = "usuarioConverter")
 public class UsuarioConverter implements Converter {
 
