@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.cursojava.apptarefas.utils.ValidationResult;
 
+
 public class ProjetoFacade {
 
 	private ProjetoRepositorio repositorio = new ProjetoRepositorio();
