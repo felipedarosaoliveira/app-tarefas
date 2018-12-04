@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package br.com.cursojava.apptarefas.usuario;
 
 import javax.faces.application.FacesMessage;
@@ -61,6 +62,8 @@ public class LoginBean {
 		
 }
 =======
+=======
+>>>>>>> c15e50d87a53b5972e768bb9244a4324f141bd52
 package br.com.cursojava.apptarefas.usuario;
 
 import javax.faces.application.FacesMessage;
@@ -123,4 +126,7 @@ public class LoginBean {
 	}
 		
 }
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> c15e50d87a53b5972e768bb9244a4324f141bd52
