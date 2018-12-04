@@ -6,24 +6,23 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
+import br.com.cursojava.facade.HelloFacade;
 ;
 
 @ManagedBean
 public class HomeBean extends AbstractBean{
 
-	private String mensagem = "Bem vindo ao JSF";
+	private HelloFacade facade = new HelloFacade();
 	private String nome = "";
 	
 	private List<String> nomes = Arrays.asList("João","Maria","Ana","Frederico","Tibúrcio","Clotilde","Jaime");
 
 
 	public String getMensagem() {
-		return mensagem;
+		return facade.getMensagem();
 	}
 
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
+	
 
 	public String getNome() {
 		return nome;
