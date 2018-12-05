@@ -4,7 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.cursjojava</groupId>
 	<artifactId>app-tarefas-dao</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>app-tarefas-dao</name>
 
 	<parent>
