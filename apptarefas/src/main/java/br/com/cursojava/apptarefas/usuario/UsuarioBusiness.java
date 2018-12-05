@@ -1,8 +1,8 @@
 package br.com.cursojava.apptarefas.usuario;
 
 import br.com.apptarefadao.usuario.Usuario;
-import br.com.cursojava.apptarefas.utils.Sistema;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.apptarefasfacade.utils.Sistema;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class UsuarioBusiness {
 

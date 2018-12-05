@@ -1,11 +1,11 @@
-package br.com.cursojava.facade.situacao;
+package br.com.cursojava.apptarefasfacade.situacao;
 
 import java.util.Date;
 import java.util.List;
 
 import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.situacao.SituacaoRepositorio;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class SituacaoFacade {
 
@@ -13,6 +13,7 @@ public class SituacaoFacade {
 	private SituacaoBusiness business = new SituacaoBusiness();
 
 	public Situacao novaSituacao() {
+		System.out.println("Passei aqui");
 		return new Situacao();
 	}
 

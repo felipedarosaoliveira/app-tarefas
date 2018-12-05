@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 
 import br.com.cursojava.apptarefas.utils.AbstractBean;
-import br.com.cursojava.facade.HelloFacade;
+import br.com.cursojava.apptarefasfacade.HelloFacade;
 ;
 
 @ManagedBean

@@ -1,12 +1,12 @@
-package br.com.cursojava.facade.usuario;
+package br.com.cursojava.apptarefasfacade.usuario;
 
 import java.util.Date;
 import java.util.List;
 
 import br.com.apptarefadao.usuario.Usuario;
 import br.com.apptarefadao.usuario.UsuarioRepositorio;
-import br.com.cursojava.apptarefas.utils.AppSession;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.apptarefasfacade.utils.AppSession;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class UsuarioFacade {
 
@@ -14,6 +14,7 @@ public class UsuarioFacade {
 	private UsuarioBusiness business = new UsuarioBusiness();
 
 	public Usuario novoUsuario() {
+		System.out.println("Passei aqui");
 		return new Usuario();
 	}
 

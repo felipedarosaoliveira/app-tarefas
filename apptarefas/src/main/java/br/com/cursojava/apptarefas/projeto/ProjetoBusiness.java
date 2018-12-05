@@ -2,7 +2,7 @@
 package br.com.cursojava.apptarefas.projeto;
 
 import br.com.apptarefadao.projeto.Projeto;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class ProjetoBusiness {
 	

@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.utils;
+package br.com.cursojava.apptarefasfacade.utils;
 
 public interface AppSession {
 	

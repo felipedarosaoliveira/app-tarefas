@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.utils;
+package br.com.cursojava.apptarefasfacade.utils;
 
 import java.security.MessageDigest;
 import java.util.Arrays;

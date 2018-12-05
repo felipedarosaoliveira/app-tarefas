@@ -1,8 +1,8 @@
 
-package br.com.cursojava.facade.projeto;
+package br.com.cursojava.apptarefasfacade.projeto;
 
 import br.com.apptarefadao.projeto.Projeto;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class ProjetoBusiness {
 	
