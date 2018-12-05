@@ -10,6 +10,7 @@ import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.tarefa.Tarefa;
 import br.com.apptarefadao.tarefa.TarefaRepositorio;
 import br.com.apptarefadao.usuario.Usuario;
+
 import br.com.cursojava.apptarefasfacade.projeto.ProjetoFacade;
 import br.com.cursojava.apptarefasfacade.situacao.SituacaoFacade;
 import br.com.cursojava.apptarefasfacade.usuario.UsuarioFacade;

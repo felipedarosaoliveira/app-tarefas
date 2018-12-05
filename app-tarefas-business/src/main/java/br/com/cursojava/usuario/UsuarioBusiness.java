@@ -1,8 +1,13 @@
-package br.com.cursojava.apptarefas.usuario;
+package br.com.cursojava.usuario;
 
 import br.com.apptarefadao.usuario.Usuario;
+<<<<<<< HEAD:apptarefas/src/main/java/br/com/cursojava/apptarefas/usuario/UsuarioBusiness.java
 import br.com.cursojava.apptarefasfacade.utils.Sistema;
 import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+=======
+import br.com.cursojava.utils.Sistema;
+import br.com.cursojava.utils.ValidationResult;
+>>>>>>> f08cdc3d34af9118c8d24617e38c6f91be9206de:app-tarefas-business/src/main/java/br/com/cursojava/usuario/UsuarioBusiness.java
 
 public class UsuarioBusiness {
 
