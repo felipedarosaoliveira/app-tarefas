@@ -1,16 +1,18 @@
-package br.com.cursojava.facade.projeto;
+package br.com.cursojava.apptarefasfacade.projeto;
 
 import java.util.Date;
 import java.util.List;
 
-import br.com.cursojava.apptarefas.utils.ValidationResult;
-import br.com.cursojava.facade.HelloFacade;
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.projeto.ProjetoRepositorio;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class ProjetoFacade {
 
 	private ProjetoRepositorio repositorio = new ProjetoRepositorio();
 	private ProjetoBusiness business  = new ProjetoBusiness();
 	public Projeto novoProjeto() {
+		System.out.println("Passei aqui");
 		return new Projeto();
 	}
 

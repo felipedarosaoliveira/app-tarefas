@@ -1,4 +1,4 @@
-package br.com.cursojava.facade;
+package br.com.cursojava.apptarefasfacade;
 
 public class HelloFacade {
 	

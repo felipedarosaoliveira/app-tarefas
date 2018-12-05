@@ -6,9 +6,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import br.com.cursojava.apptarefas.utils.AppSession;
 import br.com.cursojava.apptarefas.utils.AppSessionImpl;
-import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.apptarefasfacade.usuario.UsuarioFacade;
+import br.com.cursojava.apptarefasfacade.utils.AppSession;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+
 
 @ManagedBean
 @ViewScoped

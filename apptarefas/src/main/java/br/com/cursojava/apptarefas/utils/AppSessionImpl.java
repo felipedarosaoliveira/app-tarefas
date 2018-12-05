@@ -2,6 +2,8 @@ package br.com.cursojava.apptarefas.utils;
 
 import javax.servlet.http.HttpSession;
 
+import br.com.cursojava.apptarefasfacade.utils.AppSession;
+
 public class AppSessionImpl implements AppSession {
 	
 	private HttpSession session;
