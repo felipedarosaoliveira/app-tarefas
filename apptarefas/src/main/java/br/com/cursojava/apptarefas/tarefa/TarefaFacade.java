@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import br.com.cursojava.apptarefas.projeto.Projeto;
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.tarefa.Tarefa;
+import br.com.apptarefadao.tarefa.TarefaRepositorio;
+import br.com.apptarefadao.usuario.Usuario;
 import br.com.cursojava.apptarefas.projeto.ProjetoFacade;
-import br.com.cursojava.apptarefas.situacao.Situacao;
 import br.com.cursojava.apptarefas.situacao.SituacaoFacade;
-import br.com.cursojava.apptarefas.usuario.Usuario;
 import br.com.cursojava.apptarefas.usuario.UsuarioFacade;
-import br.com.cursojava.apptarefas.utils.Sistema;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.Sistema;
+import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.tarefa.TarefaBusiness;
 
 public class TarefaFacade {
 

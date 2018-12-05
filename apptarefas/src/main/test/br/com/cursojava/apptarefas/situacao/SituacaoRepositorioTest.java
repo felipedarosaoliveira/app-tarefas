@@ -7,6 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.situacao.SituacaoRepositorio;
+import br.com.apptarefadao.situacao.StatusSituacao;
+import br.com.apptarefadao.situacao.TipoSituacao;
+
 public class SituacaoRepositorioTest {
 	
 	private SituacaoRepositorio sitrepos;

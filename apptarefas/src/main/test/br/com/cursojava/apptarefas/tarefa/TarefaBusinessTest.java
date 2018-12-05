@@ -5,8 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cursojava.apptarefas.situacao.Situacao;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.tarefa.Tarefa;
+import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.tarefa.TarefaBusiness;
 
 public class TarefaBusinessTest {
 
