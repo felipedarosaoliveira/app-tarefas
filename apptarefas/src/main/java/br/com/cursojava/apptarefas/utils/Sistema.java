@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.com.cursojava.apptarefas.situacao.Situacao;
-import br.com.cursojava.apptarefas.situacao.SituacaoRepositorio;
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.situacao.SituacaoRepositorio;
 
 public class Sistema {
 	// retorna um Objeto lista dos registros solicitados

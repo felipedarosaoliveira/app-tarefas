@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.usuario;
+package br.com.apptarefadao.usuario;
 
 import java.util.Date;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import br.com.cursojava.apptarefas.utils.CrudRepository;
-import br.com.cursojava.apptarefas.utils.JPAUtil;
+import br.com.apptarefadao.util.CrudRepository;
+import br.com.apptarefadao.util.JPAUtil;
 
 public class UsuarioRepositorio implements CrudRepository<Usuario> {
 

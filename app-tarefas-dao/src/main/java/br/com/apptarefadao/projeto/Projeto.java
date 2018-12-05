@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.projeto;
+package br.com.apptarefadao.projeto;
 
 import java.util.Date;
 

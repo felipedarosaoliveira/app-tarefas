@@ -6,9 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cursojava.apptarefas.projeto.Projeto;
-import br.com.cursojava.apptarefas.projeto.ProjetoRepositorio;
-import br.com.cursojava.apptarefas.projeto.ProjetoStatus;
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.projeto.ProjetoRepositorio;
+import br.com.apptarefadao.projeto.ProjetoStatus;
 
 public class ProjetoRepositorioTest {
 	

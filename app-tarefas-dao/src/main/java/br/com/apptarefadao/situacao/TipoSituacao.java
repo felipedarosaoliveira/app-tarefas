@@ -1,4 +1,4 @@
-package br.com.cursojava.apptarefas.situacao;
+package br.com.apptarefadao.situacao;
 
 public enum TipoSituacao {
 
