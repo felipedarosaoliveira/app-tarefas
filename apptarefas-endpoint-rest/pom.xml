@@ -3,7 +3,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>apptarefas-endpoint-jaxrs</groupId>
 	<artifactId>apptarefas-endpoint-jaxrs</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -42,6 +41,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+			<groupId>br.com.cursjojava</groupId>
+			<artifactId>app-tarefas-dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -65,4 +69,5 @@
 		<jersey.version>2.27</jersey.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 </project>
