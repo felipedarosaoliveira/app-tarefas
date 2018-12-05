@@ -1,18 +1,21 @@
-package br.com.cursojava.facade.tarefa;
+package br.com.cursojava.apptarefasfacade.tarefa;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import br.com.cursojava.apptarefas.projeto.Projeto;
-import br.com.cursojava.apptarefas.projeto.ProjetoFacade;
-import br.com.cursojava.apptarefas.situacao.Situacao;
-import br.com.cursojava.apptarefas.situacao.SituacaoFacade;
-import br.com.cursojava.apptarefas.usuario.Usuario;
-import br.com.cursojava.apptarefas.usuario.UsuarioFacade;
-import br.com.cursojava.apptarefas.utils.Sistema;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.apptarefadao.projeto.Projeto;
+import br.com.apptarefadao.situacao.Situacao;
+import br.com.apptarefadao.tarefa.Tarefa;
+import br.com.apptarefadao.tarefa.TarefaRepositorio;
+import br.com.apptarefadao.usuario.Usuario;
+
+import br.com.cursojava.apptarefasfacade.projeto.ProjetoFacade;
+import br.com.cursojava.apptarefasfacade.situacao.SituacaoFacade;
+import br.com.cursojava.apptarefasfacade.usuario.UsuarioFacade;
+import br.com.cursojava.apptarefasfacade.utils.Sistema;
+import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
 
 public class TarefaFacade {
 
@@ -20,6 +23,7 @@ public class TarefaFacade {
 	private TarefaBusiness business = new TarefaBusiness();
 
 	public Tarefa novaTarefa() {
+		System.out.println("Passei aqui");
 		return new Tarefa();
 	}
 
