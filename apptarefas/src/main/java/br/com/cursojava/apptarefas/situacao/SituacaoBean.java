@@ -14,7 +14,7 @@ import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.situacao.StatusSituacao;
 import br.com.apptarefadao.situacao.TipoSituacao;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
 
 @ManagedBean(name = "situacaoBean")
 @ViewScoped

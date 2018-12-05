@@ -6,8 +6,10 @@ import java.util.List;
 import br.com.apptarefadao.usuario.Usuario;
 import br.com.apptarefadao.usuario.UsuarioRepositorio;
 import br.com.cursojava.apptarefas.utils.AppSession;
-import br.com.cursojava.apptarefas.utils.Sistema;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.usuario.UsuarioBusiness;
+
+
 
 public class UsuarioFacade {
 

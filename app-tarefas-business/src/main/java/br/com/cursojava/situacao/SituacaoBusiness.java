@@ -1,7 +1,7 @@
-package br.com.cursojava.apptarefas.situacao;
+package br.com.cursojava.situacao;
 
 import br.com.apptarefadao.situacao.Situacao;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
 
 public class SituacaoBusiness {
 
