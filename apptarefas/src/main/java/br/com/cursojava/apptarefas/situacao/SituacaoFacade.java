@@ -5,7 +5,8 @@ import java.util.List;
 
 import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.situacao.SituacaoRepositorio;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.situacao.SituacaoBusiness;
 
 public class SituacaoFacade {
 

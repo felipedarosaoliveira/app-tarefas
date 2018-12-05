@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.cursojava.apptarefas.utils.AppSession;
 import br.com.cursojava.apptarefas.utils.AppSessionImpl;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
 
 @ManagedBean
 @ViewScoped

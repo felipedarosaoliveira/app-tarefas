@@ -13,12 +13,22 @@
 	</parent>
 
 
+
 	<dependencies>
 		<dependency>
 			<groupId>br.com.cursojava</groupId>
 			<artifactId>app-tarefas-facade</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+	
+		<dependency>
+   <groupId>br.com.cursojava</groupId>
+	<artifactId>app-tarefas-business</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+		
+		
 		<dependency>
 			<groupId>br.com.cursjojava</groupId>
 			<artifactId>app-tarefas-dao</artifactId>

@@ -14,8 +14,8 @@ import javax.faces.event.ValueChangeEvent;
 import br.com.apptarefadao.usuario.StatusUsuario;
 import br.com.apptarefadao.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
-import br.com.cursojava.apptarefas.utils.Sistema;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.Sistema;
+import br.com.cursojava.utils.ValidationResult;
 
 @ManagedBean
 @ViewScoped

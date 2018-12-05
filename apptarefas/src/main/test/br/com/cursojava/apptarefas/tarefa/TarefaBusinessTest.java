@@ -7,7 +7,8 @@ import org.junit.Test;
 
 import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.tarefa.Tarefa;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.tarefa.TarefaBusiness;
 
 public class TarefaBusinessTest {
 

@@ -13,8 +13,9 @@ import br.com.apptarefadao.usuario.Usuario;
 import br.com.cursojava.apptarefas.projeto.ProjetoFacade;
 import br.com.cursojava.apptarefas.situacao.SituacaoFacade;
 import br.com.cursojava.apptarefas.usuario.UsuarioFacade;
-import br.com.cursojava.apptarefas.utils.Sistema;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.Sistema;
+import br.com.cursojava.utils.ValidationResult;
+import br.com.cursojava.tarefa.TarefaBusiness;
 
 public class TarefaFacade {
 

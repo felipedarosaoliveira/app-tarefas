@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 import br.com.apptarefadao.projeto.Projeto;
 import br.com.apptarefadao.projeto.ProjetoStatus;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
-import br.com.cursojava.apptarefas.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
 
 @ManagedBean(name = "projetoBean")
 @ViewScoped
