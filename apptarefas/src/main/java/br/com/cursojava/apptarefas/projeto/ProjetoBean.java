@@ -13,7 +13,7 @@ import br.com.apptarefadao.projeto.Projeto;
 import br.com.apptarefadao.projeto.ProjetoStatus;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
 import br.com.cursojava.apptarefasfacade.projeto.ProjetoFacade;
-import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+import br.com.cursojava.utils.ValidationResult;
 
 @ManagedBean(name = "projetoBean")
 @ViewScoped

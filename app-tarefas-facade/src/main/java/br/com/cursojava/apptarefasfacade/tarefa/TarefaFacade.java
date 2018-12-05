@@ -10,12 +10,12 @@ import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.tarefa.Tarefa;
 import br.com.apptarefadao.tarefa.TarefaRepositorio;
 import br.com.apptarefadao.usuario.Usuario;
-
 import br.com.cursojava.apptarefasfacade.projeto.ProjetoFacade;
 import br.com.cursojava.apptarefasfacade.situacao.SituacaoFacade;
 import br.com.cursojava.apptarefasfacade.usuario.UsuarioFacade;
-import br.com.cursojava.apptarefasfacade.utils.Sistema;
-import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+import br.com.cursojava.tarefa.TarefaBusiness;
+import br.com.cursojava.utils.Sistema;
+import br.com.cursojava.utils.ValidationResult;
 
 public class TarefaFacade {
 

@@ -17,10 +17,9 @@ import br.com.apptarefadao.situacao.Situacao;
 import br.com.apptarefadao.tarefa.Tarefa;
 import br.com.apptarefadao.usuario.Usuario;
 import br.com.cursojava.apptarefas.utils.AbstractBean;
-
 import br.com.cursojava.apptarefasfacade.tarefa.TarefaFacade;
-import br.com.cursojava.apptarefasfacade.utils.Sistema;
-import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+import br.com.cursojava.utils.Sistema;
+import br.com.cursojava.utils.ValidationResult;
 
 @ManagedBean
 @ViewScoped

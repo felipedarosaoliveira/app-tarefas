@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import br.com.cursojava.apptarefas.utils.AppSessionImpl;
 import br.com.cursojava.apptarefasfacade.usuario.UsuarioFacade;
-import br.com.cursojava.apptarefasfacade.utils.AppSession;
-import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+import br.com.cursojava.utils.AppSession;
+import br.com.cursojava.utils.ValidationResult;
 
 
 @ManagedBean

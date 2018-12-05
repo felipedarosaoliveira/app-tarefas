@@ -5,7 +5,8 @@ import java.util.List;
 
 import br.com.apptarefadao.projeto.Projeto;
 import br.com.apptarefadao.projeto.ProjetoRepositorio;
-import br.com.cursojava.apptarefasfacade.utils.ValidationResult;
+import br.com.cursojava.projeto.ProjetoBusiness;
+import br.com.cursojava.utils.ValidationResult;
 
 public class ProjetoFacade {
 
