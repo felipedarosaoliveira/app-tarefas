@@ -11,6 +11,7 @@
 		<module>../app-tarefas-dao</module>
 		<module>../app-tarefas-facade</module>
 		<module>../apptarefas-endpoint-rest</module>
+		<module>../app-tarefas-business</module>
 	</modules>
   
 </project>
