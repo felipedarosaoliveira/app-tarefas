@@ -20,7 +20,7 @@ public class ControllerLogin {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response autenticar(Credencial credencial) {
-		if (credencial.getEmail().equals("meuEmail") || credencial.getSenha().equals("minhaSenha")) {
+		if (credencial.getEmail().equals("meuEmail") && credencial.getSenha().equals("minhaSenha")) {
 			return Response.status(Status.ACCEPTED).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
